@@ -75,13 +75,25 @@ $DaysInYear = $DaysInYear - 1
 
 
 # Ok, getting a fresh start further on down and leaving the code up above while I'm developing this.
-# For the loop, whatever one you end up using, first write a small something that checks at the end of the loop if this is the 365th time it's finishing
-# and if it is then exit.
+# For the loop, whatever one you end up using, first write a small something that checks at the end of the loop if this is 12-31 then exit.
 
-# Simple loop:
+# Simple loop - try 01:
+$asdf = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01; Write-Output -InputObject '$test'; Write-Output -InputObject $asdf; Write-Output -InputObject " "
 DO
 {
-$asdf = 0
+# $something = 0
 # Append an incrementing number on the next line in a text file.
-$asdf = $asdf + 1
-} While ($asdf -lt 365)
+Write-Output $asdf
+$asdf = $asdf.AddDays(1)
+} While (($asdf.Year -lt ($asdf.year + 1)) -and ($asdf.Month -lt 13) -and ($asdf.Day -lt 32))
+
+# Simple loop - try 02:
+#ChatGPT, & Google Bard didn't quite get me there.  Bing Chat gave me this great loop idea which was exactly what I was looking for!:
+$StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01
+$EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31
+While ($StartDate -lt $EndDate)
+{
+	Write-Output $StartDate # You need to custom print this output.
+	$StartDate = $StartDate.AddDays(1)
+}
+
