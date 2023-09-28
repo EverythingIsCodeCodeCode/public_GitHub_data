@@ -14,6 +14,8 @@ gitignore_data/ShouldNotSeeMe.ps1
 The first line tells Git to ignore that folder (& everything inside).  "gitignore_data/*" could also be used to just ignore all files inside.
 The second one ignores a PowerShell script inside that folder although this can probably go away and Git would still ignore it based on the first line.
 The third one ignores the ignore file so it doesn't upload.
+Steven said you could go ahead and not ignore the ignore file so it uploads.  That way I'll pull down on new systems & your ignores will be consistent.
+Credentials are secondary.  Ignore is primarily used to ignore environment for cross-platform code.
 The fourth line ignores a hidden file on the Mac.
 You can also make a file containing custom environment variables and tell Git to ignore it.  This way you can reference more sensitive data in public scripts w/o exposing it.
 
