@@ -91,10 +91,15 @@ $asdf = $asdf.AddDays(1)
 #ChatGPT, & Google Bard didn't quite get me there.  Bing Chat gave me this great loop idea which was exactly what I was looking for!:
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31
+$ap = (Get-Date -Format "tt").ToLower().Substring(0,1)
 While ($StartDate -lt $EndDate)
 {
-	Write-Output $StartDate # You need to custom print this output.
+	Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date.  Now work on the time (Sa & Sp).  "t" for the first character of AM/PM.
+	
 	$StartDate = $StartDate.AddDays(1)
 }
+
+# https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-7.3
+# https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings?view=netframework-4.8
 
 #End of script.
