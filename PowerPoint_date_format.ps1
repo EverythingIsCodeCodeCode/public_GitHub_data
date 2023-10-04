@@ -87,22 +87,64 @@ Write-Output $asdf
 $asdf = $asdf.AddDays(1)
 } While (($asdf.Year -lt ($asdf.year + 1)) -and ($asdf.Month -lt 13) -and ($asdf.Day -lt 32))
 
+
+
+
 # Simple loop - try 02:
 #ChatGPT, & Google Bard didn't quite get me there.  Bing Chat gave me this great loop idea which was exactly what I was looking for!:
-$StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01
-$EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31
-$ap = (Get-Date -Format "tt").ToLower().Substring(0,1)
-While ($StartDate -lt $EndDate)
+$StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
+$EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
+$ap = (Get-Date -Format "tt").ToLower().Substring(0,1) # This gets a single lowercase letter for A.M. or P.M., "a" or "p".
+While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 {
 	# Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date & time.  Now try other lines to change up the formatting some.  "t" for the first character of AM/PM.
 	
 	$day = $(Get-Date -Date $StartDate -Format "ddd").Substring(0,1).ToLower() # This makes a lowercase single letter of the first letter of the day of the week.  "smtwtfs"
-	$date = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+$ap+".pptx") # This formats the file name with the date & time like you normally do.
+	$datepptx = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+$ap+".pptx") # This formats the file name with the date & time like you normally do.
 	# Write-Output $date
 	
 	# Now work on outputting different things based on the day of the week:
+	$date = Get-Date -Date $StartDate
 
-	Write-Output $date
+	If ($date.DayOfWeek -eq "Sunday")
+	{
+		# Do stuff during Sunday.
+		# You need to work on statically setting "a" & "p" values for the file names since that's most common.
+		Write-Output $datepptx
+	}
+
+	If ($date.DayOfWeek -eq "Monday")
+	{
+		# Do stuff during Monday.
+	}
+
+	If ($date.DayOfWeek -eq "Tuesday")
+	{
+		# Do stuff during Tuesday.
+	}
+
+	If ($date.DayOfWeek -eq "Wednesday")
+	{
+		# Do stuff during Wednesday.
+		Write-Output $datepptx
+	}
+
+	If ($date.DayOfWeek -eq "Thursday")
+	{
+		# Do stuff during Thursday.
+	}
+
+	If ($date.DayOfWeek -eq "Friday")
+	{
+		# Do stuff during Friday.
+	}
+
+	If ($date.DayOfWeek -eq "Saturday")
+	{
+		# Do stuff during Saturday.
+	}
+
+	# Write-Output $datepptx
 
 	$StartDate = $StartDate.AddDays(1)
 }
