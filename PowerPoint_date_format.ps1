@@ -94,8 +94,16 @@ $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31
 $ap = (Get-Date -Format "tt").ToLower().Substring(0,1)
 While ($StartDate -lt $EndDate)
 {
-	Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date.  Now work on the time (Sa & Sp).  "t" for the first character of AM/PM.
+	# Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date & time.  Now try other lines to change up the formatting some.  "t" for the first character of AM/PM.
 	
+	$day = $(Get-Date -Date $StartDate -Format "ddd").Substring(0,1).ToLower() # This makes a lowercase single letter of the first letter of the day of the week.  "smtwtfs"
+	$date = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+$ap+".pptx") # This formats the file name with the date & time like you normally do.
+	# Write-Output $date
+	
+	# Now work on outputting different things based on the day of the week:
+
+	Write-Output $date
+
 	$StartDate = $StartDate.AddDays(1)
 }
 
