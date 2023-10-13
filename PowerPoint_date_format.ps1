@@ -101,6 +101,9 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 	
 	$day = $(Get-Date -Date $StartDate -Format "ddd").Substring(0,1).ToLower() # This makes a lowercase single letter of the first letter of the day of the week.  "smtwtfs"
 	$datepptx = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+$ap+".pptx") # This formats the file name with the date & time like you normally do.
+	$datepptxa = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+"a.pptx") # This formats the file name with the date & time like you normally do.  Always a.
+	$datepptxp = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+"p.pptx") # This formats the file name with the date & time like you normally do.  Always p.
+	
 	# Write-Output $date
 	
 	# Now work on outputting different things based on the day of the week:
@@ -110,7 +113,9 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 	{
 		# Do stuff during Sunday.
 		# You need to work on statically setting "a" & "p" values for the file names since that's most common.
-		Write-Output $datepptx
+		#Write-Output $datepptx
+		Write-Output $datepptxa
+		Write-Output $datepptxp
 	}
 
 	If ($date.DayOfWeek -eq "Monday")
@@ -126,7 +131,8 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 	If ($date.DayOfWeek -eq "Wednesday")
 	{
 		# Do stuff during Wednesday.
-		Write-Output $datepptx
+		#Write-Output $datepptx
+		Write-Output $datepptxp
 	}
 
 	If ($date.DayOfWeek -eq "Thursday")
