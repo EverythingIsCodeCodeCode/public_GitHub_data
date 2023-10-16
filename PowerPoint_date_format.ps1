@@ -90,8 +90,16 @@ $asdf = $asdf.AddDays(1)
 
 
 
+# THIS WORKS woo-hoo :D !!!
 # Simple loop - try 02:
 #ChatGPT, & Google Bard didn't quite get me there.  Bing Chat gave me this great loop idea which was exactly what I was looking for!:
+
+# Import variables using dot sourcing:
+. .\public_GitHub_data\gitignore_data\variables.ps1
+# List variables:
+Write-Output $NextYearChurchServicesFolder
+Write-Output $TemplateFile
+
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
 $ap = (Get-Date -Format "tt").ToLower().Substring(0,1) # This gets a single lowercase letter for A.M. or P.M., "a" or "p".
@@ -115,7 +123,9 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 		# You need to work on statically setting "a" & "p" values for the file names since that's most common.
 		#Write-Output $datepptx
 		Write-Output $datepptxa
+		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxa
 		Write-Output $datepptxp
+		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
 	}
 
 	If ($date.DayOfWeek -eq "Monday")
@@ -133,6 +143,7 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 		# Do stuff during Wednesday.
 		#Write-Output $datepptx
 		Write-Output $datepptxp
+		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
 	}
 
 	If ($date.DayOfWeek -eq "Thursday")
