@@ -29,8 +29,11 @@ function Copy-RemoteFiles {
         return
     }
 
+    # Convert slashes in the destination folder path to the correct path separator
+    $ConvertedDestinationFolder = $DestinationFolder -replace '[\\/]', $PathSeparator
+
     $SourcePath = "$SourceFolder$PathSeparator$TemplateFile"
-    $DestinationPath = "$DestinationFolder$PathSeparator$NewFile"
+    $DestinationPath = "$ConvertedDestinationFolder$PathSeparator$NewFile"
 
     Copy-Item $SourcePath $DestinationPath
 
@@ -38,5 +41,5 @@ function Copy-RemoteFiles {
 }
 
 # Example usage
-Copy-RemoteFiles -SourceFolder "/Users/Some/Folder" -TemplateFile "a.txt" -NewFile "b.txt" -DestinationFolder "/Users/Some/Path" 
+Copy-RemoteFiles -SourceFolder "/Users/Some/Folder" -TemplateFile "a.txt" -NewFile "b.txt" -DestinationFolder "/Users/Some/Path"    
 
