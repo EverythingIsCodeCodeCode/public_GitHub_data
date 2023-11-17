@@ -14,6 +14,16 @@ numbering of new folders
 main loop to check for files in target folder
 do you just want one loop?  can this be done in a single loop?
 
+
+
+Here's the three lines of PowerShell that helped me count the number of mp3 files in each folder as I was manually selecting them in Explorer & populating them since a lot of extra stuff came up & I didn't have time to spend troubleshooting scripting.  Maybe I'll have time later.
+
+$a = Get-ChildItem -Path L:\chiptune016
+$b = $a | Where-Object -Property Name -Like "*.mp3"
+$b.Count
+
+
+
 #>
 
 
