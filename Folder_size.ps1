@@ -32,5 +32,7 @@ Write-Output -InputObject "$bytes"
  }
 else {Write-Output "Folder not found."}
 $stopwatch.Stop()
-$time = $stopwatch.ElapsedMilliseconds
-"Milliseconds Elapsed:  $time"
+$seconds = $stopwatch.Elapsed
+$milliseconds = $stopwatch.ElapsedMilliseconds
+"Milliseconds elapsed:  $milliseconds"
+"Hours:minutes:seconds: elapsed:  $seconds"
