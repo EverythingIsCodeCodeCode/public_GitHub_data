@@ -10,6 +10,7 @@ https://devblogs.microsoft.com/powershell-community/determine-if-a-folder-exists
 #>
 
 $folder = Read-Host -Prompt "Input path to folder and include the folder's name at the end of the path."
+$stopwatch = [system.diagnostics.stopwatch]::StartNew()
 If (Test-Path -Path $folder)
  {
 $folderData = Get-ChildItem -Path $folder -Recurse -Force -ErrorAction SilentlyContinue | Where-Object { $_.LinkType -notmatch "HardLink"}
@@ -28,5 +29,7 @@ Write-Output -InputObject "$gb"
 Write-Output -InputObject "$mb"
 Write-Output -InputObject "$bytes"
  }
- else {Write-Output "Folder not found."}
-
+else {Write-Output "Folder not found."}
+$stopwatch.Stop()
+$time = $stopwatch.ElapsedMilliseconds
+"Milliseconds Elapsed:  $time"
