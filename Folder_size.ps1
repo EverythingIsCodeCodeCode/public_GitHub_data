@@ -6,6 +6,7 @@ https://stackoverflow.com/questions/12934106/counting-folders-with-powershell
 https://stackoverflow.com/questions/14714284/powershell-count-items-in-a-folder-with-powershell
 https://stackoverflow.com/questions/32252707/remove-blank-lines-in-powershell-output
 https://devblogs.microsoft.com/powershell-community/determine-if-a-folder-exists/
+https://ss64.com/ps/measure-command.html
 
 #>
 
