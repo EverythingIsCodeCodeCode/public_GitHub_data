@@ -26,7 +26,7 @@ Here's one way that may be faster to show a folder's size than Get-ChildItem.
 Robocopy Method:
 #>
 [regex]$BytesLineRegex = 'Bytes\s*:\s*(?<ByteCount>\d+)(?:\s+\d+){3}\s+(?<BytesFailed>\d+)\s+\d+'
-[string]$FolderSize = Robocopy.exe $folder.FullName NULL /L /S /NJH /BYTES /FP /NC /TS /XJ /R:0 /W:0 /MT:16 | Select-Object -Last 4
+[string]$FolderSize = Robocopy.exe $folder.FullName NULL /L /S /NJH /BYTES /FP /NC /TS /XJ /R:0 /W:0 /MT:16 | Select-Object -Last 7
 $FolderSize -match "$BytesLineRegex" | Out-Null
 $FolderSizeBytes = "{0:N2}" -f ([int64]$Matches.ByteCount)
 $FolderSizeMB = "{0:N2}" -f ([int64]$Matches.ByteCount / 1MB)
