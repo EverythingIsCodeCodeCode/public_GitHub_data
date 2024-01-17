@@ -17,8 +17,7 @@ If (Test-Path -Path $folder)
 $folderData = Get-ChildItem -Path $folder -Recurse -Force -ErrorAction SilentlyContinue | Where-Object { $_.LinkType -notmatch "HardLink"}
 $folderNumber = (Get-ChildItem -Path $folder -Directory -Recurse -Force).Count
 $fileNumber = (Get-ChildItem -Path $folder -File -Recurse -Force).Count
-#$folderNumber = $folderData | Where-Object {($_.PsIsContainer)}
-#$fileNumber = $folderData | Where-Object {$_.PsIsContainer}
+
 
 $tb = "{0:N2} Terabytes (TB)" -f (($folderData | Measure-Object -Property Length -Sum).Sum / 1Tb)
 $gb = "{0:N2} Gigabytes (GB)" -f (($folderData | Measure-Object -Property Length -Sum).Sum / 1Gb)
