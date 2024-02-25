@@ -6,6 +6,9 @@ Given a path & folder name, this script will produce a report of duplicate file 
 
 $Date = Get-Date -UFormat %Y-%m-%d_%a_%I_%M_%S_%p # Get the current date/time so we can use it in the transcript.
 $DateString = "C:\temp\"+"$Date"+"_duplicate_file_report_PowerShell_transcript.txt"
+if ($PSVersionTable.Platform -eq "Unix") {
+	$DateString = "/home/john/Documents/PowerShell_script_output/"+"$Date"+"_duplicate_file_report_PowerShell_transcript.txt"
+}
 Start-Transcript -Path $DateString
 <#
 Write-Output -InputObject "This script has been configured to run in Windows."
@@ -134,13 +137,18 @@ Stop-Transcript
 #>
 
 
-$Files = Get-ChildItem -Path C:\blah2 -Recurse -File -Force
+# $Files = Get-ChildItem -Path C:\blah2 -Recurse -File -Force
+if ($PSVersionTable.Platform -eq "Unix") {$Files = Get-ChildItem -Path /home/john/Documents/PowerShell_script_output/Practice_files/ -Recurse -File -Force}
 $FileStartCountOuterLoop = 0
 $FileCurrentCountOuterLoop = 0
 $FileStopCountOuterLoop = $Files.Count
 $FileStartCountInnerLoop = 0
 $FileCurrentCountInnerLoop = 0
 $FileStopCountInnerLoop = $Files.Count
+
+if ($PSVersionTable.Platform -eq "Unix" -and -not(Test-Path -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report.txt")){
+New-Item -Path "/home/john/Documents/PowerShell_script_output" -Name "duplicate_file_report.txt" -ItemType File
+}
 
 while ($FileCurrentCountOuterLoop -ne $FileStopCountOuterLoop)
 {
@@ -152,9 +160,22 @@ while ($FileCurrentCountOuterLoop -ne $FileStopCountOuterLoop)
   if ($CurrentFile.Name -eq $Files[$FileCurrentCountInnerLoop].Name -and $FileCurrentCountOuterLoop -ne $FileCurrentCountInnerLoop)
   {
     # Now you need a log file & you need to check its lines for this value before deciding to add to it.
-	Out-File -InputObject $CurrentFile.FullName -FilePath C:\temp\duplicate_file_report.txt -Append
+	if (Test-Path -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report.txt"){
+		$File = Get-Content -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report.txt"
+		$EntryAlreadyExists = "False"
+		foreach ($line in $File){
+			if ($CurrentFile.FullName -eq $line){
+				$EntryAlreadyExists = "True"
+			}
+		if ($EntryAlreadyExists -eq "False" -and $PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $CurrentFile.FullName -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report.txt -Append
+			Write-Output -InputObject $CurrentFile.FullName
+		}
+		}
+	}
+	# Out-File -InputObject $CurrentFile.FullName -FilePath C:\temp\duplicate_file_report.txt -Append
+	# if ($PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $CurrentFile.FullName -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report.txt -Append}
 	# Write-Output -InputObject $Files[$FileCurrentCountInnerLoop].FullName
-    Write-Output -InputObject $CurrentFile.FullName
+    # Write-Output -InputObject $CurrentFile.FullName
   }
    $FileCurrentCountInnerLoop = $FileCurrentCountInnerLoop + 1
  }
