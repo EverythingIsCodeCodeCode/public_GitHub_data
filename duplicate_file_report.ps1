@@ -147,7 +147,7 @@ $FileCurrentCountInnerLoop = 0
 $FileStopCountInnerLoop = $Files.Count
 
 if ($PSVersionTable.Platform -eq "Unix" -and -not(Test-Path -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report.txt")){
-New-Item -Path "/home/john/Documents/PowerShell_script_output" -Name "duplicate_file_report.txt" -ItemType File
+New-Item -Path "/home/john/Documents/PowerShell_script_output" -Name "duplicate_file_report.txt" -ItemType File -Value "duplicate_file_report.txt"
 }
 
 while ($FileCurrentCountOuterLoop -ne $FileStopCountOuterLoop)
@@ -169,7 +169,7 @@ while ($FileCurrentCountOuterLoop -ne $FileStopCountOuterLoop)
 			}
 		if ($EntryAlreadyExists -eq "False" -and $PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $CurrentFile.FullName -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report.txt -Append
 			Write-Output -InputObject $CurrentFile.FullName
-		}
+			}
 		}
 	}
 	# Out-File -InputObject $CurrentFile.FullName -FilePath C:\temp\duplicate_file_report.txt -Append
