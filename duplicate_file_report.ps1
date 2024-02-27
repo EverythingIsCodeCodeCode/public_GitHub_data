@@ -137,6 +137,7 @@ Stop-Transcript
 #>
 
 
+
 # $Files = Get-ChildItem -Path C:\blah2 -Recurse -File -Force
 if ($PSVersionTable.Platform -eq "Unix") {$Files = Get-ChildItem -Path /home/john/Documents/PowerShell_script_output/Practice_files/ -Recurse -File -Force}
 $FileStartCountOuterLoop = 0
@@ -146,8 +147,8 @@ $FileStartCountInnerLoop = 0
 $FileCurrentCountInnerLoop = 0
 $FileStopCountInnerLoop = $Files.Count
 
-if ($PSVersionTable.Platform -eq "Unix" -and -not(Test-Path -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report.txt")){
-New-Item -Path "/home/john/Documents/PowerShell_script_output" -Name "duplicate_file_report.txt" -ItemType File -Value "duplicate_file_report.txt"
+if ($PSVersionTable.Platform -eq "Unix" -and -not(Test-Path -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report_scratch_paper.txt")){
+New-Item -Path "/home/john/Documents/PowerShell_script_output" -Name "duplicate_file_report.txt" -ItemType File -Value "duplicate_file_report_scratch_paper.txt"
 }
 
 while ($FileCurrentCountOuterLoop -ne $FileStopCountOuterLoop)
@@ -159,23 +160,27 @@ while ($FileCurrentCountOuterLoop -ne $FileStopCountOuterLoop)
  
   if ($CurrentFile.Name -eq $Files[$FileCurrentCountInnerLoop].Name -and $FileCurrentCountOuterLoop -ne $FileCurrentCountInnerLoop)
   {
-    # Now you need a log file & you need to check its lines for this value before deciding to add to it.
-	if (Test-Path -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report.txt"){
-		$File = Get-Content -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report.txt"
+    
+	<#
+	# Now you need a log file & you need to check its lines for this value before deciding to add to it.
+	if (Test-Path -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report_scratch_paper.txt"){
+		$File = Get-Content -Path "/home/john/Documents/PowerShell_script_output/duplicate_file_report_scratch_paper.txt"
 		$EntryAlreadyExists = "False"
 		foreach ($line in $File){
 			if ($CurrentFile.FullName -eq $line){
 				$EntryAlreadyExists = "True"
 			}
-		if ($EntryAlreadyExists -eq "False" -and $PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $CurrentFile.FullName -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report.txt -Append
+		if ($EntryAlreadyExists -eq "False" -and $PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $CurrentFile.FullName -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report_scratch_paper.txt -Append
 			Write-Output -InputObject $CurrentFile.FullName
 			}
 		}
 	}
+	#>
+
 	# Out-File -InputObject $CurrentFile.FullName -FilePath C:\temp\duplicate_file_report.txt -Append
-	# if ($PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $CurrentFile.FullName -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report.txt -Append}
+	if ($PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $CurrentFile.FullName -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report_scratch_paper.txt -Append}
 	# Write-Output -InputObject $Files[$FileCurrentCountInnerLoop].FullName
-    # Write-Output -InputObject $CurrentFile.FullName
+    Write-Output -InputObject $CurrentFile.FullName
   }
    $FileCurrentCountInnerLoop = $FileCurrentCountInnerLoop + 1
  }
@@ -183,6 +188,35 @@ while ($FileCurrentCountOuterLoop -ne $FileStopCountOuterLoop)
  $FileCurrentCountInnerLoop = 0
  $FileCurrentCountOuterLoop = $FileCurrentCountOuterLoop + 1
 }
+
+# This part of the script that cleans up the log file was written by Microsoft Bing Copilot.
+# It showed me I was missing a hash table & the Hashtable.ContainsKey(Object) Method; neither of which I know how to do yet.
+# Specify the path to your input file
+if ($PSVersionTable.Platform -eq "Unix") {$filePath = "/home/john/Documents/PowerShell_script_output/duplicate_file_report.txt"}
+
+# Read the content of the file and store it in an array
+$lines = Get-Content -Path $filePath
+
+# Create a hash table to track unique lines
+$uniqueLines = @{}
+
+# Iterate through each line
+foreach ($line in $lines) {
+    # Check if the line is already in the hash table
+    if (-not $uniqueLines.ContainsKey($line)) {
+        # Add the line to the hash table
+        $uniqueLines[$line] = $true
+        # Output the unique line
+        Write-Output $line
+		if ($PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $line -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report.txt -Append}
+    }
+}
+
+# Clean up
+$uniqueLines.Clear()
+
+
+
 Stop-Transcript
 
 
