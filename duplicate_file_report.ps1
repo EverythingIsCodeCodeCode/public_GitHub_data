@@ -10,10 +10,12 @@ if ($PSVersionTable.Platform -eq "Unix") {
 	$DateString = "/home/john/Documents/PowerShell_script_output/"+"$Date"+"_duplicate_file_report_PowerShell_transcript.txt"
 }
 Start-Transcript -Path $DateString
+
+# Write-Output -InputObject "This script has been configured to run in Windows."
 <#
-Write-Output -InputObject "This script has been configured to run in Windows."
-Write-Output -InputObject "It will produce a report of duplicate files."
+Write-Output -InputObject "This script will produce a report of duplicate files."
 Write-Output -InputObject "The report will be located in the C:\temp folder."
+
 $folder = Read-Host -Prompt "Input path to folder and include the folder's name at the end of the path."
 $stopwatch = [system.diagnostics.stopwatch]::StartNew()
 If (Test-Path -Path $folder)
@@ -138,7 +140,7 @@ Stop-Transcript
 
 
 
-# $Files = Get-ChildItem -Path C:\blah2 -Recurse -File -Force
+$Files = Get-ChildItem -Path C:\blah2 -Recurse -File -Force
 if ($PSVersionTable.Platform -eq "Unix") {$Files = Get-ChildItem -Path /home/john/Documents/PowerShell_script_output/Practice_files/ -Recurse -File -Force}
 $FileStartCountOuterLoop = 0
 $FileCurrentCountOuterLoop = 0
@@ -177,7 +179,7 @@ while ($FileCurrentCountOuterLoop -ne $FileStopCountOuterLoop)
 	}
 	#>
 
-	# Out-File -InputObject $CurrentFile.FullName -FilePath C:\temp\duplicate_file_report.txt -Append
+	Out-File -InputObject $CurrentFile.FullName -FilePath C:\temp\duplicate_file_report_scratch_paper.txt -Append
 	if ($PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $CurrentFile.FullName -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report_scratch_paper.txt -Append}
 	# Write-Output -InputObject $Files[$FileCurrentCountInnerLoop].FullName
     Write-Output -InputObject $CurrentFile.FullName
@@ -192,7 +194,9 @@ while ($FileCurrentCountOuterLoop -ne $FileStopCountOuterLoop)
 # This part of the script that cleans up the log file was written by Microsoft Bing Copilot.
 # It showed me I was missing a hash table & the Hashtable.ContainsKey(Object) Method; neither of which I know how to do yet.
 # Specify the path to your input file
-if ($PSVersionTable.Platform -eq "Unix") {$filePath = "/home/john/Documents/PowerShell_script_output/duplicate_file_report.txt"}
+$filePath = "C:\temp\duplicate_file_report_scratch_paper.txt"
+if ($PSVersionTable.Platform -eq "Unix") {$filePath = "/home/john/Documents/PowerShell_script_output/duplicate_file_report_scratch_paper.txt"}
+
 
 # Read the content of the file and store it in an array
 $lines = Get-Content -Path $filePath
@@ -209,6 +213,7 @@ foreach ($line in $lines) {
         # Output the unique line
         Write-Output $line
 		if ($PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $line -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report.txt -Append}
+		Out-File -InputObject $line -FilePath "C:\temp\duplicate_file_report.txt" -Append
     }
 }
 
