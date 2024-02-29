@@ -213,15 +213,110 @@ foreach ($line in $lines) {
         # Output the unique line
         Write-Output $line
 		if ($PSVersionTable.Platform -eq "Unix") {Out-File -InputObject $line -FilePath /home/john/Documents/PowerShell_script_output/duplicate_file_report.txt -Append}
-		Out-File -InputObject $line -FilePath "C:\temp\duplicate_file_report.txt" -Append
+		Out-File -InputObject $line -FilePath "C:\temp\duplicate_file_report_unique.txt" -Append
     }
 }
 
 # Clean up
 $uniqueLines.Clear()
 
+# Sort log file:
+$filePath = "C:\temp\duplicate_file_report_unique.txt"
+$objects = Get-Content $filePath | ForEach-Object {
+    [PSCustomObject]@{Path = $_}
+}
+#$sortedObjects = $objects | Sort-Object -Property { $\.Path -split '\\' | Select-Object -Last 1 }
+$objects = Get-Content $filePath | ForEach-Object {
+    $path = $_
+    $sortKey = ($path -split '\\' | ForEach-Object { $_.PadRight(100) }) -join '\\'
+    [PSCustomObject]@{Path = $path; SortKey = $sortKey}
+}
 
+$sortedObjects = $objects | Sort-Object -Property SortKey
+
+$sortedObjects | ForEach-Object { $_.Path }
+
+Out-File -InputObject $sortedObjects -FilePath "C:\temp\duplicate_file_report.txt"
 
 Stop-Transcript
 
+
+
+<#
+2024-02-27 Tue. 7:35a.
+Steven got this bit of code from ChatGPT.
+It should sort by the file name.
+
+# Sample objects with a 'Path' property
+$objects = @(
+[PSCustomObject]@{Name = "Object1"; Path = "folder1/folder2/fileA"},
+[PSCustomObject]@{Name = "Object2"; Path = "folder1/fileC"},
+[PSCustomObject]@{Name = "Object3"; Path = "folder1/folder2/folder3/fileB"}
+)
+
+# Sorting the objects by the value after the last slash in the 'Path' property
+$sortedObjects = $objects | Sort-Object -Property { $\_.Path -split '/' | Select-Object -Last 1 }
+
+# Displaying the sorted objects
+$sortedObjects | Format-Table Name, Path
+
+#>
+
+<#
+2024-02-27 Tue. 8:53a.
+& a bit more code from Steven :D !
+
+ $filePath = "C:\Users\SEGA\Desktop\test.txt"
+
+$objects = Get-Content $filePath | ForEach-Object {
+    [PSCustomObject]@{Path = $_}
+}
+
+$sortedObjects = $objects | Sort-Object -Property { $_.Path -split '\\' | Select-Object -Last 1 }
+
+$sortedObjects | Format-Table Path
+#>
+
+<#
+2024-02-27 Tue. 10:46a.
+& a bit more code from Steven :D !
+This should output the file with the file names sorted.
+
+$objects = Get-Content $filePath | ForEach-Object {
+    $path = $_
+    $sortKey = ($path -split '\\' | ForEach-Object { $_.PadRight(100) }) -join '\\'
+    [PSCustomObject]@{Path = $path; SortKey = $sortKey}
+}
+
+$sortedObjects = $objects | Sort-Object -Property SortKey
+
+$sortedObjects | ForEach-Object { $_.Path }
+#>
+
+<#
+2024-02-28 Wed. 8:13a.
+& a bit more code from Steven :D !
+He did say that PowerShell can work on a smaller directory, however, 40 TB & 1 million + files are too much for it to handle.
+Python or C would be better.
+
+$directoryPath = "C:\Users\SEGA\Desktop"
+
+$filesDetails = Get-ChildItem -Path $directoryPath -File -Recurse | ForEach-Object {
+    [PSCustomObject]@{
+        Path = $_.FullName
+        FileName = $_.Name
+        Extension = $_.Extension
+        LastModified = $_.LastWriteTime
+        SizeMB = [math]::Round($_.Length / 1MB, 2)
+    }
+}
+
+$sortedFilesDetails = $filesDetails | Sort-Object FileName
+
+$outputCsvPath = "C:\Users\SEGA\Desktop\fileDetails.csv"
+
+$sortedFilesDetails | Export-Csv -Path $outputCsvPath -NoTypeInformation
+
+Write-Output "File details exported to $outputCsvPath"
+#>
 
