@@ -22,6 +22,7 @@ $fileNumber = (Get-ChildItem -Path $folder -File -Recurse -Force).Count
 $tb = "{0:N2} Terabytes (TB)" -f (($folderData | Measure-Object -Property Length -Sum).Sum / 1Tb)
 $gb = "{0:N2} Gigabytes (GB)" -f (($folderData | Measure-Object -Property Length -Sum).Sum / 1Gb)
 $mb = "{0:N2} Megabytes (MB)" -f (($folderData | Measure-Object -Property Length -Sum).Sum / 1Mb)
+$kb = "{0:N2} Kilobytes (KB)" -f (($folderData | Measure-Object -Property Length -Sum).Sum / 1Kb)
 $bytes = "{0:N0} Bytes (B)" -f (($folderData | Measure-Object -Property Length -Sum).Sum)
 
 Write-Output -InputObject "Folder:  $folder"
@@ -30,6 +31,7 @@ Write-Output -InputObject "Files:  $fileNumber"
 Write-Output -InputObject $tb
 Write-Output -InputObject "$gb"
 Write-Output -InputObject "$mb"
+Write-Output -InputObject "$kb"
 Write-Output -InputObject "$bytes"
  }
 else {Write-Output "Folder not found."}
