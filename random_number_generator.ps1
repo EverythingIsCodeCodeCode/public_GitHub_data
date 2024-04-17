@@ -17,26 +17,38 @@ Finally, the shuffled numbers are displayed. Feel free to adjust the range as ne
 Write-Output -InputObject ""
 Write-Output -InputObject "This PowerShell script will ask you for the smallest and largest raffle ticket numbers then draw them at random."
 Write-Output -InputObject ""
-$Minimum = Read-Host -Prompt "What is the smallest ticket number?"
-$Maximum = Read-Host -Prompt "What is the largest ticket number?"
-Write-Output -InputObject ""
 
+# Get a log file ready::
 if (Test-Path "/home") {
 	# Remote machine is Linux
+	$OS = "Linux"
+	#verify first - $HomeDirectory = ${env:HOME} # example:  /
 	$PathSeparator = "/"
 }
 elseif (Test-Path "/Users") {
 	# Remote machine is macOS
+	$OS = "Mac"
+	$HomeDirectory = ${env:HOME} # example:  /Users/Person
 	$PathSeparator = "/"
 }
 elseif (Test-Path "C:\Users") {
 	# Remote machine is Windows
+	$OS = "Windows"
+	$HomeDirectory = $env:USERPROFILE # example:  C:\Users\Person
 	$PathSeparator = "\"
 }
 else {
 	Write-Error "Could not determine the remote operating system."
 	return
 }
+Write-Output -InputObject "The log file is located here:"
+
+
+
+Write-Output -InputObject ""
+$Minimum = Read-Host -Prompt "What is the smallest ticket number?"
+$Maximum = Read-Host -Prompt "What is the largest ticket number?"
+Write-Output -InputObject ""
 
 # Create an array of numbers within the range
 $NumberRange = $Minimum..$Maximum
