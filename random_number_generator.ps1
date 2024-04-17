@@ -11,9 +11,6 @@ The Get-Random cmdlet shuffles the array to ensure non-repeating random numbers.
 Finally, the shuffled numbers are displayed. Feel free to adjust the range as needed! 😊
 #>
 
-# Define the range (inclusive)
-#$Minimum = 1
-#Maximum = 10
 Write-Output -InputObject ""
 Write-Output -InputObject "This PowerShell script will ask you for the smallest and largest raffle ticket numbers then draw them at random."
 Write-Output -InputObject ""
@@ -44,7 +41,9 @@ else {
 Write-Output -InputObject "The log file is located here:"
 
 
-
+# Define the range (inclusive)
+#$Minimum = 1
+#Maximum = 10
 Write-Output -InputObject ""
 $Minimum = Read-Host -Prompt "What is the smallest ticket number?"
 $Maximum = Read-Host -Prompt "What is the largest ticket number?"
