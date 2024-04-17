@@ -23,6 +23,8 @@ $ShuffledNumbers = $NumberRange | Get-Random -Count $NumberRange.Count
 
 # Output the shuffled numbers
 $ShuffledNumbers
+Pause
+#clear # it removes the bulk output 
 
 # Variables for counting and controlling the loop
 $CountUp = 0
@@ -33,8 +35,9 @@ $range = $Maximum - $Minimum
 foreach ($CurrentLoopItem in $ShuffledNumbers)
 {
 	# Print each number
-	Write-Output "Number: " $CurrentLoopItem
-	
+	#Write-Output "Number: " $CurrentLoopItem
+	Write-Output $CurrentLoopItem
+
 	# Increment counter, no need for variable = variable + 1
     $CountUp++
 	
