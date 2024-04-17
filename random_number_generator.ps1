@@ -32,7 +32,7 @@ foreach ($currentItemName in $ShuffledNumbers)
 	# [void][System.Console]::ReadKey($FALSE)
 	Pause
 	$CountUp = $CountUp + 1
-	If ($CountUp -gt ($range + 1)){Exit-PSHostProcess}
+	If ($CountUp -eq $range){Exit-PSHostProcess}
 }
 
 # You still need to get the script to display the last number in the loop after pressing Enter the final time.
