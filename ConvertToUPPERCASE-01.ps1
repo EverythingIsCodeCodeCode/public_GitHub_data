@@ -1,50 +1,44 @@
 <#
-2024-05-19sp
-This PowerShell function & script will convert text to UPPERCASE
+2024-05-22 Wed. 9:15a.
+Made with ChatGPT.
+This script will make a GUI window that lets people convert text to UPPERCASE.  To make a desktop icon shortcut, modify it to something similar to the line below:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Path\To\Your\Script\UppercaseConverter.ps1"
+It doesn't require Internet access.  The URIs are part of the standard .NET framework and are recognized by the XAML parser to render the GUI elements correctly.
 #>
 
-# function ConvertTo-Uppercase {
-	function CTU {
-		param (
-			[string]$InputString
-		)
-	
-		$upperCaseString = $InputString.ToUpper()
-		return $upperCaseString
-	}
-	
-	# Example usage:
-	# $myString = "Hello, World!"
-	$myString = Read-Host -Prompt "Type or paste text here to convert it to UPPERCASE."
-	
-	# $convertedString = ConvertTo-Uppercase -InputString $myString
-	$convertedString = CTU -InputString $myString
-	
-	#$array01 = $convertedString
-	#$array01 += "Uppercase string:"
-	#$array01 += ""
-	#$array01 += "$convertedString"
-	#$array01 += ""
-	#$array01 += "Your clipboard text is ready to paste."
-	#$array01 += "Press Enter to close this window."
-	#$array01 | Out-GridView -PassThru
-	#This method doesn't display each line on its own row in a single Out-GridView window.
-	
-	Write-Host "Uppercase string:"
-	Write-Host ""
-	Write-Host "$convertedString"
-	Write-Host ""
-	Set-Clipboard -Value $convertedString
-	Write-Host "Your clipboard text is ready to paste."
-	Write-Host "Press Enter to close this window."
-	Pause
-	#When running this from a desktop shortcut icon, this method doesn't let you send text to the clipboard.  It also doesn't do it automatically.
-	
-	#$UppercaseString = "Uppercase string:"
-	#$BlankLine = ""
-	#$Clipboard = "Your clipboard text is ready to paste."
-	#$Enter = "Press Enter to close this window."
-	#Out-GridView -InputObject $UppercaseString, $BlankLine, $convertedString, $BlankLine, $Clipboard, $Enter -PassThru
-	#Select-Object -InputObject $UppercaseString, $BlankLine, $convertedString, $BlankLine, $Clipboard, $Enter | Out-GridView -PassThru
-	#These methods don't display each line on its own row in a single Out-GridView window.
-	
+Add-Type -AssemblyName PresentationFramework
+
+[xml]$xaml = @"
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Uppercase Converter" Height="350" Width="400">
+    <Grid>
+        <TextBox Name="InputTextBox" Height="120" Margin="10,10,10,200" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+        <Button Name="ConvertButton" Content="Convert to Uppercase" Width="150" Height="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50"/>
+        <TextBox Name="OutputTextBox" Height="120" Margin="10,140,10,90" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+        <TextBlock Name="ClipboardStatus" Height="20" Margin="10,0,10,20" VerticalAlignment="Bottom" HorizontalAlignment="Center" TextAlignment="Center"/>
+    </Grid>
+</Window>
+"@
+
+# Load the XAML
+$reader = (New-Object System.Xml.XmlNodeReader $xaml)
+$window = [Windows.Markup.XamlReader]::Load($reader)
+
+# Define the event handler for the button click
+$convertToUppercase = {
+    $inputText = $window.FindName("InputTextBox").Text
+    $outputText = $inputText.ToUpper()
+    $window.FindName("OutputTextBox").Text = $outputText
+
+    # Copy the converted text to the clipboard
+    [System.Windows.Clipboard]::SetText($outputText)
+    $window.FindName("ClipboardStatus").Text = "Text copied to clipboard!"
+}
+
+# Attach the event handler to the button click event
+$convertButton = $window.FindName("ConvertButton")
+$convertButton.Add_Click($convertToUppercase)
+
+# Show the window
+$window.ShowDialog() | Out-Null
