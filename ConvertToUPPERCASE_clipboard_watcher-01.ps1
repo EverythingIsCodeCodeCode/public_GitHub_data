@@ -4,7 +4,8 @@ ConvertToUPPERCASE_clipboard_watcher-01.ps1
 https://github.com/EverythingIsCodeCodeCode/public_GitHub_data/blob/main/ConvertToUPPERCASE_clipboard_watcher-01.ps1
 https://pastebin.com/fNXhi6S9
 Made with ChatGPT.
-This script will watch the clipboard, convert text in it to UPPERCASE, and place it back in the clipboard so that it can be pasted.
+This PowerShell script will watch the clipboard, convert text in it to UPPERCASE, and place it back in the clipboard so that it can be pasted.
+Only tested to work in Windows.  Mac test in VSCode failed.
 To make a desktop icon shortcut, modify it to something similar to the line below:
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Path\To\Your\Script\UppercaseConverter.ps1"
 #>
