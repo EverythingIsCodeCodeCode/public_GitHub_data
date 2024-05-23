@@ -1,7 +1,7 @@
 <#
 2024-05-22 Wed. 9:15a.
 Made with ChatGPT.
-This script will make a GUI window that lets people convert text to UPPERCASE.  To make a desktop icon shortcut, modify it to something similar to the line below:
+This PowerShell script will make a GUI window that lets people convert text to UPPERCASE.  To make a desktop icon shortcut, modify it to something similar to the line below:
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Path\To\Your\Script\UppercaseConverter.ps1"
 It doesn't require Internet access.  The URIs are part of the standard .NET framework and are recognized by the XAML parser to render the GUI elements correctly.
 #>
