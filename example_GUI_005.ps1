@@ -1,11 +1,27 @@
 # Init PowerShell GUI
 Add-Type -AssemblyName System.Windows.Forms
 
+# Function to authenticate as a different user
+function Authenticate-AsDifferentUser {
+    $cred = $null
+    try {
+        $cred = $Host.UI.PromptForCredential("Authenticate", "Please enter your credentials", "", "")
+    } catch {
+        [System.Windows.Forms.MessageBox]::Show("Authentication failed or canceled.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+    }
+    return $cred
+}
+
+# Function to detect the current user
+function Get-CurrentUser {
+    return [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+}
+
 # Create a new form
 $MyForm = New-Object System.Windows.Forms.Form
-$MyForm.ClientSize = '500,300'
+$MyForm.ClientSize = '500,400'
 $MyForm.Text = "PowerShell GUI Example"
-$MyForm.BackColor = "#ffffff"
+$MyForm.BackColor = [System.Drawing.Color]::White
 
 # Create a MenuStrip
 $MenuStrip = New-Object System.Windows.Forms.MenuStrip
@@ -100,6 +116,28 @@ $Button.Add_Click({
     [System.Windows.Forms.MessageBox]::Show("Button clicked!", "Info", [System.Windows.Forms.MessageBoxButtons]::OK)
 })
 $MyForm.Controls.Add($Button)
+
+# Add a label to display the current user
+$CurrentUserLabel = New-Object System.Windows.Forms.Label
+$CurrentUserLabel.Text = "Current User: $(Get-CurrentUser)"
+$CurrentUserLabel.Location = '50,300'
+$CurrentUserLabel.AutoSize = $true
+$MyForm.Controls.Add($CurrentUserLabel)
+
+# Add a button to authenticate as a different user
+$AuthButton = New-Object System.Windows.Forms.Button
+$AuthButton.Text = "Authenticate as Different User"
+$AuthButton.Location = '50,330'
+$AuthButton.AutoSize = $true
+$AuthButton.Add_Click({
+    $cred = Authenticate-AsDifferentUser
+    if ($cred -ne $null) {
+        [System.Windows.Forms.MessageBox]::Show("Authenticated as: $($cred.UserName)", "Info", [System.Windows.Forms.MessageBoxButtons]::OK)
+        # Update the current user label
+        $CurrentUserLabel.Text = "Current User: $($cred.UserName)"
+    }
+})
+$MyForm.Controls.Add($AuthButton)
 
 # Display the form
 [void]$MyForm.ShowDialog()
