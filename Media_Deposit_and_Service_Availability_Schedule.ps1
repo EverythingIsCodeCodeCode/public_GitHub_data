@@ -4,6 +4,7 @@ I'm borrowing the portion of code from the "PowerPoint_date_format.ps1" script t
 
 from any given current "sa" & "sp" service:  add 14 days for the earliest "sa", add 7 days for the earliest "sp", & add 10 days for the earliest "wp".
 from any given current "wp" service:  add 11 days for the earliest "sa", 4 days for the earliest "sp", & 7 days for the earliest "wp".
+
 #>
 
 
@@ -15,7 +16,75 @@ Write-Output $TemplateFile
 
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
-$ap = (Get-Date -Format "tt").ToLower().Substring(0,1) # This gets a single lowercase letter for A.M. or P.M., "a" or "p".
+#$ap = (Get-Date -Format "tt").ToLower().Substring(0,1) # This gets a single lowercase letter for A.M. or P.M., "a" or "p".
+
+# Get the number of church services in the year which will be used for the number of rows in the array::
+$NumberOfChurchServices = 0
+While ($StartDate -lt $EndDate) # This starts a while loop for the year.
+{
+	$date = Get-Date -Date $StartDate
+
+	If ($date.DayOfWeek -eq "Sunday")
+	{
+		# Do stuff during Sunday.
+		$NumberOfChurchServices = $NumberOfChurchServices + 2
+	}
+
+	If ($date.DayOfWeek -eq "Wednesday")
+	{
+		# Do stuff during Wednesday.
+		$NumberOfChurchServices = $NumberOfChurchServices + 1
+	}
+
+	$StartDate = $StartDate.AddDays(1)
+}
+# Write-Output $NumberOfChurchServices # 157
+
+$StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
+$EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
+
+# You are here.
+# You're trying to initialize an array, hashtable, or something with the number or rows of church services next year & 4 columns.
+# There's a few different options to try from a few different websites.
+<#
+https://www.google.com/search?q=powershell+initialize+multidimensional+array+100+rows+by+4+columns&sca_esv=778fd8ccaca240ed&sxsrf=ADLYWIKrnibOwiGlA-tVOTAKft1f4bKVLQ%3A1728866355827&ei=M2gMZ52VMqrEp84PhLOD4Q8&ved=0ahUKEwjd-oKI0YyJAxUq4skDHYTZIPwQ4dUDCA8&uact=5&oq=powershell+initialize+multidimensional+array+100+rows+by+4+columns&gs_lp=Egxnd3Mtd2l6LXNlcnAiQnBvd2Vyc2hlbGwgaW5pdGlhbGl6ZSBtdWx0aWRpbWVuc2lvbmFsIGFycmF5IDEwMCByb3dzIGJ5IDQgY29sdW1uczIFECEYoAEyBRAhGKABMgUQIRigATIFECEYoAEyBRAhGKABSKZXUPYLWLFRcAF4AZABAJgBXKABswGqAQEyuAEDyAEA-AEBmAIDoALDAcICChAAGLADGNYEGEfCAgYQABgWGB7CAggQABiiBBiJBcICCBAAGIAEGKIEmAMAiAYBkAYIkgcBM6AHkA0&sclient=gws-wiz-serp
+
+https://stackoverflow.com/questions/9397137/powershell-multidimensional-arrays
+
+https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.4
+
+https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable?view=powershell-7.4
+#>
+
+$DateArray = New-Object 'object[,]' $NumberOfChurchServices, 4
+
+# Populate the array with sample data (optional)
+for ($i = 0; $i -lt $NumberOfChurchServices; $i++) {
+    for ($j = 0; $j -lt 4; $j++) {
+        $DateArray[$i, $j] = "Row $i, Column $j"
+    }
+}
+
+
+$DateArray = @(
+	@($NumberOfChurchServices),
+	@($NumberOfChurchServices)
+)
+
+<#
+$data = @(
+    @(01,02,03,04),
+    @(05,06,07,08),
+    @(09,10,11,12)
+)
+Write-Output $data[0][0] # 1
+Write-Output $data[2][3] # 12
+#>
+
+
+
+
+
 While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 {
 	# Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date & time.  Now try other lines to change up the formatting some.  "t" for the first character of AM/PM.
