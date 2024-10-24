@@ -9,7 +9,8 @@ from any given current "wp" service:  add 11 days for the earliest "sa", 4 days 
 
 
 # Import variables using dot sourcing:
-. .\public_GitHub_data\gitignore_data\variables.ps1
+# . .\public_GitHub_data\gitignore_data\variables.ps1
+. .\gitignore_data\variables.ps1
 # List variables:
 Write-Output $NextYearChurchServicesFolder
 Write-Output $TemplateFile
@@ -54,6 +55,8 @@ https://stackoverflow.com/questions/9397137/powershell-multidimensional-arrays
 https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.4
 
 https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable?view=powershell-7.4
+
+https://stackoverflow.com/questions/9397137/powershell-multidimensional-arrays/9397385#9397385
 #>
 
 $DateArray = New-Object 'object[,]' $NumberOfChurchServices, 4
@@ -80,6 +83,13 @@ $data = @(
 Write-Output $data[0][0] # 1
 Write-Output $data[2][3] # 12
 #>
+
+$asdf[0][0][0][0] = "stuff"
+# You need to solve this error (probably learn how to initialize the array):
+# InvalidOperation: Cannot index into a null array.
+# Maybe worth a Google:
+# Why doesn't PowerShell automatically initialize arrays?
+# How to make PowerShell automatically initialize arrays.
 
 
 
