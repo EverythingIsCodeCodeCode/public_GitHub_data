@@ -27,3 +27,13 @@ foreach ($Item in $Items) {
   }
 }
 Write-Output "Total Birds - $Count"
+
+<#
+Partridge - 12
+TurtleDoves - 22 
+FrenchHens - 30  
+CallingBirds - 36
+Geese - 42
+Swans - 42
+Total Birds - 184
+#>
