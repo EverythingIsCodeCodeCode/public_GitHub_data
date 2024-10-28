@@ -84,7 +84,13 @@ Write-Output $data[0][0] # 1
 Write-Output $data[2][3] # 12
 #>
 
-$asdf[0][0][0][0] = "stuff"
+
+#Read more: https://www.sharepointdiary.com/2020/10/fix-cannot-index-into-a-null-array-error-in-powershell.html#ixzz8pu8vpf2R
+$array = @()
+$array = @(),@(),@(),@()
+$array[0]
+$array[0][0][0][0] = "stuff"
+$array[0],[0],[0],[0] = "stuff"
 # You need to solve this error (probably learn how to initialize the array):
 # InvalidOperation: Cannot index into a null array.
 # Maybe worth a Google:
