@@ -22,7 +22,7 @@ $Current_Service = ""
 $Earliest_available_SA_service = ""
 $Earliest_available_SP_service = ""
 $Earliest_available_WP_service = ""
-
+Still troubleshooting initializing an array.
 #$ap = (Get-Date -Format "tt").ToLower().Substring(0,1) # This gets a single lowercase letter for A.M. or P.M., "a" or "p".
 
 # Get the number of church services in the year which will be used for the number of rows in the array::
