@@ -17,6 +17,12 @@ Write-Output $TemplateFile
 
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
+
+$Current_Service = ""
+$Earliest_available_SA_service = ""
+$Earliest_available_SP_service = ""
+$Earliest_available_WP_service = ""
+
 #$ap = (Get-Date -Format "tt").ToLower().Substring(0,1) # This gets a single lowercase letter for A.M. or P.M., "a" or "p".
 
 # Get the number of church services in the year which will be used for the number of rows in the array::
@@ -87,6 +93,7 @@ Write-Output $data[2][3] # 12
 
 #Read more: https://www.sharepointdiary.com/2020/10/fix-cannot-index-into-a-null-array-error-in-powershell.html#ixzz8pu8vpf2R
 $array = @()
+$array = @()@()@()@()
 $array = @(),@(),@(),@()
 $array[0]
 $array[0][0][0][0] = "stuff"
