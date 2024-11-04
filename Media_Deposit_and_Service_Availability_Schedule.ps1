@@ -13,6 +13,7 @@ In the fourth column, for each date in the first column that is Sunday, add 10 d
 In the second column, for each date in the first column that is Wednesday, add 11 days.
 In the third column, for each date in the first column that is Wednesday, add 4 days.
 In the fourth column, for each date in the first column that is Wednesday, add 7 days.
+The columns & rows go in thirds.  For each SA, SP, & WP, the available dates are the same so you can copy the first row & paste it two more down.
 
 #>
 
