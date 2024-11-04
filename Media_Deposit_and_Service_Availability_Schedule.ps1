@@ -5,6 +5,15 @@ I'm borrowing the portion of code from the "PowerPoint_date_format.ps1" script t
 from any given current "sa" & "sp" service:  add 14 days for the earliest "sa", add 7 days for the earliest "sp", & add 10 days for the earliest "wp".
 from any given current "wp" service:  add 11 days for the earliest "sa", 4 days for the earliest "sp", & 7 days for the earliest "wp".
 
+Make a table of dates for in YYYY-MM-DD format for 2025.
+In the first column, only include Sunday morning, Sunday night, & Wednesday.
+In the second column, for each date in the first column that is Sunday, add 14 days.
+In the third column, for each date in the first column that is Sunday, add 7 days.
+In the fourth column, for each date in the first column that is Sunday, add 10 days.
+In the second column, for each date in the first column that is Wednesday, add 11 days.
+In the third column, for each date in the first column that is Wednesday, add 4 days.
+In the fourth column, for each date in the first column that is Wednesday, add 7 days.
+
 #>
 
 
@@ -22,7 +31,7 @@ $Current_Service = ""
 $Earliest_available_SA_service = ""
 $Earliest_available_SP_service = ""
 $Earliest_available_WP_service = ""
-Still troubleshooting initializing an array.
+#Still troubleshooting initializing an array.
 #$ap = (Get-Date -Format "tt").ToLower().Substring(0,1) # This gets a single lowercase letter for A.M. or P.M., "a" or "p".
 
 # Get the number of church services in the year which will be used for the number of rows in the array::
