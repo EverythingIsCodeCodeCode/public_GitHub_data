@@ -15,6 +15,9 @@ In the third column, for each date in the first column that is Wednesday, add 4 
 In the fourth column, for each date in the first column that is Wednesday, add 7 days.
 The columns & rows go in thirds.  For each SA, SP, & WP, the available dates are the same so you can copy the first row & paste it two more down.
 
+You are here.
+You're trying CSV or text output in the bottom section to see if that works.
+
 #>
 
 
@@ -60,7 +63,6 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
 
-# You are here.
 # You're trying to initialize an array, hashtable, or something with the number or rows of church services next year & 4 columns.
 # There's a few different options to try from a few different websites.
 <#
@@ -118,6 +120,10 @@ $array[0],[0],[0],[0] = "stuff"
 
 
 
+#If next year church services 404 folder doesn't exist then make it.
+If (-not(Test-Path $NextYearChurchServicesFolder)){New-Item -ItemType Directory -Path $NextYearChurchServicesFolder} else {Write-Output -InputObject "Found folder:  `"$NextYearChurchServicesFolder`"."}
+
+
 While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 {
 	# Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date & time.  Now try other lines to change up the formatting some.  "t" for the first character of AM/PM.
@@ -138,9 +144,15 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 		# You need to work on statically setting "a" & "p" values for the file names since that's most common.
 		#Write-Output $datepptx
 		Write-Output $datepptxa
-		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxa
+		#Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxa
 		Write-Output $datepptxp
-		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
+		#Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
+		#Do CSV things :) .
+		#$Output = $datepptxa,$datepptxp
+		#$Output = $datepptxa + $datepptxp
+		$Output = $datepptxa
+		Out-File -InputObject $Output -FilePath $NextYearChurchServicesFolder\not-CSV.txt -Append
+		#Out-CSV -InputObject $Output -Path $NextYearChurchServicesFolder\CSV.csv -Append
 	}
 
 	If ($date.DayOfWeek -eq "Monday")
@@ -158,7 +170,7 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 		# Do stuff during Wednesday.
 		#Write-Output $datepptx
 		Write-Output $datepptxp
-		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
+		#Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
 	}
 
 	If ($date.DayOfWeek -eq "Thursday")
