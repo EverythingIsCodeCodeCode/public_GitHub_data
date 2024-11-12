@@ -3,7 +3,7 @@
 This script comes from this website & works for network shares too:
 https://stackoverflow.com/questions/12697259/how-do-i-find-files-with-a-path-length-greater-than-260-characters-in-windows
 #>
-$pathToScan = "C:\path\to\long\stuff"  # The path to scan and the the lengths for (sub-directories will be scanned as well).
+$pathToScan = "C:\path\to\long\stuff"  # The path to scan with the lengths for (sub-directories will be scanned as well).
 $outputFilePath = "C:\temp\PathLengths_path_to_long_stuff.txt" # This must be a file in a directory that exists and does not require admin rights to write to.
 
 $writeToConsoleAsWell = $false   # Writing to the console will be much slower.  Set to $true if you want that.
