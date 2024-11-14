@@ -16,7 +16,7 @@ In the fourth column, for each date in the first column that is Wednesday, add 7
 The columns & rows go in thirds.  For each SA, SP, & WP, the available dates are the same so you can copy the first row & paste it two more down.
 
 You are here.
-Check your results.  This may be what you are looking for.  If so, clean up this file.
+Still working on getting the data right.
 
 #>
 
@@ -124,7 +124,7 @@ $array[0],[0],[0],[0] = "stuff"
 If (-not(Test-Path $NextYearChurchServicesFolder)){New-Item -ItemType Directory -Path $NextYearChurchServicesFolder} else {Write-Output -InputObject "Found folder:  `"$NextYearChurchServicesFolder`"."}
 
 
-While ($StartDate -lt $EndDate) # This starts a while loop for the year.
+While ($StartDate -lt ($EndDate - 1)) # This starts a while loop for the year.
 {
 	# Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date & time.  Now try other lines to change up the formatting some.  "t" for the first character of AM/PM.
 	
