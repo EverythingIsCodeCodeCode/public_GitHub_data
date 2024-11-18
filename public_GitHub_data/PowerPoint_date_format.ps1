@@ -95,7 +95,8 @@ $asdf = $asdf.AddDays(1)
 #ChatGPT, & Google Bard didn't quite get me there.  Bing Chat gave me this great loop idea which was exactly what I was looking for!:
 
 # Import variables using dot sourcing:
-. .\public_GitHub_data\gitignore_data\variables.ps1
+#. .\public_GitHub_data\gitignore_data\variables.ps1
+. .\gitignore_data\variables.ps1
 # List variables:
 Write-Output $NextYearChurchServicesFolder
 Write-Output $TemplateFile
