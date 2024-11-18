@@ -28,6 +28,7 @@ Still working on getting the data right.
 Write-Output $NextYearChurchServicesFolder
 Write-Output $TemplateFile
 
+<#
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
 
@@ -62,9 +63,13 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
+#>
 
+<#
 # You're trying to initialize an array, hashtable, or something with the number or rows of church services next year & 4 columns.
 # There's a few different options to try from a few different websites.
+#>
+
 <#
 https://www.google.com/search?q=powershell+initialize+multidimensional+array+100+rows+by+4+columns&sca_esv=778fd8ccaca240ed&sxsrf=ADLYWIKrnibOwiGlA-tVOTAKft1f4bKVLQ%3A1728866355827&ei=M2gMZ52VMqrEp84PhLOD4Q8&ved=0ahUKEwjd-oKI0YyJAxUq4skDHYTZIPwQ4dUDCA8&uact=5&oq=powershell+initialize+multidimensional+array+100+rows+by+4+columns&gs_lp=Egxnd3Mtd2l6LXNlcnAiQnBvd2Vyc2hlbGwgaW5pdGlhbGl6ZSBtdWx0aWRpbWVuc2lvbmFsIGFycmF5IDEwMCByb3dzIGJ5IDQgY29sdW1uczIFECEYoAEyBRAhGKABMgUQIRigATIFECEYoAEyBRAhGKABSKZXUPYLWLFRcAF4AZABAJgBXKABswGqAQEyuAEDyAEA-AEBmAIDoALDAcICChAAGLADGNYEGEfCAgYQABgWGB7CAggQABiiBBiJBcICCBAAGIAEGKIEmAMAiAYBkAYIkgcBM6AHkA0&sclient=gws-wiz-serp
 
@@ -77,6 +82,7 @@ https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everythi
 https://stackoverflow.com/questions/9397137/powershell-multidimensional-arrays/9397385#9397385
 #>
 
+<#
 $DateArray = New-Object 'object[,]' $NumberOfChurchServices, 4
 
 # Populate the array with sample data (optional)
@@ -85,12 +91,14 @@ for ($i = 0; $i -lt $NumberOfChurchServices; $i++) {
         $DateArray[$i, $j] = "Row $i, Column $j"
     }
 }
+#>
 
-
+<#
 $DateArray = @(
 	@($NumberOfChurchServices),
 	@($NumberOfChurchServices)
 )
+#>
 
 <#
 $data = @(
@@ -102,7 +110,7 @@ Write-Output $data[0][0] # 1
 Write-Output $data[2][3] # 12
 #>
 
-
+<#
 #Read more: https://www.sharepointdiary.com/2020/10/fix-cannot-index-into-a-null-array-error-in-powershell.html#ixzz8pu8vpf2R
 $array = @()
 $array = @()@()@()@()
@@ -115,7 +123,7 @@ $array[0],[0],[0],[0] = "stuff"
 # Maybe worth a Google:
 # Why doesn't PowerShell automatically initialize arrays?
 # How to make PowerShell automatically initialize arrays.
-
+#>
 
 
 
