@@ -28,10 +28,10 @@ Still working on getting the data right.
 Write-Output $NextYearChurchServicesFolder
 Write-Output $TemplateFile
 
-<#
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
 
+<#
 $Current_Service = ""
 $Earliest_available_SA_service = ""
 $Earliest_available_SP_service = ""
@@ -132,7 +132,8 @@ $array[0],[0],[0],[0] = "stuff"
 If (-not(Test-Path $NextYearChurchServicesFolder)){New-Item -ItemType Directory -Path $NextYearChurchServicesFolder} else {Write-Output -InputObject "Found folder:  `"$NextYearChurchServicesFolder`"."}
 
 
-While ($StartDate -lt ($EndDate - 1)) # This starts a while loop for the year.
+#While ($StartDate -lt $EndDate.AddDays(-1)) # This starts a while loop for the year.
+While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 {
 	# Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date & time.  Now try other lines to change up the formatting some.  "t" for the first character of AM/PM.
 	
