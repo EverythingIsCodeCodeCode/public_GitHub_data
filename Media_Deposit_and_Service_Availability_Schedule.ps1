@@ -138,16 +138,21 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 	# Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date & time.  Now try other lines to change up the formatting some.  "t" for the first character of AM/PM.
 	
 	$day = $(Get-Date -Date $StartDate -Format "ddd").Substring(0,1).ToLower() # This makes a lowercase single letter of the first letter of the day of the week.  "smtwtfs"
-	$datepptx = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+$ap) # This formats the file name with the date & time like you normally do.
+	#$datepptx = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+$ap) # This formats the file name with the date & time like you normally do.
 	$datepptxa = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+"a") # This formats the file name with the date & time like you normally do.  Always a.
 	$datepptxp = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+"p") # This formats the file name with the date & time like you normally do.  Always p.
-	$SundayEarliestSAService = $((Get-Date -Date $StartDate.AddDays(14) -Format "yyyy-MM-dd")+$day+"a") # This formats the file name with the date & time like you normally do.  Always a.
-	$SundayEarliestSPService = $((Get-Date -Date $StartDate.AddDays(7) -Format "yyyy-MM-dd")+$day+"p") # This formats the file name with the date & time like you normally do.  Always p.
-	$SundayEarliestWPService = $((Get-Date -Date $StartDate.AddDays(10) -Format "yyyy-MM-dd")+$day+"p") # This formats the file name with the date & time like you normally do.  Always p.
+	$SundayAMEarliestSAService = $((Get-Date -Date $StartDate.AddDays(14) -Format "yyyy-MM-dd")+$day+"a") # This formats the file name with the date & time like you normally do.  Always a.
+	$SundayAMEarliestSPService = $((Get-Date -Date $StartDate.AddDays(7) -Format "yyyy-MM-dd")+$day+"p") # This formats the file name with the date & time like you normally do.  Always p.
+	$SundayAMEarliestWPService = $((Get-Date -Date $StartDate.AddDays(10) -Format "yyyy-MM-dd")+$day+"p") # This formats the file name with the date & time like you normally do.  Always p.
+	$SundayPMEarliestSAService = $((Get-Date -Date $StartDate.AddDays(14) -Format "yyyy-MM-dd")+$day+"a") # This formats the file name with the date & time like you normally do.  Always a.
+	$SundayPMEarliestSPService = $((Get-Date -Date $StartDate.AddDays(7) -Format "yyyy-MM-dd")+$day+"p") # This formats the file name with the date & time like you normally do.  Always p.
+	$SundayPMEarliestWPService = $((Get-Date -Date $StartDate.AddDays(10) -Format "yyyy-MM-dd")+$day+"p") # This formats the file name with the date & time like you normally do.  Always p.
 	$WednesdayEarliestSAService = $((Get-Date -Date $StartDate.AddDays(11) -Format "yyyy-MM-dd")+$day+"a") # This formats the file name with the date & time like you normally do.  Always a.
 	$WednesdayEarliestSPService = $((Get-Date -Date $StartDate.AddDays(4) -Format "yyyy-MM-dd")+$day+"p") # This formats the file name with the date & time like you normally do.  Always p.
 	$WednesdayEarliestWPService = $((Get-Date -Date $StartDate.AddDays(7) -Format "yyyy-MM-dd")+$day+"p") # This formats the file name with the date & time like you normally do.  Always p.
-	
+	#The number of entries appears to be correct now with these 9 entries.
+	#The logic is still incorrect for some of the date formatting.
+
 	# Write-Output $date
 	
 	# Now work on outputting different things based on the day of the week:
@@ -171,9 +176,12 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 		$Output | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearChurchServicesNot-CSV.txt -Append
 		#Out-File -InputObject $Output -FilePath $NextYearChurchServicesFolder\not-CSV.txt -Append
 		#Out-CSV -InputObject $Output -Path $NextYearChurchServicesFolder\CSV.csv -Append
-		$SundayEarliestSAService | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearEarliestSAServicesNot-CSV.txt -Append
-		$SundayEarliestSPService | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearEarliestSPServicesNot-CSV.txt -Append
-		$SundayEarliestWPService | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearEarliestWPServicesNot-CSV.txt -Append
+		$SundayAMEarliestSAService | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearEarliestSAServicesNot-CSV.txt -Append
+		$SundayAMEarliestSPService | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearEarliestSPServicesNot-CSV.txt -Append
+		$SundayAMEarliestWPService | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearEarliestWPServicesNot-CSV.txt -Append
+		$SundayPMEarliestSAService | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearEarliestSAServicesNot-CSV.txt -Append
+		$SundayPMEarliestSPService | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearEarliestSPServicesNot-CSV.txt -Append
+		$SundayPMEarliestWPService | Tee-Object -FilePath $NextYearChurchServicesFolder\NextYearEarliestWPServicesNot-CSV.txt -Append
 	}
 
 	If ($date.DayOfWeek -eq "Monday")
