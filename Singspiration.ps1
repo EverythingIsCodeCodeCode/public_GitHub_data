@@ -92,7 +92,7 @@ Function Get-DateOfEaster {
 	$Easter = Get-DateOfEaster 1590 1752
 	"$Easter"
 #>
-$Easter = Get-DateOfEaster ((Get-Date).year+1)
+$EasterNextYear = Get-DateOfEaster ((Get-Date).year+1)
 
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
