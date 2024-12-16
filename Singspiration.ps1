@@ -92,7 +92,62 @@ Function Get-DateOfEaster {
 	$Easter = Get-DateOfEaster 1590 1752
 	"$Easter"
 #>
-$EasterNextYear = Get-DateOfEaster ((Get-Date).year+1)
+$EasterDateNextYear = Get-DateOfEaster ((Get-Date).year+1)
+$EasterYearNextYear = $EasterDateNextYear[0].Substring(0,4)
+$EasterMonthNextYear = $EasterDateNextYear[0].Substring(5,2)
+$EasterDayNextYear = $EasterDateNextYear[0].Substring(8,2)
+$EasterNumberOfDaysInMonthNextYear = [DateTime]::DaysInMonth($EasterYearNextYear, $EasterMonthNextYear)
+$EasterMonthNumberOfSundaysCountNextYear = 0
+# Loop through each day of the month
+for ($day = 1; $day -le $EasterNumberOfDaysInMonthNextYear; $day++) {
+    # Create a date object for the current day
+    $currentDate = [DateTime]::new($EasterYearNextYear, $EasterMonthNextYear, $day)
+    # Check if the day is a Sunday
+    if ($currentDate.DayOfWeek -eq "Sunday") {
+        # Increment the Sunday counter
+        $EasterMonthNumberOfSundaysCountNextYear++
+    }
+}
+# Output the number of Sundays
+# Write-Output "Number of Sundays in this month: $EasterMonthNumberOfSundaysCountNextYear"
+if ($EasterMonthNumberOfSundaysCountNextYear -le 4) {
+	$EasterMonthSkipSingspiration = 0 # The number of Sundays in Easter month next year is 4 or less so we won't have to skip a Singspiration this month.
+}
+if ($EasterMonthNumberOfSundaysCountNextYear -ge 5) {
+	$EasterMonthSkipSingspiration = 1 # The number of Sundays in Easter month next year is 5 or more so we'll have to skip a Singspiration this month.
+}
+
+
+
+
+
+# You are here.
+# You need to get the numbered day of the last Sunday of the month on Easter next year.
+# You then need to compare that value to $EasterDayNextYear.
+# If they're the same then skip Singspiration that month.
+# If they're different then you can have Singspiration that month.
+
+# Get the current date
+$today = Get-Date
+
+# Get the first day of the next month
+$nextMonth = $today.AddMonths(1).AddDays(-$today.Day + 1)
+
+# Calculate the last day of the current month
+$lastDayOfMonth = $nextMonth.AddDays(-1)
+
+# Calculate the number of days to subtract to get to the last Sunday
+$daysToSubtract = $lastDayOfMonth.DayOfWeek - 0
+
+# Get the date of the last Sunday of the month
+$lastSunday = $lastDayOfMonth.AddDays(-$daysToSubtract)
+
+# Output the result
+$lastSunday
+
+
+
+
 
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
