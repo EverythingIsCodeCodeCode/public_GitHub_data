@@ -132,6 +132,7 @@ $today = Get-Date
 
 # Get the first day of the next month
 $nextMonth = $today.AddMonths(1).AddDays(-$today.Day + 1)
+# $nextMonth = $today.AddMonths(1) # I'm not here yet. I'm still coding up above.
 
 # Calculate the last day of the current month
 $lastDayOfMonth = $nextMonth.AddDays(-1)
