@@ -114,18 +114,28 @@ if ($EasterMonthNumberOfSundaysCountNextYear -le 4) {
 	$EasterMonthSkipSingspiration = 0 # The number of Sundays in Easter month next year is 4 or less so we won't have to skip a Singspiration this month.
 }
 if ($EasterMonthNumberOfSundaysCountNextYear -ge 5) {
-	$EasterMonthSkipSingspiration = 1 # The number of Sundays in Easter month next year is 5 or more so we'll have to skip a Singspiration this month.
+	$EasterMonthSkipSingspiration = 1 # The number of Sundays in Easter month next year is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
 }
 
-
-
-
+# Calculate the last Sunday of the month for the month of Easter next year::
+$lastDay = New-Object -TypeName DateTime -ArgumentList $EasterYearNextYear, $EasterMonthNextYear, $EasterNumberOfDaysInMonthNextYear
+# Find the last Sunday
+while ($lastDay.DayOfWeek -ne [DayOfWeek]::Sunday) {
+	$lastDay = $lastDay.AddDays(-1)
+}
+# Write-Host "The last Sunday of $($EasterMonthNextYear)/$EasterYearNextYear is on day number $($lastDay.Day), which is $($lastDay.ToString('dddd, MMMM dd, yyyy'))."
+$EasterNextYearLastSundayInMonth = $($lastDay.Day)
 
 # You are here.
-# You need to get the numbered day of the last Sunday of the month on Easter next year.
-# You then need to compare that value to $EasterDayNextYear.
+# You then need to compare $EasterNextYearLastSundayInMonth to $EasterDayNextYear.
 # If they're the same then skip Singspiration that month.
 # If they're different then you can have Singspiration that month.
+
+
+
+
+
+
 
 # Get the current date
 $today = Get-Date
