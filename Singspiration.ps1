@@ -111,10 +111,10 @@ for ($day = 1; $day -le $EasterNumberOfDaysInMonthNextYear; $day++) {
 # Output the number of Sundays
 # Write-Output "Number of Sundays in this month: $EasterMonthNumberOfSundaysCountNextYear"
 if ($EasterMonthNumberOfSundaysCountNextYear -le 4) {
-	$EasterMonthSkipSingspiration = 0 # The number of Sundays in Easter month next year is 4 or less so we won't have to skip a Singspiration this month.
+	$EasterMonthSkipSingspiration = 1 # The number of Sundays in Easter month next year is 4 or less so we won't have to skip a Singspiration this month.
 }
 if ($EasterMonthNumberOfSundaysCountNextYear -ge 5) {
-	$EasterMonthSkipSingspiration = 1 # The number of Sundays in Easter month next year is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
+	$EasterMonthSkipSingspiration = 0 # The number of Sundays in Easter month next year is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
 }
 
 # Calculate the last Sunday of the month for the month of Easter next year::
@@ -126,16 +126,31 @@ while ($lastDay.DayOfWeek -ne [DayOfWeek]::Sunday) {
 # Write-Host "The last Sunday of $($EasterMonthNextYear)/$EasterYearNextYear is on day number $($lastDay.Day), which is $($lastDay.ToString('dddd, MMMM dd, yyyy'))."
 $EasterNextYearLastSundayInMonth = $($lastDay.Day)
 
-# You are here.
-# You then need to compare $EasterNextYearLastSundayInMonth to $EasterDayNextYear.
+# Compare $EasterNextYearLastSundayInMonth to $EasterDayNextYear.
 # If they're the same then skip Singspiration that month.
 # If they're different then you can have Singspiration that month.
+if ($EasterDayNextYear -eq $EasterNextYearLastSundayInMonth) {
+	$SkipEasterSingspiration = 1 # Skip Singspiration this month because Easter takes place on the same Sunday.
+}
+if ($EasterDayNextYear -ne $EasterNextYearLastSundayInMonth) {
+	$SkipEasterSingspiration = 0 # Have Singspiration this month because Easter takes place on a different Sunday.
+	# If $EasterMonthSkipSingspiration = 0
+}
+
+if ($SkipEasterSingspiration -ne $EasterMonthSkipSingspiration) {
+	$YouCanHaveSingspirationEasterMonth = 0 # Skip Singspiration this month. Either because Easter month has 4 or less Sundays and/or Easter takes place on the last Sunday of the month.
+}
+
+if ($SkipEasterSingspiration -eq $EasterMonthSkipSingspiration) {
+	$YouCanHaveSingspirationEasterMonth = 1 # Have Singspiration this month. Easter month has 5 or more Sundays and Easter doesn't take place on the last Sunday of the month.
+}
+# You have now figured out if you can have Singspiration Easter month.
 
 
 
 
-
-
+# You are here.
+# You need to double-check the math & value of the variables below since you previously suspected one or more of them might be incorrect.
 
 # Get the current date
 $today = Get-Date
