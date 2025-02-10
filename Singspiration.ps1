@@ -149,8 +149,6 @@ if ($SkipEasterSingspiration -eq $EasterMonthSkipSingspiration) {
 
 
 
-# You are here.
-# You need to double-check the math & value of the variables below since you previously suspected one or more of them might be incorrect.
 
 # Get the current date
 $today = Get-Date
@@ -164,13 +162,13 @@ $lastDayOfMonth = $nextMonth.AddDays(-1)
 
 # Calculate the number of days to subtract to get to the last Sunday
 $daysToSubtract = $lastDayOfMonth.DayOfWeek - 0
+# Why am I doing this previous line? This shows the printed day of the week of the last day of the month.
 
 # Get the date of the last Sunday of the month
 $lastSunday = $lastDayOfMonth.AddDays(-$daysToSubtract)
 
 # Output the result
-$lastSunday
-
+# $lastSunday
 
 
 
@@ -178,6 +176,210 @@ $lastSunday
 $StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
 $EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
 $Jan = Get-Date -Year ((Get-Date).year+1) -Month 1 # This gets January next year.
+$Feb = Get-Date -Year ((Get-Date).year+1) -Month 2 # This gets February next year.
+$Mar = Get-Date -Year ((Get-Date).year+1) -Month 3 # This gets March next year.
+$Apr = Get-Date -Year ((Get-Date).year+1) -Month 4 # This gets April next year.
+$May = Get-Date -Year ((Get-Date).year+1) -Month 5 # This gets May next year.
+$Jun = Get-Date -Year ((Get-Date).year+1) -Month 6 # This gets June next year.
+$Jul = Get-Date -Year ((Get-Date).year+1) -Month 7 # This gets July next year.
+$Aug = Get-Date -Year ((Get-Date).year+1) -Month 8 # This gets August next year.
+$Sep = Get-Date -Year ((Get-Date).year+1) -Month 9 # This gets September next year.
+$Oct = Get-Date -Year ((Get-Date).year+1) -Month 10 # This gets October next year.
+$Nov = Get-Date -Year ((Get-Date).year+1) -Month 11 # This gets November next year.
+$Dec = Get-Date -Year ((Get-Date).year+1) -Month 12 # This gets December next year.
+$NumberOfDaysInJan = [DateTime]::DaysInMonth($Jan.Year, $Jan.Month)
+$NumberOfDaysInFeb = [DateTime]::DaysInMonth($Feb.Year, $Feb.Month)
+$NumberOfDaysInMar = [DateTime]::DaysInMonth($Mar.Year, $Mar.Month)
+$NumberOfDaysInApr = [DateTime]::DaysInMonth($Apr.Year, $Apr.Month)
+$NumberOfDaysInMay = [DateTime]::DaysInMonth($May.Year, $May.Month)
+$NumberOfDaysInJun = [DateTime]::DaysInMonth($Jun.Year, $Jun.Month)
+$NumberOfDaysInJul = [DateTime]::DaysInMonth($Jul.Year, $Jul.Month)
+$NumberOfDaysInAug = [DateTime]::DaysInMonth($Aug.Year, $Aug.Month)
+$NumberOfDaysInSep = [DateTime]::DaysInMonth($Sep.Year, $Sep.Month)
+$NumberOfDaysInOct = [DateTime]::DaysInMonth($Oct.Year, $Oct.Month)
+$NumberOfDaysInNov = [DateTime]::DaysInMonth($Nov.Year, $Nov.Month)
+$NumberOfDaysInDec = [DateTime]::DaysInMonth($Dec.Year, $Dec.Month)
+$NumberOfSundaysInJan = 0
+$NumberOfSundaysInFeb = 0
+$NumberOfSundaysInMar = 0
+$NumberOfSundaysInApr = 0
+$NumberOfSundaysInMay = 0
+$NumberOfSundaysInJun = 0
+$NumberOfSundaysInJul = 0
+$NumberOfSundaysInAug = 0
+$NumberOfSundaysInSep = 0
+$NumberOfSundaysInOct = 0
+$NumberOfSundaysInNov = 0
+$NumberOfSundaysInDec = 0
+
+# Loop through each day of the month in January next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInJan; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Jan.Year, $Jan.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInJan++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in January: $NumberOfSundaysInJan"
+
+# Loop through each day of the month in February next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInFeb; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Feb.Year, $Feb.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInFeb++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in February: $NumberOfSundaysInFeb"
+
+# Loop through each day of the month in March next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInMar; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Mar.Year, $Mar.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInMar++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in March: $NumberOfSundaysInMar"
+
+# Loop through each day of the month in April next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInApr; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Apr.Year, $Apr.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInApr++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in April: $NumberOfSundaysInApr"
+
+# Loop through each day of the month in May next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInMay; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($May.Year, $May.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInMay++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in May: $NumberOfSundaysInMay"
+
+# Loop through each day of the month in June next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInJun; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Jun.Year, $Jun.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInJun++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in June: $NumberOfSundaysInJun"
+
+# Loop through each day of the month in July next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInJul; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Jul.Year, $Jul.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInJul++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in July: $NumberOfSundaysInJul"
+
+# Loop through each day of the month in August next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInAug; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Aug.Year, $Aug.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInAug++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in August: $NumberOfSundaysInAug"
+
+# Loop through each day of the month in September next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInSep; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Sep.Year, $Sep.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInSep++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in September: $NumberOfSundaysInSep"
+
+# Loop through each day of the month in October next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInOct; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Oct.Year, $Oct.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInOct++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in October: $NumberOfSundaysInOct"
+
+# Loop through each day of the month in November next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInNov; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Nov.Year, $Nov.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInNov++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in November: $NumberOfSundaysInNov"
+
+# Loop through each day of the month in December next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInDec; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Dec.Year, $Dec.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInDec++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in December: $NumberOfSundaysInDec"
+
+# You have now counted the number of Sundays in each month next year.
+
+# You are here.
+# See if each month has 4 or less Sundays or 5 or more Sundays to determine if you can have Singspiration that month.
+# Remember Easter month.
+
+
+
+
+
+# You need to double-check the math & value of the variables below since you previously suspected one or more of them might be incorrect.
+
 $EasterDate = ""
 
 While ($StartDate -lt $EndDate) # This starts a while loop for the year.
