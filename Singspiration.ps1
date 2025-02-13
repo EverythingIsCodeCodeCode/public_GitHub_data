@@ -372,8 +372,14 @@ for ($day = 1; $day -le $NumberOfDaysInDec; $day++) {
 
 # You are here.
 # See if each month has 4 or less Sundays or 5 or more Sundays to determine if you can have Singspiration that month.
-# Remember Easter month.
+# Remember Easter month. $EasterMonthNextYear
 
+if ($NumberOfSundaysInJan -le 4) {
+	$SingspirationJan = 0 # The number of Sundays in January next year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInJan -ge 5) {
+	$SingspirationJan = 1 # The number of Sundays in January next year is 5 or more so we'll have Singspiration this month.
+}
 
 
 
