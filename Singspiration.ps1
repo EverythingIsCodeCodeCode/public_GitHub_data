@@ -150,6 +150,49 @@ if ($SkipEasterSingspiration -eq $EasterMonthSkipSingspiration) {
 
 
 
+# You are here.
+# You are here.
+# You are here.
+# Easter can only be in March or April so you can remove the Easter-related code from the other months.
+# Skip Singspiration Sunday night in November if Thanksgiving is on the same week since we're normally not here so folks can spend time with their other families.
+# Thanksgiving is always the last Thursday of November.
+$Nov = Get-Date -Year ((Get-Date).year+1) -Month 11 # This gets November next year.
+$NumberOfDaysInNov = [DateTime]::DaysInMonth($Nov.Year, $Nov.Month)
+$NumberOfSundaysInNov = 0
+# Loop through each day of the month in November next year & count the number of Sundays.
+for ($day = 1; $day -le $NumberOfDaysInNov; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($Nov.Year, $Nov.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInNov++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in November: $NumberOfSundaysInNov"
+if ($NumberOfSundaysInNov -le 4) {
+	$SingspirationNov = 0 # The number of Sundays in November next year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInNov -ge 5) {
+	$SingspirationNov = 1 # The number of Sundays in November next year is 5 or more so we'll have Singspiration this month.
+	# Unless Thanksgiving is also on this same week. You need to figure that out (get week numbers) (last Thursday week -ne last Sunday week).
+	<#
+	if ($Nov.Month -eq $EasterMonthNextYear) {
+		if ($YouCanHaveSingspirationEasterMonth -eq 1) {
+			$SingspirationNov = 1 # Have Singspiration this month. Easter is this month & it's not on the last Sunday.
+		}
+		if ($YouCanHaveSingspirationEasterMonth -eq 0) {
+			$SingspirationNov = 0 # Skip Singspiration this month. Easter is this month & it's on the last Sunday.
+		}
+	}
+	#>
+}
+
+
+
+
+
 # Get the current date
 $today = Get-Date
 
@@ -555,23 +598,51 @@ if ($NumberOfSundaysInDec -ge 5) {
 
 # You have now figured out if you can have Singspiration each month next year.
 
-# You are here.
+$NumberOfSingspirationsNextYear = 0
+if ($SingspirationJan -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationFeb -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationMar -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationApr -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationMay -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationJun -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationJul -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationAug -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationSep -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationOct -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationNov -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+if ($SingspirationDec -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+
+Write-Output "There are $NumberOfSingspirationsNextYear Singspirations next year."
+
 # Output to host if you're going to have Singspiration each month next year.
+
+if ($SingspirationJan -eq 1) {Write-Output "01-January next year: Have Singspiration."}
+if ($SingspirationJan -eq 0) {Write-Output "01-January next year: Skip Singspiration."}
+if ($SingspirationFeb -eq 1) {Write-Output "02-February next year: Have Singspiration."}
+if ($SingspirationFeb -eq 0) {Write-Output "02-February next year: Skip Singspiration."}
+if ($SingspirationMar -eq 1) {Write-Output "03-March next year: Have Singspiration."}
+if ($SingspirationMar -eq 0) {Write-Output "03-March next year: Skip Singspiration."}
+if ($SingspirationApr -eq 1) {Write-Output "04-April next year: Have Singspiration."}
+if ($SingspirationApr -eq 0) {Write-Output "04-April next year: Skip Singspiration."}
+if ($SingspirationMay -eq 1) {Write-Output "05-May next year: Have Singspiration."}
+if ($SingspirationMay -eq 0) {Write-Output "05-May next year: Skip Singspiration."}
+if ($SingspirationJun -eq 1) {Write-Output "06-June next year: Have Singspiration."}
+if ($SingspirationJun -eq 0) {Write-Output "06-June next year: Skip Singspiration."}
+if ($SingspirationJul -eq 1) {Write-Output "07-July next year: Have Singspiration."}
+if ($SingspirationJul -eq 0) {Write-Output "07-July next year: Skip Singspiration."}
+if ($SingspirationAug -eq 1) {Write-Output "08-August next year: Have Singspiration."}
+if ($SingspirationAug -eq 0) {Write-Output "08-August next year: Skip Singspiration."}
+if ($SingspirationSep -eq 1) {Write-Output "09-September next year: Have Singspiration."}
+if ($SingspirationSep -eq 0) {Write-Output "09-September next year: Skip Singspiration."}
+if ($SingspirationOct -eq 1) {Write-Output "10-October next year: Have Singspiration."}
+if ($SingspirationOct -eq 0) {Write-Output "10-October next year: Skip Singspiration."}
+if ($SingspirationNov -eq 1) {Write-Output "11-November next year: Have Singspiration."}
+if ($SingspirationNov -eq 0) {Write-Output "11-November next year: Skip Singspiration."}
+if ($SingspirationDec -eq 1) {Write-Output "12-December next year: Have Singspiration."}
+if ($SingspirationDec -eq 0) {Write-Output "12-December next year: Skip Singspiration."}
+
 # Then you'll have to work on a report for every Sunday morning, Sunday evening, & Wednesday evening so you know how many Sundays/Wednesdays are left to sign up for the next upcoming Singspiration; calculating in the lead time you need to coordinate everything.
 # You may need to calculate the first Singspiration 2 years from from now too so you can get the number of Sundays/Wednesdays left to sign up after the last one next year.
-$SingspirationJan
-$SingspirationFeb
-$SingspirationMar
-$SingspirationApr
-$SingspirationMay
-$SingspirationJun
-$SingspirationJul
-$SingspirationAug
-$SingspirationSep
-$SingspirationOct
-$SingspirationNov
-$SingspirationDec
-
 
 
 
