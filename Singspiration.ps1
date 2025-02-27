@@ -155,6 +155,11 @@ if ($SkipEasterSingspiration -eq $EasterMonthSkipSingspiration) {
 # You are here.
 # You are here.
 
+# Find out how many Sundays are in November.
+# Find out what number of the day of the month Thanksgiving is on.
+# Find out what number of the last Sunday in November is.
+# If that number is greater than the day Thanksgiving is on & there are 5 or more Sundays in the month then you can have Singspiration.
+
 # Find out how to get the number of weeks in a month.
 # You may be able to use this to determine what week number the last Sunday takes place on.
 # You may be able to use this to determine what week number the last Thursday takes place on.
