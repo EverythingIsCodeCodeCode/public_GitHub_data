@@ -155,57 +155,46 @@ if ($SkipEasterSingspiration -eq $EasterMonthSkipSingspiration) {
 # You are here.
 # You are here.
 
-# Find out how many Sundays are in November.
-# Find out what number of the day of the month Thanksgiving is on.
-# Find out what number of the last Sunday in November is.
-# If that number is greater than the day Thanksgiving is on & there are 5 or more Sundays in the month then you can have Singspiration.
+# Can you have Singspiration around Thanksgiving next year?::
+# Get the current year and calculate the next year
+$currentYear = (Get-Date).Year
+$nextYear = $currentYear + 1
 
-# Find out how to get the number of weeks in a month.
-# You may be able to use this to determine what week number the last Sunday takes place on.
-# You may be able to use this to determine what week number the last Thursday takes place on.
-# Compare those two numbers.
+# Get the number of days in November next year
+$novemberDays = [DateTime]::DaysInMonth($nextYear, 11)
 
-# This could be incorrect to assume Thanksgiving is always the last week in November.
-#$StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
-#$ThanksgivingWeekNumberNextYear = Get-Date -Year $StartDate.Year -Month 11 -UFormat %V
-
-
-
-# Skip Singspiration Sunday night in November if Thanksgiving is on the same week since we're normally not here so folks can spend time with their other families.
-# Thanksgiving is always the last Thursday of November.
-$Nov = Get-Date -Year ((Get-Date).year+1) -Month 11 # This gets November next year.
-$NumberOfDaysInNov = [DateTime]::DaysInMonth($Nov.Year, $Nov.Month)
-$NumberOfSundaysInNov = 0
-# Loop through each day of the month in November next year & count the number of Sundays.
-for ($day = 1; $day -le $NumberOfDaysInNov; $day++) {
-	# Create a date object for the current day
-	$currentDate = [DateTime]::new($Nov.Year, $Nov.Month, $day)
-	# Check if the day is a Sunday
-	if ($currentDate.DayOfWeek -eq "Sunday") {
-		# Increment the Sunday counter
-		$NumberOfSundaysInNov++
-	}
+# Find the date of Thanksgiving (last Thursday of November)
+$thanksgivingDate = [DateTime]::new($nextYear, 11, 1)
+while ($thanksgivingDate.DayOfWeek -ne [DayOfWeek]::Thursday) {
+    $thanksgivingDate = $thanksgivingDate.AddDays(1)
 }
-# Output the number of Sundays:
-# Write-Output "Number of Sundays in November: $NumberOfSundaysInNov"
-if ($NumberOfSundaysInNov -le 4) {
-	$SingspirationNov = 0 # The number of Sundays in November next year is 4 or less so we won't have Singspiration this month.
+$thanksgivingDate = $thanksgivingDate.AddDays(21) # Move to the last Thursday. You can always add 21 days to the first Thursday in November to get the last Thursday in November which is always Thanksgiving day.
+
+# Loop through each day after Thanksgiving in November next year to find if there is a Sunday after Thanksgiving
+$sundayAfterThanksgiving = $false
+for ($day = $thanksgivingDate.Day + 1; $day -le $novemberDays; $day++) {
+    $date = [DateTime]::new($nextYear, 11, $day)
+    if ($date.DayOfWeek -eq [DayOfWeek]::Sunday) {
+        $sundayAfterThanksgiving = $true
+        break
+    }
 }
-if ($NumberOfSundaysInNov -ge 5) {
-	$SingspirationNov = 1 # The number of Sundays in November next year is 5 or more so we'll have Singspiration this month.
-	# Unless Thanksgiving is also on this same week. You need to figure that out (get week numbers) (last Thursday week -ne last Sunday week).
-	
-	<#
-	if ($Nov.Month -eq $EasterMonthNextYear) {
-		if ($YouCanHaveSingspirationEasterMonth -eq 1) {
-			$SingspirationNov = 1 # Have Singspiration this month. Easter is this month & it's not on the last Sunday.
-		}
-		if ($YouCanHaveSingspirationEasterMonth -eq 0) {
-			$SingspirationNov = 0 # Skip Singspiration this month. Easter is this month & it's on the last Sunday.
-		}
-	}
-	#>
+
+# Output the result. Is there a Sunday after Thanksgiving in November next year?
+if ($sundayAfterThanksgiving) {
+    # Write-Output "There is a Sunday after Thanksgiving in November $nextYear so you can have Singspiration."
+	$YouCanHaveSingspirationThanksgivingMonth = 1 # There is a Sunday after Thanksgiving in November next year so you can have Singspiration if there are 5 Sundays in the month.
+} else {
+    # Write-Output "There is no Sunday after Thanksgiving in November $nextYear so skip Singspiration."
+	$YouCanHaveSingspirationThanksgivingMonth = 0 # There is no Sunday after Thanksgiving in November next year so skip Singspiration.
 }
+# You have now figured out if there is a Sunday after Thanksgiving in November next year.
+# You need to add this Thanksgiving logic below similar to Easter.
+
+
+
+
+
 
 
 
