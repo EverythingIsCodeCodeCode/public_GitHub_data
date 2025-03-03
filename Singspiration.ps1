@@ -92,7 +92,10 @@ Function Get-DateOfEaster {
 	$Easter = Get-DateOfEaster 1590 1752
 	"$Easter"
 #>
-$EasterDateNextYear = Get-DateOfEaster ((Get-Date).year+1)
+$CurrentYear = (Get-Date).Year
+$FutureYear = $CurrentYear + 1
+$EasterDateNextYear = Get-DateOfEaster $FutureYear
+# $EasterDateNextYear = Get-DateOfEaster ((Get-Date).year+1)
 $EasterYearNextYear = $EasterDateNextYear[0].Substring(0,4)
 $EasterMonthNextYear = $EasterDateNextYear[0].Substring(5,2)
 $EasterDayNextYear = $EasterDateNextYear[0].Substring(8,2)
@@ -148,23 +151,13 @@ if ($SkipEasterSingspiration -eq $EasterMonthSkipSingspiration) {
 # Easter can only be in March or April so you can remove the Easter-related code from the other months. Done.
 
 
-
-
-
-# You are here.
-# You are here.
-# You are here.
-
 # Can you have Singspiration around Thanksgiving next year?::
-# Get the current year and calculate the next year
-$currentYear = (Get-Date).Year
-$nextYear = $currentYear + 1
 
 # Get the number of days in November next year
-$novemberDays = [DateTime]::DaysInMonth($nextYear, 11)
+$novemberDays = [DateTime]::DaysInMonth($FutureYear, 11)
 
 # Find the date of Thanksgiving (last Thursday of November)
-$thanksgivingDate = [DateTime]::new($nextYear, 11, 1)
+$thanksgivingDate = [DateTime]::new($FutureYear, 11, 1)
 while ($thanksgivingDate.DayOfWeek -ne [DayOfWeek]::Thursday) {
     $thanksgivingDate = $thanksgivingDate.AddDays(1)
 }
@@ -173,7 +166,7 @@ $thanksgivingDate = $thanksgivingDate.AddDays(21) # Move to the last Thursday. Y
 # Loop through each day after Thanksgiving in November next year to find if there is a Sunday after Thanksgiving
 $sundayAfterThanksgiving = $false
 for ($day = $thanksgivingDate.Day + 1; $day -le $novemberDays; $day++) {
-    $date = [DateTime]::new($nextYear, 11, $day)
+    $date = [DateTime]::new($FutureYear, 11, $day)
     if ($date.DayOfWeek -eq [DayOfWeek]::Sunday) {
         $sundayAfterThanksgiving = $true
         break
@@ -192,51 +185,20 @@ if ($sundayAfterThanksgiving) {
 # You need to add this Thanksgiving logic below similar to Easter.
 
 
-
-
-
-
-
-
-
-
-# Get the current date
-$today = Get-Date
-
-# Get the first day of the next month
-$nextMonth = $today.AddMonths(1).AddDays(-$today.Day + 1)
-# $nextMonth = $today.AddMonths(1) # I'm not here yet. I'm still coding up above.
-
-# Calculate the last day of the current month
-$lastDayOfMonth = $nextMonth.AddDays(-1)
-
-# Calculate the number of days to subtract to get to the last Sunday
-$daysToSubtract = $lastDayOfMonth.DayOfWeek - 0
-# Why am I doing this previous line? This shows the printed day of the week of the last day of the month.
-
-# Get the date of the last Sunday of the month
-$lastSunday = $lastDayOfMonth.AddDays(-$daysToSubtract)
-
-# Output the result
-# $lastSunday
-
-
-
-
-$StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
-$EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
-$Jan = Get-Date -Year ((Get-Date).year+1) -Month 1 # This gets January next year.
-$Feb = Get-Date -Year ((Get-Date).year+1) -Month 2 # This gets February next year.
-$Mar = Get-Date -Year ((Get-Date).year+1) -Month 3 # This gets March next year.
-$Apr = Get-Date -Year ((Get-Date).year+1) -Month 4 # This gets April next year.
-$May = Get-Date -Year ((Get-Date).year+1) -Month 5 # This gets May next year.
-$Jun = Get-Date -Year ((Get-Date).year+1) -Month 6 # This gets June next year.
-$Jul = Get-Date -Year ((Get-Date).year+1) -Month 7 # This gets July next year.
-$Aug = Get-Date -Year ((Get-Date).year+1) -Month 8 # This gets August next year.
-$Sep = Get-Date -Year ((Get-Date).year+1) -Month 9 # This gets September next year.
-$Oct = Get-Date -Year ((Get-Date).year+1) -Month 10 # This gets October next year.
-$Nov = Get-Date -Year ((Get-Date).year+1) -Month 11 # This gets November next year.
-$Dec = Get-Date -Year ((Get-Date).year+1) -Month 12 # This gets December next year.
+$StartDate = Get-Date -Year $FutureYear -Month 01 -Day 01 # This gets the first day of next year.
+$EndDate = Get-Date -Year $FutureYear -Month 12 -Day 31 # This gets the last day of next year.
+$Jan = Get-Date -Year $FutureYear -Month 1 # This gets January next year.
+$Feb = Get-Date -Year $FutureYear -Month 2 # This gets February next year.
+$Mar = Get-Date -Year $FutureYear -Month 3 # This gets March next year.
+$Apr = Get-Date -Year $FutureYear -Month 4 # This gets April next year.
+$May = Get-Date -Year $FutureYear -Month 5 # This gets May next year.
+$Jun = Get-Date -Year $FutureYear -Month 6 # This gets June next year.
+$Jul = Get-Date -Year $FutureYear -Month 7 # This gets July next year.
+$Aug = Get-Date -Year $FutureYear -Month 8 # This gets August next year.
+$Sep = Get-Date -Year $FutureYear -Month 9 # This gets September next year.
+$Oct = Get-Date -Year $FutureYear -Month 10 # This gets October next year.
+$Nov = Get-Date -Year $FutureYear -Month 11 # This gets November next year.
+$Dec = Get-Date -Year $FutureYear -Month 12 # This gets December next year.
 $NumberOfDaysInJan = [DateTime]::DaysInMonth($Jan.Year, $Jan.Month)
 $NumberOfDaysInFeb = [DateTime]::DaysInMonth($Feb.Year, $Feb.Month)
 $NumberOfDaysInMar = [DateTime]::DaysInMonth($Mar.Year, $Mar.Month)
@@ -514,6 +476,14 @@ if ($NumberOfSundaysInNov -le 4) {
 }
 if ($NumberOfSundaysInNov -ge 5) {
 	$SingspirationNov = 1 # The number of Sundays in November next year is 5 or more so we'll have Singspiration this month.
+	if ($Nov.Month -eq $EasterMonthNextYear) {
+		if ($YouCanHaveSingspirationThanksgivingMonth -eq 1) {
+			$SingspirationNov = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
+		}
+		if ($YouCanHaveSingspirationThanksgivingMonth -eq 0) {
+			$SingspirationNov = 0 # Skip Singspiration this month. Thanksgiving is this month & it's on the last Sunday.
+		}
+	}
 }
 
 if ($NumberOfSundaysInDec -le 4) {
@@ -573,14 +543,4 @@ if ($SingspirationDec -eq 0) {Write-Host -ForegroundColor DarkRed "12-December n
 
 
 
-
-# You need to double-check the math & value of the variables below since you previously suspected one or more of them might be incorrect.
-
-$EasterDate = ""
-
-While ($StartDate -lt $EndDate) # This starts a while loop for the year.
-{
-
-	$StartDate = $StartDate.AddDays(1)
-}
 
