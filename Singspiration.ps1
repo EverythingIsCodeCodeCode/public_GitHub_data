@@ -93,49 +93,49 @@ Function Get-DateOfEaster {
 	"$Easter"
 #>
 $CurrentYear = (Get-Date).Year
-$FutureYear = $CurrentYear + 1
-$EasterDateNextYear = Get-DateOfEaster $FutureYear
-# $EasterDateNextYear = Get-DateOfEaster ((Get-Date).year+1)
-$EasterYearNextYear = $EasterDateNextYear[0].Substring(0,4)
-$EasterMonthNextYear = $EasterDateNextYear[0].Substring(5,2)
-$EasterDayNextYear = $EasterDateNextYear[0].Substring(8,2)
-$EasterNumberOfDaysInMonthNextYear = [DateTime]::DaysInMonth($EasterYearNextYear, $EasterMonthNextYear)
-$EasterMonthNumberOfSundaysCountNextYear = 0
+$FutureYear = $CurrentYear + 1 # This is the line where you set next year (+ 1), two years from now (+ 2), or whatever you need at the time.
+$EasterDateFutureYear = Get-DateOfEaster $FutureYear
+# $EasterDateFutureYear = Get-DateOfEaster ((Get-Date).year+1)
+$EasterYearFutureYear = $EasterDateFutureYear[0].Substring(0,4)
+$EasterMonthFutureYear = $EasterDateFutureYear[0].Substring(5,2)
+$EasterDayFutureYear = $EasterDateFutureYear[0].Substring(8,2)
+$EasterNumberOfDaysInMonthFutureYear = [DateTime]::DaysInMonth($EasterYearFutureYear, $EasterMonthFutureYear)
+$EasterMonthNumberOfSundaysCountFutureYear = 0
 # Loop through each day of the month
-for ($day = 1; $day -le $EasterNumberOfDaysInMonthNextYear; $day++) {
+for ($day = 1; $day -le $EasterNumberOfDaysInMonthFutureYear; $day++) {
     # Create a date object for the current day
-    $currentDate = [DateTime]::new($EasterYearNextYear, $EasterMonthNextYear, $day)
+    $currentDate = [DateTime]::new($EasterYearFutureYear, $EasterMonthFutureYear, $day)
     # Check if the day is a Sunday
     if ($currentDate.DayOfWeek -eq "Sunday") {
         # Increment the Sunday counter
-        $EasterMonthNumberOfSundaysCountNextYear++
+        $EasterMonthNumberOfSundaysCountFutureYear++
     }
 }
 # Output the number of Sundays
-# Write-Output "Number of Sundays in this month: $EasterMonthNumberOfSundaysCountNextYear"
-if ($EasterMonthNumberOfSundaysCountNextYear -le 4) {
-	$EasterMonthSkipSingspiration = 1 # The number of Sundays in Easter month next year is 4 or less so we won't have a Singspiration this month.
+# Write-Output "Number of Sundays in this month: $EasterMonthNumberOfSundaysCountFutureYear"
+if ($EasterMonthNumberOfSundaysCountFutureYear -le 4) {
+	$EasterMonthSkipSingspiration = 1 # The number of Sundays in Easter month in the future year is 4 or less so we won't have a Singspiration this month.
 }
-if ($EasterMonthNumberOfSundaysCountNextYear -ge 5) {
-	$EasterMonthSkipSingspiration = 0 # The number of Sundays in Easter month next year is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
+if ($EasterMonthNumberOfSundaysCountFutureYear -ge 5) {
+	$EasterMonthSkipSingspiration = 0 # The number of Sundays in Easter month in the future year is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
 }
 
-# Calculate the last Sunday of the month for the month of Easter next year::
-$lastDay = New-Object -TypeName DateTime -ArgumentList $EasterYearNextYear, $EasterMonthNextYear, $EasterNumberOfDaysInMonthNextYear
+# Calculate the last Sunday of the month for the month of Easter in the future year::
+$lastDay = New-Object -TypeName DateTime -ArgumentList $EasterYearFutureYear, $EasterMonthFutureYear, $EasterNumberOfDaysInMonthFutureYear
 # Find the last Sunday
 while ($lastDay.DayOfWeek -ne [DayOfWeek]::Sunday) {
 	$lastDay = $lastDay.AddDays(-1)
 }
-# Write-Host "The last Sunday of $($EasterMonthNextYear)/$EasterYearNextYear is on day number $($lastDay.Day), which is $($lastDay.ToString('dddd, MMMM dd, yyyy'))."
-$EasterNextYearLastSundayInMonth = $($lastDay.Day)
+# Write-Host "The last Sunday of $($EasterMonthFutureYear)/$EasterYearFutureYear is on day number $($lastDay.Day), which is $($lastDay.ToString('dddd, MMMM dd, yyyy'))."
+$EasterFutureYearLastSundayInMonth = $($lastDay.Day)
 
-# Compare $EasterNextYearLastSundayInMonth to $EasterDayNextYear.
+# Compare $EasterFutureYearLastSundayInMonth to $EasterDayFutureYear.
 # If they're the same then skip Singspiration that month.
 # If they're different then you can have Singspiration that month.
-if ($EasterDayNextYear -eq $EasterNextYearLastSundayInMonth) {
+if ($EasterDayFutureYear -eq $EasterFutureYearLastSundayInMonth) {
 	$SkipEasterSingspiration = 1 # Skip Singspiration this month because Easter takes place on the same Sunday.
 }
-if ($EasterDayNextYear -ne $EasterNextYearLastSundayInMonth) {
+if ($EasterDayFutureYear -ne $EasterFutureYearLastSundayInMonth) {
 	$SkipEasterSingspiration = 0 # Have Singspiration this month because Easter takes place on a different Sunday.
 	# If $EasterMonthSkipSingspiration = 0
 }
@@ -151,9 +151,9 @@ if ($SkipEasterSingspiration -eq $EasterMonthSkipSingspiration) {
 # Easter can only be in March or April so you can remove the Easter-related code from the other months. Done.
 
 
-# Can you have Singspiration around Thanksgiving next year?::
+# Can you have Singspiration around Thanksgiving in the future year?::
 
-# Get the number of days in November next year
+# Get the number of days in November in the future year
 $novemberDays = [DateTime]::DaysInMonth($FutureYear, 11)
 
 # Find the date of Thanksgiving (last Thursday of November)
@@ -163,7 +163,7 @@ while ($thanksgivingDate.DayOfWeek -ne [DayOfWeek]::Thursday) {
 }
 $thanksgivingDate = $thanksgivingDate.AddDays(21) # Move to the last Thursday. You can always add 21 days to the first Thursday in November to get the last Thursday in November which is always Thanksgiving day.
 
-# Loop through each day after Thanksgiving in November next year to find if there is a Sunday after Thanksgiving
+# Loop through each day after Thanksgiving in November in the future year to find if there is a Sunday after Thanksgiving
 $sundayAfterThanksgiving = $false
 for ($day = $thanksgivingDate.Day + 1; $day -le $novemberDays; $day++) {
     $date = [DateTime]::new($FutureYear, 11, $day)
@@ -173,32 +173,32 @@ for ($day = $thanksgivingDate.Day + 1; $day -le $novemberDays; $day++) {
     }
 }
 
-# Output the result. Is there a Sunday after Thanksgiving in November next year?
+# Output the result. Is there a Sunday after Thanksgiving in November in the future year?
 if ($sundayAfterThanksgiving) {
-    # Write-Output "There is a Sunday after Thanksgiving in November $nextYear so you can have Singspiration."
-	$YouCanHaveSingspirationThanksgivingMonth = 1 # There is a Sunday after Thanksgiving in November next year so you can have Singspiration if there are 5 Sundays in the month.
+    # Write-Output "There is a Sunday after Thanksgiving in November $FutureYear so you can have Singspiration."
+	$YouCanHaveSingspirationThanksgivingMonth = 1 # There is a Sunday after Thanksgiving in November in the future year so you can have Singspiration if there are 5 Sundays in the month.
 } else {
-    # Write-Output "There is no Sunday after Thanksgiving in November $nextYear so skip Singspiration."
-	$YouCanHaveSingspirationThanksgivingMonth = 0 # There is no Sunday after Thanksgiving in November next year so skip Singspiration.
+    # Write-Output "There is no Sunday after Thanksgiving in November $FutureYear so skip Singspiration."
+	$YouCanHaveSingspirationThanksgivingMonth = 0 # There is no Sunday after Thanksgiving in November in the future year so skip Singspiration.
 }
-# You have now figured out if there is a Sunday after Thanksgiving in November next year.
+# You have now figured out if there is a Sunday after Thanksgiving in November in the future year.
 # You need to add this Thanksgiving logic below similar to Easter.
 
 
-$StartDate = Get-Date -Year $FutureYear -Month 01 -Day 01 # This gets the first day of next year.
-$EndDate = Get-Date -Year $FutureYear -Month 12 -Day 31 # This gets the last day of next year.
-$Jan = Get-Date -Year $FutureYear -Month 1 # This gets January next year.
-$Feb = Get-Date -Year $FutureYear -Month 2 # This gets February next year.
-$Mar = Get-Date -Year $FutureYear -Month 3 # This gets March next year.
-$Apr = Get-Date -Year $FutureYear -Month 4 # This gets April next year.
-$May = Get-Date -Year $FutureYear -Month 5 # This gets May next year.
-$Jun = Get-Date -Year $FutureYear -Month 6 # This gets June next year.
-$Jul = Get-Date -Year $FutureYear -Month 7 # This gets July next year.
-$Aug = Get-Date -Year $FutureYear -Month 8 # This gets August next year.
-$Sep = Get-Date -Year $FutureYear -Month 9 # This gets September next year.
-$Oct = Get-Date -Year $FutureYear -Month 10 # This gets October next year.
-$Nov = Get-Date -Year $FutureYear -Month 11 # This gets November next year.
-$Dec = Get-Date -Year $FutureYear -Month 12 # This gets December next year.
+$StartDate = Get-Date -Year $FutureYear -Month 01 -Day 01 # This gets the first day of the future year.
+$EndDate = Get-Date -Year $FutureYear -Month 12 -Day 31 # This gets the last day of the future year.
+$Jan = Get-Date -Year $FutureYear -Month 1 # This gets January of the future year.
+$Feb = Get-Date -Year $FutureYear -Month 2 # This gets February of the future year.
+$Mar = Get-Date -Year $FutureYear -Month 3 # This gets March of the future year.
+$Apr = Get-Date -Year $FutureYear -Month 4 # This gets April of the future year.
+$May = Get-Date -Year $FutureYear -Month 5 # This gets May of the future year.
+$Jun = Get-Date -Year $FutureYear -Month 6 # This gets June of the future year.
+$Jul = Get-Date -Year $FutureYear -Month 7 # This gets July of the future year.
+$Aug = Get-Date -Year $FutureYear -Month 8 # This gets August of the future year.
+$Sep = Get-Date -Year $FutureYear -Month 9 # This gets September of the future year.
+$Oct = Get-Date -Year $FutureYear -Month 10 # This gets October of the future year.
+$Nov = Get-Date -Year $FutureYear -Month 11 # This gets November of the future year.
+$Dec = Get-Date -Year $FutureYear -Month 12 # This gets December of the future year.
 $NumberOfDaysInJan = [DateTime]::DaysInMonth($Jan.Year, $Jan.Month)
 $NumberOfDaysInFeb = [DateTime]::DaysInMonth($Feb.Year, $Feb.Month)
 $NumberOfDaysInMar = [DateTime]::DaysInMonth($Mar.Year, $Mar.Month)
@@ -224,7 +224,7 @@ $NumberOfSundaysInOct = 0
 $NumberOfSundaysInNov = 0
 $NumberOfSundaysInDec = 0
 
-# Loop through each day of the month in January next year & count the number of Sundays.
+# Loop through each day of the month in January in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInJan; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Jan.Year, $Jan.Month, $day)
@@ -237,7 +237,7 @@ for ($day = 1; $day -le $NumberOfDaysInJan; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in January: $NumberOfSundaysInJan"
 
-# Loop through each day of the month in February next year & count the number of Sundays.
+# Loop through each day of the month in February in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInFeb; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Feb.Year, $Feb.Month, $day)
@@ -250,7 +250,7 @@ for ($day = 1; $day -le $NumberOfDaysInFeb; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in February: $NumberOfSundaysInFeb"
 
-# Loop through each day of the month in March next year & count the number of Sundays.
+# Loop through each day of the month in March in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInMar; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Mar.Year, $Mar.Month, $day)
@@ -263,7 +263,7 @@ for ($day = 1; $day -le $NumberOfDaysInMar; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in March: $NumberOfSundaysInMar"
 
-# Loop through each day of the month in April next year & count the number of Sundays.
+# Loop through each day of the month in April in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInApr; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Apr.Year, $Apr.Month, $day)
@@ -276,7 +276,7 @@ for ($day = 1; $day -le $NumberOfDaysInApr; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in April: $NumberOfSundaysInApr"
 
-# Loop through each day of the month in May next year & count the number of Sundays.
+# Loop through each day of the month in May in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInMay; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($May.Year, $May.Month, $day)
@@ -289,7 +289,7 @@ for ($day = 1; $day -le $NumberOfDaysInMay; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in May: $NumberOfSundaysInMay"
 
-# Loop through each day of the month in June next year & count the number of Sundays.
+# Loop through each day of the month in June in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInJun; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Jun.Year, $Jun.Month, $day)
@@ -302,7 +302,7 @@ for ($day = 1; $day -le $NumberOfDaysInJun; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in June: $NumberOfSundaysInJun"
 
-# Loop through each day of the month in July next year & count the number of Sundays.
+# Loop through each day of the month in July in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInJul; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Jul.Year, $Jul.Month, $day)
@@ -315,7 +315,7 @@ for ($day = 1; $day -le $NumberOfDaysInJul; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in July: $NumberOfSundaysInJul"
 
-# Loop through each day of the month in August next year & count the number of Sundays.
+# Loop through each day of the month in August in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInAug; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Aug.Year, $Aug.Month, $day)
@@ -328,7 +328,7 @@ for ($day = 1; $day -le $NumberOfDaysInAug; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in August: $NumberOfSundaysInAug"
 
-# Loop through each day of the month in September next year & count the number of Sundays.
+# Loop through each day of the month in September in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInSep; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Sep.Year, $Sep.Month, $day)
@@ -341,7 +341,7 @@ for ($day = 1; $day -le $NumberOfDaysInSep; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in September: $NumberOfSundaysInSep"
 
-# Loop through each day of the month in October next year & count the number of Sundays.
+# Loop through each day of the month in October in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInOct; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Oct.Year, $Oct.Month, $day)
@@ -354,7 +354,7 @@ for ($day = 1; $day -le $NumberOfDaysInOct; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in October: $NumberOfSundaysInOct"
 
-# Loop through each day of the month in November next year & count the number of Sundays.
+# Loop through each day of the month in November in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInNov; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Nov.Year, $Nov.Month, $day)
@@ -367,7 +367,7 @@ for ($day = 1; $day -le $NumberOfDaysInNov; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in November: $NumberOfSundaysInNov"
 
-# Loop through each day of the month in December next year & count the number of Sundays.
+# Loop through each day of the month in December in the future year & count the number of Sundays.
 for ($day = 1; $day -le $NumberOfDaysInDec; $day++) {
 	# Create a date object for the current day
 	$currentDate = [DateTime]::new($Dec.Year, $Dec.Month, $day)
@@ -380,31 +380,31 @@ for ($day = 1; $day -le $NumberOfDaysInDec; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in December: $NumberOfSundaysInDec"
 
-# You have now counted the number of Sundays in each month next year.
+# You have now counted the number of Sundays in each month in the future year.
 
 # See if each month has 4 or less Sundays or 5 or more Sundays to determine if you can have Singspiration that month.
-# Remember Easter month (only March or April). $Jan.Month = $EasterMonthNextYear & $YouCanHaveSingspirationEasterMonth = 1
+# Remember Easter month (only March or April). $Jan.Month = $EasterMonthFutureYear & $YouCanHaveSingspirationEasterMonth = 1
 
 if ($NumberOfSundaysInJan -le 4) {
-	$SingspirationJan = 0 # The number of Sundays in January next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationJan = 0 # The number of Sundays in January in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInJan -ge 5) {
-	$SingspirationJan = 1 # The number of Sundays in January next year is 5 or more so we'll have Singspiration this month.
+	$SingspirationJan = 1 # The number of Sundays in January in the future year is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInFeb -le 4) {
-	$SingspirationFeb = 0 # The number of Sundays in February next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationFeb = 0 # The number of Sundays in February in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInFeb -ge 5) {
-	$SingspirationFeb = 1 # The number of Sundays in February next year is 5 or more so we'll have Singspiration this month.
+	$SingspirationFeb = 1 # The number of Sundays in February in the future year is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInMar -le 4) {
-	$SingspirationMar = 0 # The number of Sundays in March next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationMar = 0 # The number of Sundays in March in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInMar -ge 5) {
-	$SingspirationMar = 1 # The number of Sundays in March next year is 5 or more so we'll have Singspiration this month.
-	if ($Mar.Month -eq $EasterMonthNextYear) {
+	$SingspirationMar = 1 # The number of Sundays in March in the future year is 5 or more so we'll have Singspiration this month.
+	if ($Mar.Month -eq $EasterMonthFutureYear) {
 		if ($YouCanHaveSingspirationEasterMonth -eq 1) {
 			$SingspirationMar = 1 # Have Singspiration this month. Easter is this month & it's not on the last Sunday.
 		}
@@ -415,11 +415,11 @@ if ($NumberOfSundaysInMar -ge 5) {
 }
 
 if ($NumberOfSundaysInApr -le 4) {
-	$SingspirationApr = 0 # The number of Sundays in April next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationApr = 0 # The number of Sundays in April in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInApr -ge 5) {
-	$SingspirationApr = 1 # The number of Sundays in April next year is 5 or more so we'll have Singspiration this month.
-	if ($Apr.Month -eq $EasterMonthNextYear) {
+	$SingspirationApr = 1 # The number of Sundays in April in the future year is 5 or more so we'll have Singspiration this month.
+	if ($Apr.Month -eq $EasterMonthFutureYear) {
 		if ($YouCanHaveSingspirationEasterMonth -eq 1) {
 			$SingspirationApr = 1 # Have Singspiration this month. Easter is this month & it's not on the last Sunday.
 		}
@@ -430,53 +430,53 @@ if ($NumberOfSundaysInApr -ge 5) {
 }
 
 if ($NumberOfSundaysInMay -le 4) {
-	$SingspirationMay = 0 # The number of Sundays in May next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationMay = 0 # The number of Sundays in May in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInMay -ge 5) {
-	$SingspirationMay = 1 # The number of Sundays in May next year is 5 or more so we'll have Singspiration this month.
+	$SingspirationMay = 1 # The number of Sundays in May in the future year is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInJun -le 4) {
-	$SingspirationJun = 0 # The number of Sundays in June next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationJun = 0 # The number of Sundays in June in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInJun -ge 5) {
-	$SingspirationJun = 1 # The number of Sundays in June next year is 5 or more so we'll have Singspiration this month.
+	$SingspirationJun = 1 # The number of Sundays in June in the future year is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInJul -le 4) {
-	$SingspirationJul = 0 # The number of Sundays in July next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationJul = 0 # The number of Sundays in July in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInJul -ge 5) {
-	$SingspirationJul = 1 # The number of Sundays in July next year is 5 or more so we'll have Singspiration this month.
+	$SingspirationJul = 1 # The number of Sundays in July in the future year is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInAug -le 4) {
-	$SingspirationAug = 0 # The number of Sundays in August next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationAug = 0 # The number of Sundays in August in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInAug -ge 5) {
-	$SingspirationAug = 1 # The number of Sundays in August next year is 5 or more so we'll have Singspiration this month.
+	$SingspirationAug = 1 # The number of Sundays in August in the future year is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInSep -le 4) {
-	$SingspirationSep = 0 # The number of Sundays in September next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationSep = 0 # The number of Sundays in September in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInSep -ge 5) {
-	$SingspirationSep = 1 # The number of Sundays in September next year is 5 or more so we'll have Singspiration this month.
+	$SingspirationSep = 1 # The number of Sundays in September in the future year is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInOct -le 4) {
-	$SingspirationOct = 0 # The number of Sundays in October next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationOct = 0 # The number of Sundays in October in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInOct -ge 5) {
-	$SingspirationOct = 1 # The number of Sundays in October next year is 5 or more so we'll have Singspiration this month.
+	$SingspirationOct = 1 # The number of Sundays in October in the future year is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInNov -le 4) {
-	$SingspirationNov = 0 # The number of Sundays in November next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationNov = 0 # The number of Sundays in November in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInNov -ge 5) {
-	$SingspirationNov = 1 # The number of Sundays in November next year is 5 or more so we'll have Singspiration this month.
-	if ($Nov.Month -eq $EasterMonthNextYear) {
+	$SingspirationNov = 1 # The number of Sundays in November in the future year is 5 or more so we'll have Singspiration this month.
+	if ($Nov.Month -eq $EasterMonthFutureYear) {
 		if ($YouCanHaveSingspirationThanksgivingMonth -eq 1) {
 			$SingspirationNov = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
 		}
@@ -487,59 +487,93 @@ if ($NumberOfSundaysInNov -ge 5) {
 }
 
 if ($NumberOfSundaysInDec -le 4) {
-	$SingspirationDec = 0 # The number of Sundays in December next year is 4 or less so we won't have Singspiration this month.
+	$SingspirationDec = 0 # The number of Sundays in December in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInDec -ge 5) {
-	$SingspirationDec = 1 # The number of Sundays in December next year is 5 or more so we'll have Singspiration this month.
+	$SingspirationDec = 1 # The number of Sundays in December in the future year is 5 or more so we'll have Singspiration this month.
 }
 
-# You have now figured out if you can have Singspiration each month next year.
+# You have now figured out if you can have Singspiration each month in the future year.
 
-$NumberOfSingspirationsNextYear = 0
-if ($SingspirationJan -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationFeb -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationMar -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationApr -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationMay -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationJun -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationJul -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationAug -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationSep -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationOct -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationNov -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
-if ($SingspirationDec -eq 1) {$NumberOfSingspirationsNextYear = $NumberOfSingspirationsNextYear + 1}
+$NumberOfSingspirationsFutureYear = 0
+if ($SingspirationJan -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationFeb -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationMar -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationApr -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationMay -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationJun -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationJul -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationAug -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationSep -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationOct -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationNov -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
+if ($SingspirationDec -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
 
-Write-Host "There are $NumberOfSingspirationsNextYear Singspirations next year."
+Write-Host "There are $NumberOfSingspirationsFutureYear Singspirations in $FutureYear."
 
-# Output to host if you're going to have Singspiration each month next year.
+# Output to host if you're going to have Singspiration each month in the future year.
 
-if ($SingspirationJan -eq 1) {Write-Host -ForegroundColor Green "01-January next year: Have Singspiration."}
-if ($SingspirationJan -eq 0) {Write-Host -ForegroundColor DarkRed "01-January next year: Skip Singspiration."}
-if ($SingspirationFeb -eq 1) {Write-Host -ForegroundColor Green "02-February next year: Have Singspiration."}
-if ($SingspirationFeb -eq 0) {Write-Host -ForegroundColor DarkRed "02-February next year: Skip Singspiration."}
-if ($SingspirationMar -eq 1) {Write-Host -ForegroundColor Green "03-March next year: Have Singspiration."}
-if ($SingspirationMar -eq 0) {Write-Host -ForegroundColor DarkRed "03-March next year: Skip Singspiration."}
-if ($SingspirationApr -eq 1) {Write-Host -ForegroundColor Green "04-April next year: Have Singspiration."}
-if ($SingspirationApr -eq 0) {Write-Host -ForegroundColor DarkRed "04-April next year: Skip Singspiration."}
-if ($SingspirationMay -eq 1) {Write-Host -ForegroundColor Green "05-May next year: Have Singspiration."}
-if ($SingspirationMay -eq 0) {Write-Host -ForegroundColor DarkRed "05-May next year: Skip Singspiration."}
-if ($SingspirationJun -eq 1) {Write-Host -ForegroundColor Green "06-June next year: Have Singspiration."}
-if ($SingspirationJun -eq 0) {Write-Host -ForegroundColor DarkRed "06-June next year: Skip Singspiration."}
-if ($SingspirationJul -eq 1) {Write-Host -ForegroundColor Green "07-July next year: Have Singspiration."}
-if ($SingspirationJul -eq 0) {Write-Host -ForegroundColor DarkRed "07-July next year: Skip Singspiration."}
-if ($SingspirationAug -eq 1) {Write-Host -ForegroundColor Green "08-August next year: Have Singspiration."}
-if ($SingspirationAug -eq 0) {Write-Host -ForegroundColor DarkRed "08-August next year: Skip Singspiration."}
-if ($SingspirationSep -eq 1) {Write-Host -ForegroundColor Green "09-September next year: Have Singspiration."}
-if ($SingspirationSep -eq 0) {Write-Host -ForegroundColor DarkRed "09-September next year: Skip Singspiration."}
-if ($SingspirationOct -eq 1) {Write-Host -ForegroundColor Green "10-October next year: Have Singspiration."}
-if ($SingspirationOct -eq 0) {Write-Host -ForegroundColor DarkRed "10-October next year: Skip Singspiration."}
-if ($SingspirationNov -eq 1) {Write-Host -ForegroundColor Green "11-November next year: Have Singspiration."}
-if ($SingspirationNov -eq 0) {Write-Host -ForegroundColor DarkRed "11-November next year: Skip Singspiration."}
-if ($SingspirationDec -eq 1) {Write-Host -ForegroundColor Green "12-December next year: Have Singspiration."}
-if ($SingspirationDec -eq 0) {Write-Host -ForegroundColor DarkRed "12-December next year: Skip Singspiration."}
+if ($SingspirationJan -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-01-January: Have Singspiration."}
+if ($SingspirationJan -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-01-January: Skip Singspiration."}
+if ($SingspirationFeb -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-02-February: Have Singspiration."}
+if ($SingspirationFeb -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-02-February: Skip Singspiration."}
+if ($SingspirationMar -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-03-March: Have Singspiration."}
+if ($SingspirationMar -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-03-March: Skip Singspiration."}
+if ($SingspirationApr -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-04-April: Have Singspiration."}
+if ($SingspirationApr -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-04-April: Skip Singspiration."}
+if ($SingspirationMay -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-05-May: Have Singspiration."}
+if ($SingspirationMay -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-05-May: Skip Singspiration."}
+if ($SingspirationJun -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-06-June: Have Singspiration."}
+if ($SingspirationJun -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-06-June: Skip Singspiration."}
+if ($SingspirationJul -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-07-July: Have Singspiration."}
+if ($SingspirationJul -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-07-July: Skip Singspiration."}
+if ($SingspirationAug -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-08-August: Have Singspiration."}
+if ($SingspirationAug -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-08-August: Skip Singspiration."}
+if ($SingspirationSep -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-09-September: Have Singspiration."}
+if ($SingspirationSep -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-09-September: Skip Singspiration."}
+if ($SingspirationOct -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-10-October: Have Singspiration."}
+if ($SingspirationOct -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-10-October: Skip Singspiration."}
+if ($SingspirationNov -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-11-November: Have Singspiration."}
+if ($SingspirationNov -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-11-November: Skip Singspiration."}
+if ($SingspirationDec -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-12-December: Have Singspiration."}
+if ($SingspirationDec -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-12-December: Skip Singspiration."}
 
 # Then you'll have to work on a report for every Sunday morning, Sunday evening, & Wednesday evening so you know how many Sundays/Wednesdays are left to sign up for the next upcoming Singspiration; calculating in the lead time you need to coordinate everything.
 # You may need to calculate the first Singspiration 2 years from from now too so you can get the number of Sundays/Wednesdays left to sign up after the last one next year.
+
+
+
+
+
+# The function below gets the last Sunday of every month next year.
+# Hopefully I can use this in my script.
+
+# Get the current year and calculate the next year
+$currentYear = (Get-Date).Year
+$nextYear = $currentYear + 1
+
+# Function to get the last Sunday of a given month and year
+function Get-LastSunday {
+    param (
+        [int]$year,
+        [int]$month
+    )
+    # Get the number of days in the month
+    $daysInMonth = [DateTime]::DaysInMonth($year, $month)
+    # Create a date object for the last day of the month
+    $lastDay = [DateTime]::new($year, $month, $daysInMonth)
+    # Find the last Sunday
+    while ($lastDay.DayOfWeek -ne [DayOfWeek]::Sunday) {
+        $lastDay = $lastDay.AddDays(-1)
+    }
+    return $lastDay
+}
+
+# Loop through each month of the next year and get the last Sunday
+for ($month = 1; $month -le 12; $month++) {
+    $lastSunday = Get-LastSunday -year $nextYear -month $month
+    Write-Output "The last Sunday of $($lastSunday.ToString('MMMM yyyy')) is $($lastSunday.ToString('yyyy-MM-dd'))."
+}
 
 
 
