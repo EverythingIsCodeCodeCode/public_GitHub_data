@@ -540,7 +540,7 @@ if ($SingspirationDec -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-1
 
 # Then you'll have to work on a report for every Sunday morning, Sunday evening, & Wednesday evening so you know how many Sundays/Wednesdays are left to sign up for the next upcoming Singspiration; calculating in the lead time you need to coordinate everything.
 # You may need to calculate the first Singspiration 2 years from from now too so you can get the number of Sundays/Wednesdays left to sign up after the last one next year.
-
+# The function below gets the last Sunday of every month next year, each one in its own variable so I should be able to move this above & report the date of each Singspiration.
 
 
 
@@ -569,11 +569,33 @@ function Get-LastSunday {
     return $lastDay
 }
 
-# Loop through each month of the next year and get the last Sunday
-for ($month = 1; $month -le 12; $month++) {
-    $lastSunday = Get-LastSunday -year $nextYear -month $month
-    Write-Output "The last Sunday of $($lastSunday.ToString('MMMM yyyy')) is $($lastSunday.ToString('yyyy-MM-dd'))."
-}
+# Store the last Sunday of each month in separate variables
+$lastSundayJan = Get-LastSunday -year $nextYear -month 1
+$lastSundayFeb = Get-LastSunday -year $nextYear -month 2
+$lastSundayMar = Get-LastSunday -year $nextYear -month 3
+$lastSundayApr = Get-LastSunday -year $nextYear -month 4
+$lastSundayMay = Get-LastSunday -year $nextYear -month 5
+$lastSundayJun = Get-LastSunday -year $nextYear -month 6
+$lastSundayJul = Get-LastSunday -year $nextYear -month 7
+$lastSundayAug = Get-LastSunday -year $nextYear -month 8
+$lastSundaySep = Get-LastSunday -year $nextYear -month 9
+$lastSundayOct = Get-LastSunday -year $nextYear -month 10
+$lastSundayNov = Get-LastSunday -year $nextYear -month 11
+$lastSundayDec = Get-LastSunday -year $nextYear -month 12
+
+# Output the results
+Write-Output "The last Sunday of January $nextYear is $($lastSundayJan.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of February $nextYear is $($lastSundayFeb.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of March $nextYear is $($lastSundayMar.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of April $nextYear is $($lastSundayApr.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of May $nextYear is $($lastSundayMay.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of June $nextYear is $($lastSundayJun.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of July $nextYear is $($lastSundayJul.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of August $nextYear is $($lastSundayAug.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of September $nextYear is $($lastSundaySep.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of October $nextYear is $($lastSundayOct.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of November $nextYear is $($lastSundayNov.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of December $nextYear is $($lastSundayDec.ToString('yyyy-MM-dd'))."
 
 
 
