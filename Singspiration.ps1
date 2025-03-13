@@ -26,6 +26,8 @@ Might borrow code that gets church services for next year.
 https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-7.3
 https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings?view=netframework-4.8
 https://ss64.com/ps/syntax-easter.html
+
+This script's efficiency can be improved since some code is duplicated.
 #>
 
 # Import variables using dot sourcing:
@@ -185,8 +187,8 @@ if ($sundayAfterThanksgiving) {
 # You need to add this Thanksgiving logic below similar to Easter.
 
 
-$StartDate = Get-Date -Year $FutureYear -Month 01 -Day 01 # This gets the first day of the future year.
-$EndDate = Get-Date -Year $FutureYear -Month 12 -Day 31 # This gets the last day of the future year.
+# $StartDate = Get-Date -Year $FutureYear -Month 01 -Day 01 # This gets the first day of the future year.
+# $EndDate = Get-Date -Year $FutureYear -Month 12 -Day 31 # This gets the last day of the future year.
 $Jan = Get-Date -Year $FutureYear -Month 1 # This gets January of the future year.
 $Feb = Get-Date -Year $FutureYear -Month 2 # This gets February of the future year.
 $Mar = Get-Date -Year $FutureYear -Month 3 # This gets March of the future year.
@@ -511,46 +513,11 @@ if ($SingspirationDec -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSings
 
 Write-Host "There are $NumberOfSingspirationsFutureYear Singspirations in $FutureYear."
 
-# Output to host if you're going to have Singspiration each month in the future year.
 
-if ($SingspirationJan -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-01-January: Have Singspiration."}
-if ($SingspirationJan -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-01-January: Skip Singspiration."}
-if ($SingspirationFeb -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-02-February: Have Singspiration."}
-if ($SingspirationFeb -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-02-February: Skip Singspiration."}
-if ($SingspirationMar -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-03-March: Have Singspiration."}
-if ($SingspirationMar -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-03-March: Skip Singspiration."}
-if ($SingspirationApr -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-04-April: Have Singspiration."}
-if ($SingspirationApr -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-04-April: Skip Singspiration."}
-if ($SingspirationMay -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-05-May: Have Singspiration."}
-if ($SingspirationMay -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-05-May: Skip Singspiration."}
-if ($SingspirationJun -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-06-June: Have Singspiration."}
-if ($SingspirationJun -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-06-June: Skip Singspiration."}
-if ($SingspirationJul -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-07-July: Have Singspiration."}
-if ($SingspirationJul -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-07-July: Skip Singspiration."}
-if ($SingspirationAug -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-08-August: Have Singspiration."}
-if ($SingspirationAug -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-08-August: Skip Singspiration."}
-if ($SingspirationSep -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-09-September: Have Singspiration."}
-if ($SingspirationSep -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-09-September: Skip Singspiration."}
-if ($SingspirationOct -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-10-October: Have Singspiration."}
-if ($SingspirationOct -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-10-October: Skip Singspiration."}
-if ($SingspirationNov -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-11-November: Have Singspiration."}
-if ($SingspirationNov -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-11-November: Skip Singspiration."}
-if ($SingspirationDec -eq 1) {Write-Host -ForegroundColor Green "$FutureYear-12-December: Have Singspiration."}
-if ($SingspirationDec -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureYear-12-December: Skip Singspiration."}
-
-# Then you'll have to work on a report for every Sunday morning, Sunday evening, & Wednesday evening so you know how many Sundays/Wednesdays are left to sign up for the next upcoming Singspiration; calculating in the lead time you need to coordinate everything.
-# You may need to calculate the first Singspiration 2 years from from now too so you can get the number of Sundays/Wednesdays left to sign up after the last one next year.
-# The function below gets the last Sunday of every month next year, each one in its own variable so I should be able to move this above & report the date of each Singspiration.
-
-
-
-
-# The function below gets the last Sunday of every month next year.
-# Hopefully I can use this in my script.
-
+# The function below gets the last Sunday of every month next year; each one in its own variable.
 # Get the current year and calculate the next year
-$currentYear = (Get-Date).Year
-$nextYear = $currentYear + 1
+# $currentYear = (Get-Date).Year
+# $nextYear = $currentYear + 1
 
 # Function to get the last Sunday of a given month and year
 function Get-LastSunday {
@@ -570,32 +537,182 @@ function Get-LastSunday {
 }
 
 # Store the last Sunday of each month in separate variables
-$lastSundayJan = Get-LastSunday -year $nextYear -month 1
-$lastSundayFeb = Get-LastSunday -year $nextYear -month 2
-$lastSundayMar = Get-LastSunday -year $nextYear -month 3
-$lastSundayApr = Get-LastSunday -year $nextYear -month 4
-$lastSundayMay = Get-LastSunday -year $nextYear -month 5
-$lastSundayJun = Get-LastSunday -year $nextYear -month 6
-$lastSundayJul = Get-LastSunday -year $nextYear -month 7
-$lastSundayAug = Get-LastSunday -year $nextYear -month 8
-$lastSundaySep = Get-LastSunday -year $nextYear -month 9
-$lastSundayOct = Get-LastSunday -year $nextYear -month 10
-$lastSundayNov = Get-LastSunday -year $nextYear -month 11
-$lastSundayDec = Get-LastSunday -year $nextYear -month 12
+$lastSundayJan = Get-LastSunday -year $FutureYear -month 1
+$lastSundayFeb = Get-LastSunday -year $FutureYear -month 2
+$lastSundayMar = Get-LastSunday -year $FutureYear -month 3
+$lastSundayApr = Get-LastSunday -year $FutureYear -month 4
+$lastSundayMay = Get-LastSunday -year $FutureYear -month 5
+$lastSundayJun = Get-LastSunday -year $FutureYear -month 6
+$lastSundayJul = Get-LastSunday -year $FutureYear -month 7
+$lastSundayAug = Get-LastSunday -year $FutureYear -month 8
+$lastSundaySep = Get-LastSunday -year $FutureYear -month 9
+$lastSundayOct = Get-LastSunday -year $FutureYear -month 10
+$lastSundayNov = Get-LastSunday -year $FutureYear -month 11
+$lastSundayDec = Get-LastSunday -year $FutureYear -month 12
+
+<#
+# Output the results
+Write-Output "The last Sunday of January $FutureYear is $($lastSundayJan.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of February $FutureYear is $($lastSundayFeb.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of March $FutureYear is $($lastSundayMar.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of April $FutureYear is $($lastSundayApr.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of May $FutureYear is $($lastSundayMay.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of June $FutureYear is $($lastSundayJun.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of July $FutureYear is $($lastSundayJul.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of August $FutureYear is $($lastSundayAug.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of September $FutureYear is $($lastSundaySep.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of October $FutureYear is $($lastSundayOct.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of November $FutureYear is $($lastSundayNov.ToString('yyyy-MM-dd'))."
+Write-Output "The last Sunday of December $FutureYear is $($lastSundayDec.ToString('yyyy-MM-dd'))."
+#>
+
+$FutureJanuary = Get-Date -Year $FutureYear -Month 1 -UFormat %B
+
+# Output to host if you're going to have Singspiration each month in the future year.
+
+if ($SingspirationJan -eq 1) {Write-Host -ForegroundColor Green "$FutureJanuary $($lastSundayJan.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationJan -eq 0) {Write-Host -ForegroundColor DarkRed "$FutureJanuary $($lastSundayJan.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationFeb -eq 1) {Write-Host -ForegroundColor Green "February $($lastSundayFeb.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationFeb -eq 0) {Write-Host -ForegroundColor DarkRed "February $($lastSundayFeb.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationMar -eq 1) {Write-Host -ForegroundColor Green "March $($lastSundayMar.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationMar -eq 0) {Write-Host -ForegroundColor DarkRed "March $($lastSundayMar.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationApr -eq 1) {Write-Host -ForegroundColor Green "April $($lastSundayApr.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationApr -eq 0) {Write-Host -ForegroundColor DarkRed "April $($lastSundayApr.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationMay -eq 1) {Write-Host -ForegroundColor Green "May $($lastSundayMay.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationMay -eq 0) {Write-Host -ForegroundColor DarkRed "May $($lastSundayMay.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationJun -eq 1) {Write-Host -ForegroundColor Green "June $($lastSundayJun.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationJun -eq 0) {Write-Host -ForegroundColor DarkRed "June $($lastSundayJun.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationJul -eq 1) {Write-Host -ForegroundColor Green "July $($lastSundayJul.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationJul -eq 0) {Write-Host -ForegroundColor DarkRed "July $($lastSundayJul.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationAug -eq 1) {Write-Host -ForegroundColor Green "August $($lastSundayAug.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationAug -eq 0) {Write-Host -ForegroundColor DarkRed "August $($lastSundayAug.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationSep -eq 1) {Write-Host -ForegroundColor Green "September $($lastSundaySep.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationSep -eq 0) {Write-Host -ForegroundColor DarkRed "September $($lastSundaySep.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationOct -eq 1) {Write-Host -ForegroundColor Green "October $($lastSundayOct.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationOct -eq 0) {Write-Host -ForegroundColor DarkRed "October $($lastSundayOct.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationNov -eq 1) {Write-Host -ForegroundColor Green "November $($lastSundayNov.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationNov -eq 0) {Write-Host -ForegroundColor DarkRed "November $($lastSundayNov.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationDec -eq 1) {Write-Host -ForegroundColor Green "December $($lastSundayDec.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
+if ($SingspirationDec -eq 0) {Write-Host -ForegroundColor DarkRed "December $($lastSundayDec.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+
+# Then you'll have to work on a report for every Sunday morning, Sunday evening, & Wednesday evening so you know how many Sundays/Wednesdays are left to sign up for the next upcoming Singspiration; calculating in the lead time you need to coordinate everything.
+# You may need to calculate the first Singspiration 2 years from from now too so you can get the number of Sundays/Wednesdays left to sign up after the last one next year.
+
+
+
+
+
+
+
+
+
+
+# The function below gets all Sundays and Wednesdays of each month next year; each one in its own variable.
+
+# Get the current year and calculate the next year
+$currentYear = (Get-Date).Year
+$nextYear = $currentYear + 1
+
+# Function to get all Sundays and Wednesdays of a given month and year
+function Get-SundaysAndWednesdays {
+    param (
+        [int]$year,
+        [int]$month
+    )
+    $daysInMonth = [DateTime]::DaysInMonth($year, $month)
+    $sundays = @()
+    $wednesdays = @()
+    for ($day = 1; $day -le $daysInMonth; $day++) {
+        $date = [DateTime]::new($year, $month, $day)
+        if ($date.DayOfWeek -eq [DayOfWeek]::Sunday) {
+            $sundays += $date
+        }
+        if ($date.DayOfWeek -eq [DayOfWeek]::Wednesday) {
+            $wednesdays += $date
+        }
+    }
+    return @{Sundays = $sundays; Wednesdays = $wednesdays}
+}
+
+# Store the Sundays and Wednesdays of each month in separate variables
+$datesJan = Get-SundaysAndWednesdays -year $nextYear -month 1
+$sundaysJan = $datesJan.Sundays
+$wednesdaysJan = $datesJan.Wednesdays
+
+$datesFeb = Get-SundaysAndWednesdays -year $nextYear -month 2
+$sundaysFeb = $datesFeb.Sundays
+$wednesdaysFeb = $datesFeb.Wednesdays
+
+$datesMar = Get-SundaysAndWednesdays -year $nextYear -month 3
+$sundaysMar = $datesMar.Sundays
+$wednesdaysMar = $datesMar.Wednesdays
+
+$datesApr = Get-SundaysAndWednesdays -year $nextYear -month 4
+$sundaysApr = $datesApr.Sundays
+$wednesdaysApr = $datesApr.Wednesdays
+
+$datesMay = Get-SundaysAndWednesdays -year $nextYear -month 5
+$sundaysMay = $datesMay.Sundays
+$wednesdaysMay = $datesMay.Wednesdays
+
+$datesJun = Get-SundaysAndWednesdays -year $nextYear -month 6
+$sundaysJun = $datesJun.Sundays
+$wednesdaysJun = $datesJun.Wednesdays
+
+$datesJul = Get-SundaysAndWednesdays -year $nextYear -month 7
+$sundaysJul = $datesJul.Sundays
+$wednesdaysJul = $datesJul.Wednesdays
+
+$datesAug = Get-SundaysAndWednesdays -year $nextYear -month 8
+$sundaysAug = $datesAug.Sundays
+$wednesdaysAug = $datesAug.Wednesdays
+
+$datesSep = Get-SundaysAndWednesdays -year $nextYear -month 9
+$sundaysSep = $datesSep.Sundays
+$wednesdaysSep = $datesSep.Wednesdays
+
+$datesOct = Get-SundaysAndWednesdays -year $nextYear -month 10
+$sundaysOct = $datesOct.Sundays
+$wednesdaysOct = $datesOct.Wednesdays
+
+$datesNov = Get-SundaysAndWednesdays -year $nextYear -month 11
+$sundaysNov = $datesNov.Sundays
+$wednesdaysNov = $datesNov.Wednesdays
+
+$datesDec = Get-SundaysAndWednesdays -year $nextYear -month 12
+$sundaysDec = $datesDec.Sundays
+$wednesdaysDec = $datesDec.Wednesdays
 
 # Output the results
-Write-Output "The last Sunday of January $nextYear is $($lastSundayJan.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of February $nextYear is $($lastSundayFeb.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of March $nextYear is $($lastSundayMar.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of April $nextYear is $($lastSundayApr.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of May $nextYear is $($lastSundayMay.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of June $nextYear is $($lastSundayJun.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of July $nextYear is $($lastSundayJul.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of August $nextYear is $($lastSundayAug.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of September $nextYear is $($lastSundaySep.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of October $nextYear is $($lastSundayOct.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of November $nextYear is $($lastSundayNov.ToString('yyyy-MM-dd'))."
-Write-Output "The last Sunday of December $nextYear is $($lastSundayDec.ToString('yyyy-MM-dd'))."
+Write-Output "Sundays in January ${nextYear}: $($sundaysJan -join ', ')"
+Write-Output "Wednesdays in January ${nextYear}: $($wednesdaysJan -join ', ')"
+Write-Output "Sundays in February ${nextYear}: $($sundaysFeb -join ', ')"
+Write-Output "Wednesdays in February ${nextYear}: $($wednesdaysFeb -join ', ')"
+Write-Output "Sundays in March ${nextYear}: $($sundaysMar -join ', ')"
+Write-Output "Wednesdays in March ${nextYear}: $($wednesdaysMar -join ', ')"
+Write-Output "Sundays in April ${nextYear}: $($sundaysApr -join ', ')"
+Write-Output "Wednesdays in April ${nextYear}: $($wednesdaysApr -join ', ')"
+Write-Output "Sundays in May ${nextYear}: $($sundaysMay -join ', ')"
+Write-Output "Wednesdays in May ${nextYear}: $($wednesdaysMay -join ', ')"
+Write-Output "Sundays in June ${nextYear}: $($sundaysJun -join ', ')"
+Write-Output "Wednesdays in June ${nextYear}: $($wednesdaysJun -join ', ')"
+Write-Output "Sundays in July ${nextYear}: $($sundaysJul -join ', ')"
+Write-Output "Wednesdays in July ${nextYear}: $($wednesdaysJul -join ', ')"
+Write-Output "Sundays in August ${nextYear}: $($sundaysAug -join ', ')"
+Write-Output "Wednesdays in August ${nextYear}: $($wednesdaysAug -join ', ')"
+Write-Output "Sundays in September ${nextYear}: $($sundaysSep -join ', ')"
+Write-Output "Wednesdays in September ${nextYear}: $($wednesdaysSep -join ', ')"
+Write-Output "Sundays in October ${nextYear}: $($sundaysOct -join ', ')"
+Write-Output "Wednesdays in October ${nextYear}: $($wednesdaysOct -join ', ')"
+Write-Output "Sundays in November ${nextYear}: $($sundaysNov -join ', ')"
+Write-Output "Wednesdays in November ${nextYear}: $($wednesdaysNov -join ', ')"
+Write-Output "Sundays in December ${nextYear}: $($sundaysDec -join ', ')"
+Write-Output "Wednesdays in December ${nextYear}: $($wednesdaysDec -join ', ')"
+
+
+
+
+
 
 
 
