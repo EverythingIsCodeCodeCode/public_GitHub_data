@@ -213,6 +213,7 @@ $NumberOfDaysInSep = [DateTime]::DaysInMonth($Sep.Year, $Sep.Month)
 $NumberOfDaysInOct = [DateTime]::DaysInMonth($Oct.Year, $Oct.Month)
 $NumberOfDaysInNov = [DateTime]::DaysInMonth($Nov.Year, $Nov.Month)
 $NumberOfDaysInDec = [DateTime]::DaysInMonth($Dec.Year, $Dec.Month)
+$NumberOfSundaysInFutureYear = 0
 $NumberOfSundaysInJan = 0
 $NumberOfSundaysInFeb = 0
 $NumberOfSundaysInMar = 0
@@ -246,6 +247,7 @@ for ($day = 1; $day -le $NumberOfDaysInJan; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInJan++
+		$NumberOfSundaysInFutureYear++
 	}
 	# Check if the day is a Wednesday
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
@@ -264,6 +266,7 @@ for ($day = 1; $day -le $NumberOfDaysInFeb; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInFeb++
+		$NumberOfSundaysInFutureYear++
 	}
 	# Check if the day is a Wednesday
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
@@ -282,6 +285,7 @@ for ($day = 1; $day -le $NumberOfDaysInMar; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInMar++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
@@ -299,6 +303,7 @@ for ($day = 1; $day -le $NumberOfDaysInApr; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInApr++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
@@ -316,6 +321,7 @@ for ($day = 1; $day -le $NumberOfDaysInMay; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInMay++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
@@ -333,6 +339,7 @@ for ($day = 1; $day -le $NumberOfDaysInJun; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInJun++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
@@ -350,6 +357,7 @@ for ($day = 1; $day -le $NumberOfDaysInJul; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInJul++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
@@ -367,6 +375,7 @@ for ($day = 1; $day -le $NumberOfDaysInAug; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInAug++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
@@ -384,6 +393,7 @@ for ($day = 1; $day -le $NumberOfDaysInSep; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInSep++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
@@ -401,6 +411,7 @@ for ($day = 1; $day -le $NumberOfDaysInOct; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInOct++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
@@ -418,6 +429,7 @@ for ($day = 1; $day -le $NumberOfDaysInNov; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInNov++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
@@ -435,6 +447,7 @@ for ($day = 1; $day -le $NumberOfDaysInDec; $day++) {
 	if ($currentDate.DayOfWeek -eq "Sunday") {
 		# Increment the Sunday counter
 		$NumberOfSundaysInDec++
+		$NumberOfSundaysInFutureYear++
 	}
 	if ($currentDate.DayOfWeek -eq "Wednesday") {
 		# Increment the Sunday counter
