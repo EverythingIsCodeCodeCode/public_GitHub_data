@@ -567,7 +567,8 @@ if ($NumberOfSundaysInDec -le 4) {
 	$SingspirationDec = 0 # The number of Sundays in December in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInDec -ge 5) {
-	$SingspirationDec = 1 # The number of Sundays in December in the future year is 5 or more so we'll have Singspiration this month.
+	# $SingspirationDec = 1 # The number of Sundays in December in the future year is 5 or more so we'll have Singspiration this month.
+	$SingspirationDec = 0 # Ok, we're currently going to skip Singspiration in December because we're normally spending time with our other families during Christmas & New Year's.
 }
 
 # You have now figured out if you can have Singspiration each month in the future year.
