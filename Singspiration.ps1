@@ -612,6 +612,23 @@ function Get-LastSunday {
     return $lastDay
 }
 
+# Function to get the last Wednesday of a given month and year
+function Get-LastWednesday {
+    param (
+        [int]$year,
+        [int]$month
+    )
+    # Get the number of days in the month
+    $daysInMonth = [DateTime]::DaysInMonth($year, $month)
+    # Create a date object for the last day of the month
+    $lastDay = [DateTime]::new($year, $month, $daysInMonth)
+    # Find the last Sunday
+    while ($lastDay.DayOfWeek -ne [DayOfWeek]::Wednesday) {
+        $lastDay = $lastDay.AddDays(-1)
+    }
+    return $lastDay
+}
+
 # Store the last Sunday of each month in separate variables
 $lastSundayJan = Get-LastSunday -year $FutureYear -month 1
 $lastSundayFeb = Get-LastSunday -year $FutureYear -month 2
@@ -626,20 +643,46 @@ $lastSundayOct = Get-LastSunday -year $FutureYear -month 10
 $lastSundayNov = Get-LastSunday -year $FutureYear -month 11
 $lastSundayDec = Get-LastSunday -year $FutureYear -month 12
 
+# Store the last Wednesday of each month in separate variables
+$lastWednesdayJan = Get-LastWednesday -year $FutureYear -month 1
+$lastWednesdayFeb = Get-LastWednesday -year $FutureYear -month 2
+$lastWednesdayMar = Get-LastWednesday -year $FutureYear -month 3
+$lastWednesdayApr = Get-LastWednesday -year $FutureYear -month 4
+$lastWednesdayMay = Get-LastWednesday -year $FutureYear -month 5
+$lastWednesdayJun = Get-LastWednesday -year $FutureYear -month 6
+$lastWednesdayJul = Get-LastWednesday -year $FutureYear -month 7
+$lastWednesdayAug = Get-LastWednesday -year $FutureYear -month 8
+$lastWednesdaySep = Get-LastWednesday -year $FutureYear -month 9
+$lastWednesdayOct = Get-LastWednesday -year $FutureYear -month 10
+$lastWednesdayNov = Get-LastWednesday -year $FutureYear -month 11
+$lastWednesdayDec = Get-LastWednesday -year $FutureYear -month 12
+
 <#
 # Output the results
 Write-Output "The last Sunday of January $FutureYear is $($lastSundayJan.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of January $FutureYear is $($lastWednesdayJan.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of February $FutureYear is $($lastSundayFeb.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of February $FutureYear is $($lastWednesdayFeb.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of March $FutureYear is $($lastSundayMar.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of March $FutureYear is $($lastWednesdayMar.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of April $FutureYear is $($lastSundayApr.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of April $FutureYear is $($lastWednesdayApr.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of May $FutureYear is $($lastSundayMay.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of May $FutureYear is $($lastWednesdayMay.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of June $FutureYear is $($lastSundayJun.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of June $FutureYear is $($lastWednesdayJun.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of July $FutureYear is $($lastSundayJul.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of July $FutureYear is $($lastWednesdayJul.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of August $FutureYear is $($lastSundayAug.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of August $FutureYear is $($lastWednesdayAug.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of September $FutureYear is $($lastSundaySep.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of September $FutureYear is $($lastWednesdaySep.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of October $FutureYear is $($lastSundayOct.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of October $FutureYear is $($lastWednesdayOct.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of November $FutureYear is $($lastSundayNov.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of November $FutureYear is $($lastWednesdayNov.ToString('yyyy-MM-dd'))."
 Write-Output "The last Sunday of December $FutureYear is $($lastSundayDec.ToString('yyyy-MM-dd'))."
+Write-Output "The last Wednesday of December $FutureYear is $($lastWednesdayDec.ToString('yyyy-MM-dd'))."
 #>
 
 $FutureJanuary = Get-Date -Year $FutureYear -Month 1 -UFormat %B
