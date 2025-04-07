@@ -715,7 +715,44 @@ if ($SingspirationDec -eq 1) {Write-Host -ForegroundColor Green "December $($las
 if ($SingspirationDec -eq 0) {Write-Host -ForegroundColor DarkRed "December $($lastSundayDec.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
 
 # Then you'll have to work on a report for every Sunday morning, Sunday evening, & Wednesday evening so you know how many Sundays/Wednesdays are left to sign up for the next upcoming Singspiration; calculating in the lead time you need to coordinate everything.
-# You may need to calculate the first Singspiration 2 years from from now too so you can get the number of Sundays/Wednesdays left to sign up after the last one next year.
+# You may need to calculate the first Singspiration 2 years from now too so you can get the number of Sundays/Wednesdays left to sign up after the last one next year.
+
+
+
+
+
+
+
+
+
+
+# Function to generate an array of all days in a given year
+function Get-AllDaysInYear {
+    param (
+        [int]$Year
+    )
+    $startDate = Get-Date -Year $Year -Month 1 -Day 1
+    $endDate = Get-Date -Year $Year -Month 12 -Day 31
+    $allDays = @()
+
+    while ($startDate -le $endDate) {
+        $allDays += $startDate
+        $startDate = $startDate.AddDays(1)
+    }
+
+    return $allDays
+}
+
+# Specify the year (e.g., next year)
+#$year = (Get-Date).Year + 1
+
+# Get all days of the specified year
+$daysOfYear = Get-AllDaysInYear -Year $FutureYear
+
+# Output the result
+#Write-Output "All days in $FutureYear`:"
+#$daysOfYear
+
 
 
 
@@ -802,6 +839,7 @@ $datesDec = Get-SundaysAndWednesdays -year $nextYear -month 12
 $sundaysDec = $datesDec.Sundays
 $wednesdaysDec = $datesDec.Wednesdays
 
+<#
 # Output the results
 Write-Output "Sundays in January ${nextYear}: $($sundaysJan -join ', ')"
 Write-Output "Wednesdays in January ${nextYear}: $($wednesdaysJan -join ', ')"
@@ -827,7 +865,7 @@ Write-Output "Sundays in November ${nextYear}: $($sundaysNov -join ', ')"
 Write-Output "Wednesdays in November ${nextYear}: $($wednesdaysNov -join ', ')"
 Write-Output "Sundays in December ${nextYear}: $($sundaysDec -join ', ')"
 Write-Output "Wednesdays in December ${nextYear}: $($wednesdaysDec -join ', ')"
-
+#>
 
 
 
