@@ -28,6 +28,16 @@ https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-tim
 https://ss64.com/ps/syntax-easter.html
 
 This script's efficiency can be improved since some code is duplicated.
+
+Having some challenges progressing in this script.
+Making a note of what I know so far to help progress::
+Future year.
+Last Sunday of every month.
+Last Wednesday of every month.
+Each Singspiration date.
+
+Use math to subtract.
+
 #>
 
 # Import variables using dot sourcing:
@@ -716,6 +726,26 @@ if ($SingspirationDec -eq 0) {Write-Host -ForegroundColor DarkRed "December $($l
 
 # Then you'll have to work on a report for every Sunday morning, Sunday evening, & Wednesday evening so you know how many Sundays/Wednesdays are left to sign up for the next upcoming Singspiration; calculating in the lead time you need to coordinate everything.
 # You may need to calculate the first Singspiration 2 years from now too so you can get the number of Sundays/Wednesdays left to sign up after the last one next year.
+
+<#
+Remember, you need approximately 2 weeks to comfortability process everything before Singspiration::
+sa - can signup for current event
+sp - can signup for next event
+wp - can signup for next event
+sa - can signup for next event
+sp - can signup for next event
+wp - can signup for next event
+sa - can signup for next event
+sp - event takes place
+#>
+
+if ($SingspirationJan -eq 1) {
+	# See if you can do the subtraction math here for the nummber of services left to sign up for each Singspiration.
+	# I'm guessing that it may be a complete report to just work backward to the beginning of the future year or the previous Singspiration in the future year being calculated.
+	$lastSundayJan # This is the Singspiration date.
+	$lastSundayJan.AddDays(-4) # Sunday PM event minus 4 days = Wednesday PM.
+	# you are here
+}
 
 
 
