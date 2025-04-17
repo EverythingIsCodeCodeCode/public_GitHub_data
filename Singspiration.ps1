@@ -38,6 +38,8 @@ Each Singspiration date.
 
 Use math to subtract.
 
+Need to incorporate "PreviousYear" & "YearAfter" into loops for reporting.
+
 #>
 
 # Import variables using dot sourcing:
@@ -106,14 +108,32 @@ Function Get-DateOfEaster {
 #>
 $CurrentYear = (Get-Date).Year
 $FutureYear = $CurrentYear + 1 # This is the line where you set next year (+ 1), two years from now (+ 2), or whatever you need at the time.
-$EasterDateFutureYear = Get-DateOfEaster $FutureYear
+$PreviousYear = $FutureYear - 1 # This is the year before the year you are calculating.
+$YearAfter = $FutureYear + 1 # This is the year after the year you are calculating.
 # $EasterDateFutureYear = Get-DateOfEaster ((Get-Date).year+1)
+$EasterDateFutureYear = Get-DateOfEaster $FutureYear
+$EasterDatePreviousYear = Get-DateOfEaster $PreviousYear
+$EasterDateYearAfter = Get-DateOfEaster $YearAfter
+
 $EasterYearFutureYear = $EasterDateFutureYear[0].Substring(0,4)
 $EasterMonthFutureYear = $EasterDateFutureYear[0].Substring(5,2)
 $EasterDayFutureYear = $EasterDateFutureYear[0].Substring(8,2)
 $EasterNumberOfDaysInMonthFutureYear = [DateTime]::DaysInMonth($EasterYearFutureYear, $EasterMonthFutureYear)
 $EasterMonthNumberOfSundaysCountFutureYear = 0
-# Loop through each day of the month
+
+$EasterYearPreviousYear = $EasterDatePreviousYear[0].Substring(0,4)
+$EasterMonthPreviousYear = $EasterDatePreviousYear[0].Substring(5,2)
+$EasterDayPreviousYear = $EasterDatePreviousYear[0].Substring(8,2)
+$EasterNumberOfDaysInMonthPreviousYear = [DateTime]::DaysInMonth($EasterYearPreviousYear, $EasterMonthPreviousYear)
+$EasterMonthNumberOfSundaysCountPreviousYear = 0
+
+$EasterYeaYearAfter = $EasterDateYearAfter[0].Substring(0,4)
+$EasterMonthYearAfter = $EasterDateYearAfter[0].Substring(5,2)
+$EasterDayYearAfter = $EasterDateYearAfter[0].Substring(8,2)
+$EasterNumberOfDaysInMonthYearAfter = [DateTime]::DaysInMonth($EasterYearYearAfter, $EasterMonthYearAfter)
+$EasterMonthNumberOfSundaysCountYearAfter = 0
+
+# Loop through each day of the month - figuring out the number of Sundays in the month of Easter for Future Year:
 for ($day = 1; $day -le $EasterNumberOfDaysInMonthFutureYear; $day++) {
     # Create a date object for the current day
     $currentDate = [DateTime]::new($EasterYearFutureYear, $EasterMonthFutureYear, $day)
@@ -123,14 +143,57 @@ for ($day = 1; $day -le $EasterNumberOfDaysInMonthFutureYear; $day++) {
         $EasterMonthNumberOfSundaysCountFutureYear++
     }
 }
-# Output the number of Sundays
+
+# Loop through each day of the month - figuring out the number of Sundays in the month of Easter for Previous Year:
+for ($day = 1; $day -le $EasterNumberOfDaysInMonthPreviousYear; $day++) {
+    # Create a date object for the current day
+    $currentDate = [DateTime]::new($EasterYearPreviousYear, $EasterMonthPreviousYear, $day)
+    # Check if the day is a Sunday
+    if ($currentDate.DayOfWeek -eq "Sunday") {
+        # Increment the Sunday counter
+        $EasterMonthNumberOfSundaysCountPreviousYear++
+    }
+}
+
+# Loop through each day of the month - figuring out the number of Sundays in the month of Easter for the Year After:
+for ($day = 1; $day -le $EasterNumberOfDaysInMonthYearAfter; $day++) {
+    # Create a date object for the current day
+    $currentDate = [DateTime]::new($EasterYearYearAfter, $EasterMonthYearAfter, $day)
+    # Check if the day is a Sunday
+    if ($currentDate.DayOfWeek -eq "Sunday") {
+        # Increment the Sunday counter
+        $EasterMonthNumberOfSundaysCountYearAfter++
+    }
+}
+
+# Output the number of Sundays - Future Year:
 # Write-Output "Number of Sundays in this month: $EasterMonthNumberOfSundaysCountFutureYear"
 if ($EasterMonthNumberOfSundaysCountFutureYear -le 4) {
-	$EasterMonthSkipSingspiration = 1 # The number of Sundays in Easter month in the future year is 4 or less so we won't have a Singspiration this month.
+	$EasterMonthSkipSingspiration = 1 # The number of Sundays in Easter month in the Future Year is 4 or less so we won't have a Singspiration this month.
 }
 if ($EasterMonthNumberOfSundaysCountFutureYear -ge 5) {
-	$EasterMonthSkipSingspiration = 0 # The number of Sundays in Easter month in the future year is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
+	$EasterMonthSkipSingspiration = 0 # The number of Sundays in Easter month in the Future Year is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
 }
+
+# Output the number of Sundays - Previous Year:
+# Write-Output "Number of Sundays in this month: $EasterMonthNumberOfSundaysCountPreviousYear"
+if ($EasterMonthNumberOfSundaysCountPreviousYear -le 4) {
+	$EasterMonthSkipSingspirationPreviousYear = 1 # The number of Sundays in Easter month in the Previous Year is 4 or less so we won't have a Singspiration this month.
+}
+if ($EasterMonthNumberOfSundaysCountPreviousYear -ge 5) {
+	$EasterMonthSkipSingspirationPreviousYear = 0 # The number of Sundays in Easter month in the Previous Year is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
+}
+
+# Output the number of Sundays - Year After:
+# Write-Output "Number of Sundays in this month: $EasterMonthNumberOfSundaysCountYearAfter"
+if ($EasterMonthNumberOfSundaysCountYearAfter -le 4) {
+	$EasterMonthSkipSingspirationYearAfter = 1 # The number of Sundays in Easter month in the Year After is 4 or less so we won't have a Singspiration this month.
+}
+if ($EasterMonthNumberOfSundaysCountYearAfter -ge 5) {
+	$EasterMonthSkipSingspirationYearAfter = 0 # The number of Sundays in Easter month in the Year After is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
+}
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # Calculate the last Sunday of the month for the month of Easter in the future year::
 $lastDay = New-Object -TypeName DateTime -ArgumentList $EasterYearFutureYear, $EasterMonthFutureYear, $EasterNumberOfDaysInMonthFutureYear
@@ -744,7 +807,7 @@ if ($SingspirationJan -eq 1) {
 	# I'm guessing that it may be a complete report to just work backward to the beginning of the future year or the previous Singspiration in the future year being calculated.
 	$lastSundayJan # This is the Singspiration date.
 	$lastSundayJan.AddDays(-4) # Sunday PM event minus 4 days = Wednesday PM.
-	# you are here
+	# you are here (well, add previous/next years first)
 }
 
 
