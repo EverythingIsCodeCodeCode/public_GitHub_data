@@ -193,8 +193,6 @@ if ($EasterMonthNumberOfSundaysCountYearAfter -ge 5) {
 	$EasterMonthSkipSingspirationYearAfter = 0 # The number of Sundays in Easter month in the Year After is 5 or more so we'll have to skip a Singspiration this month if Easter also takes place this same Sunday.
 }
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 # Calculate the last Sunday of the month for the month of Easter in the future year::
 $lastDay = New-Object -TypeName DateTime -ArgumentList $EasterYearFutureYear, $EasterMonthFutureYear, $EasterNumberOfDaysInMonthFutureYear
 # Find the last Sunday
@@ -203,6 +201,26 @@ while ($lastDay.DayOfWeek -ne [DayOfWeek]::Sunday) {
 }
 # Write-Host "The last Sunday of $($EasterMonthFutureYear)/$EasterYearFutureYear is on day number $($lastDay.Day), which is $($lastDay.ToString('dddd, MMMM dd, yyyy'))."
 $EasterFutureYearLastSundayInMonth = $($lastDay.Day)
+
+# Calculate the last Sunday of the month for the month of Easter in the Previous Year::
+$lastDay = New-Object -TypeName DateTime -ArgumentList $EasterYearPreviousYear, $EasterMonthPreviousYear, $EasterNumberOfDaysInMonthPreviousYear
+# Find the last Sunday
+while ($lastDay.DayOfWeek -ne [DayOfWeek]::Sunday) {
+	$lastDay = $lastDay.AddDays(-1)
+}
+# Write-Host "The last Sunday of $($EasterMonthPreviousYear)/$EasterYearPreviousYear is on day number $($lastDay.Day), which is $($lastDay.ToString('dddd, MMMM dd, yyyy'))."
+$EasterPreviousYearLastSundayInMonth = $($lastDay.Day)
+
+# Calculate the last Sunday of the month for the month of Easter in the Year After::
+$lastDay = New-Object -TypeName DateTime -ArgumentList $EasterYearYearAfter, $EasterMonthYearAfter, $EasterNumberOfDaysInMonthYearAfter
+# Find the last Sunday
+while ($lastDay.DayOfWeek -ne [DayOfWeek]::Sunday) {
+	$lastDay = $lastDay.AddDays(-1)
+}
+# Write-Host "The last Sunday of $($EasterMonthYearAfter)/$EasterYearYearAfter is on day number $($lastDay.Day), which is $($lastDay.ToString('dddd, MMMM dd, yyyy'))."
+$EasterYearAfterLastSundayInMonth = $($lastDay.Day)
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # Compare $EasterFutureYearLastSundayInMonth to $EasterDayFutureYear.
 # If they're the same then skip Singspiration that month.
