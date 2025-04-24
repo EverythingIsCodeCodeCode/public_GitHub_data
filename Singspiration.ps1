@@ -220,8 +220,6 @@ while ($lastDay.DayOfWeek -ne [DayOfWeek]::Sunday) {
 # Write-Host "The last Sunday of $($EasterMonthYearAfter)/$EasterYearYearAfter is on day number $($lastDay.Day), which is $($lastDay.ToString('dddd, MMMM dd, yyyy'))."
 $EasterYearAfterLastSundayInMonth = $($lastDay.Day)
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 # Compare $EasterFutureYearLastSundayInMonth to $EasterDayFutureYear.
 # If they're the same then skip Singspiration that month.
 # If they're different then you can have Singspiration that month.
@@ -231,6 +229,28 @@ if ($EasterDayFutureYear -eq $EasterFutureYearLastSundayInMonth) {
 if ($EasterDayFutureYear -ne $EasterFutureYearLastSundayInMonth) {
 	$SkipEasterSingspiration = 0 # Have Singspiration this month because Easter takes place on a different Sunday.
 	# If $EasterMonthSkipSingspiration = 0
+}
+
+# Compare $EasterPreviousYearLastSundayInMonth to $EasterDayPreviousYear.
+# If they're the same then skip Singspiration that month.
+# If they're different then you can have Singspiration that month.
+if ($EasterDayPreviousYear -eq $EasterPreviousYearLastSundayInMonth) {
+	$SkipEasterSingspirationPreviousYear = 1 # Skip Singspiration this month because Easter takes place on the same Sunday.
+}
+if ($EasterDayPreviousYear -ne $EasterPreviousYearLastSundayInMonth) {
+	$SkipEasterSingspirationPreviousYear = 0 # Have Singspiration this month because Easter takes place on a different Sunday.
+	# If $EasterMonthSkipSingspirationPreviousYear = 0
+}
+
+# Compare $EasterYearAfterLastSundayInMonth to $EasterDayYearAfter.
+# If they're the same then skip Singspiration that month.
+# If they're different then you can have Singspiration that month.
+if ($EasterDayYearAfter -eq $EasterYearAfterLastSundayInMonth) {
+	$SkipEasterSingspirationYearAfter = 1 # Skip Singspiration this month because Easter takes place on the same Sunday.
+}
+if ($EasterDayYearAfter -ne $EasterYearAfterLastSundayInMonth) {
+	$SkipEasterSingspirationYearAfter = 0 # Have Singspiration this month because Easter takes place on a different Sunday.
+	# If $EasterMonthSkipSingspirationYearAfter = 0
 }
 
 if ($SkipEasterSingspiration -ne $EasterMonthSkipSingspiration) {
@@ -243,6 +263,27 @@ if ($SkipEasterSingspiration -eq $EasterMonthSkipSingspiration) {
 # You have now figured out if you can have Singspiration Easter month.
 # Easter can only be in March or April so you can remove the Easter-related code from the other months. Done.
 
+if ($SkipEasterSingspirationPreviousYear -ne $EasterMonthSkipSingspirationPreviousYear) {
+	$YouCanHaveSingspirationEasterMonthPreviousYear = 0 # Skip Singspiration this month. Either because Easter month has 4 or less Sundays and/or Easter takes place on the last Sunday of the month.
+}
+
+if ($SkipEasterSingspirationPreviousYear -eq $EasterMonthSkipSingspirationPreviousYear) {
+	$YouCanHaveSingspirationEasterMonthPreviousYear = 1 # Have Singspiration this month. Easter month has 5 or more Sundays and Easter doesn't take place on the last Sunday of the month.
+}
+# You have now figured out if you can have Singspiration Easter month.
+# Easter can only be in March or April so you can remove the Easter-related code from the other months. Done.
+
+if ($SkipEasterSingspirationYearAfter -ne $EasterMonthSkipSingspirationYearAfter) {
+	$YouCanHaveSingspirationEasterMonthYearAfter = 0 # Skip Singspiration this month. Either because Easter month has 4 or less Sundays and/or Easter takes place on the last Sunday of the month.
+}
+
+if ($SkipEasterSingspirationYearAfter -eq $EasterMonthSkipSingspirationYearAfter) {
+	$YouCanHaveSingspirationEasterMonthYearAfter = 1 # Have Singspiration this month. Easter month has 5 or more Sundays and Easter doesn't take place on the last Sunday of the month.
+}
+# You have now figured out if you can have Singspiration Easter month.
+# Easter can only be in March or April so you can remove the Easter-related code from the other months. Done.
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # Can you have Singspiration around Thanksgiving in the future year?::
 
