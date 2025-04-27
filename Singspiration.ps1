@@ -283,12 +283,18 @@ if ($SkipEasterSingspirationYearAfter -eq $EasterMonthSkipSingspirationYearAfter
 # You have now figured out if you can have Singspiration Easter month.
 # Easter can only be in March or April so you can remove the Easter-related code from the other months. Done.
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 # Can you have Singspiration around Thanksgiving in the future year?::
 
 # Get the number of days in November in the future year
 $novemberDays = [DateTime]::DaysInMonth($FutureYear, 11)
+
+# Get the number of days in November in the Previous Year
+$novemberDaysPreviousYear = [DateTime]::DaysInMonth($PreviousYear, 11)
+
+# Get the number of days in November in the Year After
+$novemberDaysYearAfter = [DateTime]::DaysInMonth($YearAfter, 11)
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # Find the date of Thanksgiving (last Thursday of November)
 $thanksgivingDate = [DateTime]::new($FutureYear, 11, 1)
