@@ -127,7 +127,7 @@ $EasterDayPreviousYear = $EasterDatePreviousYear[0].Substring(8,2)
 $EasterNumberOfDaysInMonthPreviousYear = [DateTime]::DaysInMonth($EasterYearPreviousYear, $EasterMonthPreviousYear)
 $EasterMonthNumberOfSundaysCountPreviousYear = 0
 
-$EasterYeaYearAfter = $EasterDateYearAfter[0].Substring(0,4)
+$EasterYearYearAfter = $EasterDateYearAfter[0].Substring(0,4)
 $EasterMonthYearAfter = $EasterDateYearAfter[0].Substring(5,2)
 $EasterDayYearAfter = $EasterDateYearAfter[0].Substring(8,2)
 $EasterNumberOfDaysInMonthYearAfter = [DateTime]::DaysInMonth($EasterYearYearAfter, $EasterMonthYearAfter)
