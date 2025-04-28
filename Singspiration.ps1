@@ -294,8 +294,6 @@ $novemberDaysPreviousYear = [DateTime]::DaysInMonth($PreviousYear, 11)
 # Get the number of days in November in the Year After
 $novemberDaysYearAfter = [DateTime]::DaysInMonth($YearAfter, 11)
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 # Find the date of Thanksgiving (last Thursday of November)
 $thanksgivingDate = [DateTime]::new($FutureYear, 11, 1)
 while ($thanksgivingDate.DayOfWeek -ne [DayOfWeek]::Thursday) {
@@ -303,12 +301,46 @@ while ($thanksgivingDate.DayOfWeek -ne [DayOfWeek]::Thursday) {
 }
 $thanksgivingDate = $thanksgivingDate.AddDays(21) # Move to the last Thursday. You can always add 21 days to the first Thursday in November to get the last Thursday in November which is always Thanksgiving day.
 
+# Find the date of Thanksgiving (last Thursday of November)
+$thanksgivingDatePreviousYear = [DateTime]::new($PreviousYear, 11, 1)
+while ($thanksgivingDatePreviousYear.DayOfWeek -ne [DayOfWeek]::Thursday) {
+    $thanksgivingDatePreviousYear = $thanksgivingDatePreviousYear.AddDays(1)
+}
+$thanksgivingDatePreviousYear = $thanksgivingDatePreviousYear.AddDays(21) # Move to the last Thursday. You can always add 21 days to the first Thursday in November to get the last Thursday in November which is always Thanksgiving day.
+
+# Find the date of Thanksgiving (last Thursday of November)
+$thanksgivingDateYearAfter = [DateTime]::new($YearAfter, 11, 1)
+while ($thanksgivingDateYearAfter.DayOfWeek -ne [DayOfWeek]::Thursday) {
+    $thanksgivingDateYearAfter = $thanksgivingDateYearAfter.AddDays(1)
+}
+$thanksgivingDateYearAfter = $thanksgivingDateYearAfter.AddDays(21) # Move to the last Thursday. You can always add 21 days to the first Thursday in November to get the last Thursday in November which is always Thanksgiving day.
+
 # Loop through each day after Thanksgiving in November in the future year to find if there is a Sunday after Thanksgiving
 $sundayAfterThanksgiving = $false
 for ($day = $thanksgivingDate.Day + 1; $day -le $novemberDays; $day++) {
     $date = [DateTime]::new($FutureYear, 11, $day)
     if ($date.DayOfWeek -eq [DayOfWeek]::Sunday) {
         $sundayAfterThanksgiving = $true
+        break
+    }
+}
+
+# Loop through each day after Thanksgiving in November in the Previous Year to find if there is a Sunday after Thanksgiving
+$sundayAfterThanksgivingPreviousYear = $false
+for ($day = $thanksgivingDatePreviousYear.Day + 1; $day -le $novemberDaysPreviousYear; $day++) {
+    $date = [DateTime]::new($PreviousYear, 11, $day)
+    if ($date.DayOfWeek -eq [DayOfWeek]::Sunday) {
+        $sundayAfterThanksgivingPreviousYear = $true
+        break
+    }
+}
+
+# Loop through each day after Thanksgiving in November in the Year After to find if there is a Sunday after Thanksgiving
+$sundayAfterThanksgivingYearAfter = $false
+for ($day = $thanksgivingDateYearAfter.Day + 1; $day -le $novemberDaysYearAfter; $day++) {
+    $date = [DateTime]::new($YearAfter, 11, $day)
+    if ($date.DayOfWeek -eq [DayOfWeek]::Sunday) {
+        $sundayAfterThanksgivingYearAfter = $true
         break
     }
 }
@@ -324,6 +356,27 @@ if ($sundayAfterThanksgiving) {
 # You have now figured out if there is a Sunday after Thanksgiving in November in the future year.
 # You need to add this Thanksgiving logic below similar to Easter.
 
+# Output the result. Is there a Sunday after Thanksgiving in November in the Previous Year?
+if ($sundayAfterThanksgivingPreviousYear) {
+    # Write-Output "There is a Sunday after Thanksgiving in November $PreviousYear so you can have Singspiration."
+	$YouCanHaveSingspirationThanksgivingMonthPreviousYear = 1 # There is a Sunday after Thanksgiving in November in the Previous Year so you can have Singspiration if there are 5 Sundays in the month.
+} else {
+    # Write-Output "There is no Sunday after Thanksgiving in November $PreviousYear so skip Singspiration."
+	$YouCanHaveSingspirationThanksgivingMonthPreviousYear = 0 # There is no Sunday after Thanksgiving in November in the Previous Year so skip Singspiration.
+}
+# You have now figured out if there is a Sunday after Thanksgiving in November in the Previous Year.
+# You need to add this Thanksgiving logic below similar to Easter.
+
+# Output the result. Is there a Sunday after Thanksgiving in November in the Year After?
+if ($sundayAfterThanksgivingYearAfter) {
+    # Write-Output "There is a Sunday after Thanksgiving in November $YearAfter so you can have Singspiration."
+	$YouCanHaveSingspirationThanksgivingMonthYearAfter = 1 # There is a Sunday after Thanksgiving in November in the Year After so you can have Singspiration if there are 5 Sundays in the month.
+} else {
+    # Write-Output "There is no Sunday after Thanksgiving in November $YearAfter so skip Singspiration."
+	$YouCanHaveSingspirationThanksgivingMonthYearAfter = 0 # There is no Sunday after Thanksgiving in November in the Year After so skip Singspiration.
+}
+# You have now figured out if there is a Sunday after Thanksgiving in November in the Year After.
+# You need to add this Thanksgiving logic below similar to Easter.
 
 # $StartDate = Get-Date -Year $FutureYear -Month 01 -Day 01 # This gets the first day of the future year.
 # $EndDate = Get-Date -Year $FutureYear -Month 12 -Day 31 # This gets the last day of the future year.
@@ -376,6 +429,112 @@ $NumberOfWednesdaysInSep = 0
 $NumberOfWednesdaysInOct = 0
 $NumberOfWednesdaysInNov = 0
 $NumberOfWednesdaysInDec = 0
+
+# $StartDatePreviousYear = Get-Date -Year $PreviousYear -Month 01 -Day 01 # This gets the first day of the Previous Year.
+# $EndDatePreviousYear = Get-Date -Year $PreviousYear -Month 12 -Day 31 # This gets the last day of the Previous Year.
+$JanPreviousYear = Get-Date -Year $PreviousYear -Month 1 # This gets January of the Previous Year.
+$FebPreviousYear = Get-Date -Year $PreviousYear -Month 2 # This gets February of the Previous Year.
+$MarPreviousYear = Get-Date -Year $PreviousYear -Month 3 # This gets March of the Previous Year.
+$AprPreviousYear = Get-Date -Year $PreviousYear -Month 4 # This gets April of the Previous Year.
+$MayPreviousYear = Get-Date -Year $PreviousYear -Month 5 # This gets May of the Previous Year.
+$JunPreviousYear = Get-Date -Year $PreviousYear -Month 6 # This gets June of the Previous Year.
+$JulPreviousYear = Get-Date -Year $PreviousYear -Month 7 # This gets July of the Previous Year.
+$AugPreviousYear = Get-Date -Year $PreviousYear -Month 8 # This gets August of the Previous Year.
+$SepPreviousYear = Get-Date -Year $PreviousYear -Month 9 # This gets September of the Previous Year.
+$OctPreviousYear = Get-Date -Year $PreviousYear -Month 10 # This gets October of the Previous Year.
+$NovPreviousYear = Get-Date -Year $PreviousYear -Month 11 # This gets November of the Previous Year.
+$DecPreviousYear = Get-Date -Year $PreviousYear -Month 12 # This gets December of the Previous Year.
+$NumberOfDaysInJanPreviousYear = [DateTime]::DaysInMonth($JanPreviousYear.Year, $JanPreviousYear.Month)
+$NumberOfDaysInFebPreviousYear = [DateTime]::DaysInMonth($FebPreviousYear.Year, $FebPreviousYear.Month)
+$NumberOfDaysInMarPreviousYear = [DateTime]::DaysInMonth($MarPreviousYear.Year, $MarPreviousYear.Month)
+$NumberOfDaysInAprPreviousYear = [DateTime]::DaysInMonth($AprPreviousYear.Year, $AprPreviousYear.Month)
+$NumberOfDaysInMayPreviousYear = [DateTime]::DaysInMonth($MayPreviousYear.Year, $MayPreviousYear.Month)
+$NumberOfDaysInJunPreviousYear = [DateTime]::DaysInMonth($JunPreviousYear.Year, $JunPreviousYear.Month)
+$NumberOfDaysInJulPreviousYear = [DateTime]::DaysInMonth($JulPreviousYear.Year, $JulPreviousYear.Month)
+$NumberOfDaysInAugPreviousYear = [DateTime]::DaysInMonth($AugPreviousYear.Year, $AugPreviousYear.Month)
+$NumberOfDaysInSepPreviousYear = [DateTime]::DaysInMonth($SepPreviousYear.Year, $SepPreviousYear.Month)
+$NumberOfDaysInOctPreviousYear = [DateTime]::DaysInMonth($OctPreviousYear.Year, $OctPreviousYear.Month)
+$NumberOfDaysInNovPreviousYear = [DateTime]::DaysInMonth($NovPreviousYear.Year, $NovPreviousYear.Month)
+$NumberOfDaysInDecPreviousYear = [DateTime]::DaysInMonth($DecPreviousYear.Year, $DecPreviousYear.Month)
+$NumberOfSundaysInPreviousYear = 0
+$NumberOfSundaysInJanPreviousYear = 0
+$NumberOfSundaysInFebPreviousYear = 0
+$NumberOfSundaysInMarPreviousYear = 0
+$NumberOfSundaysInAprPreviousYear = 0
+$NumberOfSundaysInMayPreviousYear = 0
+$NumberOfSundaysInJunPreviousYear = 0
+$NumberOfSundaysInJulPreviousYear = 0
+$NumberOfSundaysInAugPreviousYear = 0
+$NumberOfSundaysInSepPreviousYear = 0
+$NumberOfSundaysInOctPreviousYear = 0
+$NumberOfSundaysInNovPreviousYear = 0
+$NumberOfSundaysInDecPreviousYear = 0
+$NumberOfWednesdaysInJanPreviousYear = 0
+$NumberOfWednesdaysInFebPreviousYear = 0
+$NumberOfWednesdaysInMarPreviousYear = 0
+$NumberOfWednesdaysInAprPreviousYear = 0
+$NumberOfWednesdaysInMayPreviousYear = 0
+$NumberOfWednesdaysInJunPreviousYear = 0
+$NumberOfWednesdaysInJulPreviousYear = 0
+$NumberOfWednesdaysInAugPreviousYear = 0
+$NumberOfWednesdaysInSepPreviousYear = 0
+$NumberOfWednesdaysInOctPreviousYear = 0
+$NumberOfWednesdaysInNovPreviousYear = 0
+$NumberOfWednesdaysInDecPreviousYear = 0
+
+# $StartDate = Get-Date -Year $YearAfter -Month 01 -Day 01 # This gets the first day of the Year After.
+# $EndDate = Get-Date -Year $YearAfter -Month 12 -Day 31 # This gets the last day of the Year After.
+$JanYearAfter = Get-Date -Year $YearAfter -Month 1 # This gets January of the Year After.
+$FebYearAfter = Get-Date -Year $YearAfter -Month 2 # This gets February of the Year After.
+$MarYearAfter = Get-Date -Year $YearAfter -Month 3 # This gets March of the Year After.
+$AprYearAfter = Get-Date -Year $YearAfter -Month 4 # This gets April of the Year After.
+$MayYearAfter = Get-Date -Year $YearAfter -Month 5 # This gets May of the Year After.
+$JunYearAfter = Get-Date -Year $YearAfter -Month 6 # This gets June of the Year After.
+$JulYearAfter = Get-Date -Year $YearAfter -Month 7 # This gets July of the Year After.
+$AugYearAfter = Get-Date -Year $YearAfter -Month 8 # This gets August of the Year After.
+$SepYearAfter = Get-Date -Year $YearAfter -Month 9 # This gets September of the Year After.
+$OctYearAfter = Get-Date -Year $YearAfter -Month 10 # This gets October of the Year After.
+$NovYearAfter = Get-Date -Year $YearAfter -Month 11 # This gets November of the Year After.
+$DecYearAfter = Get-Date -Year $YearAfter -Month 12 # This gets December of the Year After.
+$NumberOfDaysInJanYearAfter = [DateTime]::DaysInMonth($JanYearAfter.Year, $JanYearAfter.Month)
+$NumberOfDaysInFebYearAfter = [DateTime]::DaysInMonth($FebYearAfter.Year, $FebYearAfter.Month)
+$NumberOfDaysInMarYearAfter = [DateTime]::DaysInMonth($MarYearAfter.Year, $MarYearAfter.Month)
+$NumberOfDaysInAprYearAfter = [DateTime]::DaysInMonth($AprYearAfter.Year, $AprYearAfter.Month)
+$NumberOfDaysInMayYearAfter = [DateTime]::DaysInMonth($MayYearAfter.Year, $MayYearAfter.Month)
+$NumberOfDaysInJunYearAfter = [DateTime]::DaysInMonth($JunYearAfter.Year, $JunYearAfter.Month)
+$NumberOfDaysInJulYearAfter = [DateTime]::DaysInMonth($JulYearAfter.Year, $JulYearAfter.Month)
+$NumberOfDaysInAugYearAfter = [DateTime]::DaysInMonth($AugYearAfter.Year, $AugYearAfter.Month)
+$NumberOfDaysInSepYearAfter = [DateTime]::DaysInMonth($SepYearAfter.Year, $SepYearAfter.Month)
+$NumberOfDaysInOctYearAfter = [DateTime]::DaysInMonth($OctYearAfter.Year, $OctYearAfter.Month)
+$NumberOfDaysInNovYearAfter = [DateTime]::DaysInMonth($NovYearAfter.Year, $NovYearAfter.Month)
+$NumberOfDaysInDecYearAfter = [DateTime]::DaysInMonth($DecYearAfter.Year, $DecYearAfter.Month)
+$NumberOfSundaysInYearAfter = 0
+$NumberOfSundaysInJanYearAfter = 0
+$NumberOfSundaysInFebYearAfter = 0
+$NumberOfSundaysInMarYearAfter = 0
+$NumberOfSundaysInAprYearAfter = 0
+$NumberOfSundaysInMayYearAfter = 0
+$NumberOfSundaysInJunYearAfter = 0
+$NumberOfSundaysInJulYearAfter = 0
+$NumberOfSundaysInAugYearAfter = 0
+$NumberOfSundaysInSepYearAfter = 0
+$NumberOfSundaysInOctYearAfter = 0
+$NumberOfSundaysInNovYearAfter = 0
+$NumberOfSundaysInDecYearAfter = 0
+$NumberOfWednesdaysInJanYearAfter = 0
+$NumberOfWednesdaysInFebYearAfter = 0
+$NumberOfWednesdaysInMarYearAfter = 0
+$NumberOfWednesdaysInAprYearAfter = 0
+$NumberOfWednesdaysInMayYearAfter = 0
+$NumberOfWednesdaysInJunYearAfter = 0
+$NumberOfWednesdaysInJulYearAfter = 0
+$NumberOfWednesdaysInAugYearAfter = 0
+$NumberOfWednesdaysInSepYearAfter = 0
+$NumberOfWednesdaysInOctYearAfter = 0
+$NumberOfWednesdaysInNovYearAfter = 0
+$NumberOfWednesdaysInDecYearAfter = 0
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # Loop through each day of the month in January in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInJan; $day++) {
@@ -595,7 +754,7 @@ for ($day = 1; $day -le $NumberOfDaysInDec; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in December: $NumberOfSundaysInDec"
 
-# You have now counted the number of Sundays in each month in the future year.
+# You have now counted the number of Sundays & Wednesdays in each month in the future year.
 
 # See if each month has 4 or less Sundays or 5 or more Sundays to determine if you can have Singspiration that month.
 # Remember Easter month (only March or April). $Jan.Month = $EasterMonthFutureYear & $YouCanHaveSingspirationEasterMonth = 1
