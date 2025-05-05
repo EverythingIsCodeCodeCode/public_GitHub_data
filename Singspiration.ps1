@@ -591,8 +591,6 @@ for ($day = 1; $day -le $NumberOfDaysInJanYearAfter; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in January Year After: $NumberOfSundaysInJanYearAfter"
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 # Loop through each day of the month in February in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInFeb; $day++) {
 	# Create a date object for the current day
@@ -612,6 +610,44 @@ for ($day = 1; $day -le $NumberOfDaysInFeb; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in February: $NumberOfSundaysInFeb"
 
+# Loop through each day of the month in February in the Previous Year & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInFebPreviousYear; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($FebPreviousYear.Year, $FebPreviousYear.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInFebPreviousYear++
+		$NumberOfSundaysInFutureYearPreviousYear++
+	}
+	# Check if the day is a Wednesday
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInFebPreviousYear++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in February Previous Year: $NumberOfSundaysInFebPreviousYear"
+
+# Loop through each day of the month in February in the Year After & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInFebYearAfter; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($FebYearAfter.Year, $FebYearAfter.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInFebYearAfter++
+		$NumberOfSundaysInFutureYearYearAfter++
+	}
+	# Check if the day is a Wednesday
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInFebYearAfter++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in February Year After: $NumberOfSundaysInFebYearAfter"
+
 # Loop through each day of the month in March in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInMar; $day++) {
 	# Create a date object for the current day
@@ -629,6 +665,44 @@ for ($day = 1; $day -le $NumberOfDaysInMar; $day++) {
 }
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in March: $NumberOfSundaysInMar"
+
+# Loop through each day of the month in March in the Previous Year & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInMarPreviousYear; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($MarPreviousYear.Year, $MarPreviousYear.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInMarPreviousYear++
+		$NumberOfSundaysInPreviousYear++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInMarPreviousYear++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in March Previous Year: $NumberOfSundaysInMarPreviousYear"
+
+# Loop through each day of the month in March in the Year After & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInMarYearAfter; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($MarYearAfter.Year, $MarYearAfter.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInMarYearAfter++
+		$NumberOfSundaysInYearAfter++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInMarYearAfter++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in March Year After: $NumberOfSundaysInMarYearAfter"
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # Loop through each day of the month in April in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInApr; $day++) {
@@ -648,6 +722,44 @@ for ($day = 1; $day -le $NumberOfDaysInApr; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in April: $NumberOfSundaysInApr"
 
+# Loop through each day of the month in April in the Previous Year & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInAprPreviousYear; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($AprPreviousYear.Year, $AprPreviousYear.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInAprPreviousYear++
+		$NumberOfSundaysInPreviousYear++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInAprPreviousYear++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in April Previous Year: $NumberOfSundaysInAprPreviousYear"
+
+# Loop through each day of the month in April in the Year After & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInAprYearAfter; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($AprYearAfter.Year, $AprYearAfter.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInAprYearAfter++
+		$NumberOfSundaysInYearAfter++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInAprYearAfter++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in April Year After: $NumberOfSundaysInAprYearAfter"
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
+
 # Loop through each day of the month in May in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInMay; $day++) {
 	# Create a date object for the current day
@@ -665,6 +777,42 @@ for ($day = 1; $day -le $NumberOfDaysInMay; $day++) {
 }
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in May: $NumberOfSundaysInMay"
+
+# Loop through each day of the month in May in the Previous Year & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInMayPreviousYear; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($MayPreviousYear.Year, $MayPreviousYear.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInMayPreviousYear++
+		$NumberOfSundaysInPreviousYear++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInMayPreviousYear++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in May Previous Year: $NumberOfSundaysInMayPreviousYear"
+
+# Loop through each day of the month in May in the Year After & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInMayYearAfter; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($MayYearAfter.Year, $MayYearAfter.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInMayYearAfter++
+		$NumberOfSundaysInYearAfter++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInMayYearAfter++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in May Year After: $NumberOfSundaysInMayYearAfter"
 
 # Loop through each day of the month in June in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInJun; $day++) {
@@ -684,6 +832,42 @@ for ($day = 1; $day -le $NumberOfDaysInJun; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in June: $NumberOfSundaysInJun"
 
+# Loop through each day of the month in June in the Previous Year & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInJunPreviousYear; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($JunPreviousYear.Year, $JunPreviousYear.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInJunPreviousYear++
+		$NumberOfSundaysInPreviousYear++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInJunPreviousYear++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in June Previous Year: $NumberOfSundaysInJunPreviousYear"
+
+# Loop through each day of the month in June in the Year After & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInJunYearAfter; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($JunYearAfter.Year, $JunYearAfter.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInJunYearAfter++
+		$NumberOfSundaysInYearAfter++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInJunYearAfter++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in June Year After: $NumberOfSundaysInJunYearAfter"
+
 # Loop through each day of the month in July in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInJul; $day++) {
 	# Create a date object for the current day
@@ -701,6 +885,44 @@ for ($day = 1; $day -le $NumberOfDaysInJul; $day++) {
 }
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in July: $NumberOfSundaysInJul"
+
+# Loop through each day of the month in July in the Previous Year & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInJulPreviousYear; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($JulPreviousYear.Year, $JulPreviousYear.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInJulPreviousYear++
+		$NumberOfSundaysInPreviousYear++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInJulPreviousYear++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in July Previous Year: $NumberOfSundaysInJulPreviousYear"
+
+# Loop through each day of the month in July in the Year After & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInJulYearAfter; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($JulYearAfter.Year, $JulYearAfter.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInJulYearAfter++
+		$NumberOfSundaysInYearAfter++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInJulYearAfter++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in July Year After: $NumberOfSundaysInJulYearAfter"
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # Loop through each day of the month in August in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInAug; $day++) {
