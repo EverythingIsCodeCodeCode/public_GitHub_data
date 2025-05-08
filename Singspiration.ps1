@@ -922,8 +922,6 @@ for ($day = 1; $day -le $NumberOfDaysInJulYearAfter; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in July Year After: $NumberOfSundaysInJulYearAfter"
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 # Loop through each day of the month in August in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInAug; $day++) {
 	# Create a date object for the current day
@@ -941,6 +939,42 @@ for ($day = 1; $day -le $NumberOfDaysInAug; $day++) {
 }
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in August: $NumberOfSundaysInAug"
+
+# Loop through each day of the month in August in the Previous Year & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInAugPreviousYear; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($AugPreviousYear.Year, $AugPreviousYear.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInAugPreviousYear++
+		$NumberOfSundaysInPreviousYear++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInAugPreviousYear++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in August Previous Year: $NumberOfSundaysInAugPreviousYear"
+
+# Loop through each day of the month in August in the Year After & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInAugYearAfter; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($AugYearAfter.Year, $AugYearAfter.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInAugYearAfter++
+		$NumberOfSundaysInYearAfter++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInAugYearAfter++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in August Year After: $NumberOfSundaysInAugYearAfter"
 
 # Loop through each day of the month in September in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInSep; $day++) {
@@ -960,6 +994,42 @@ for ($day = 1; $day -le $NumberOfDaysInSep; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in September: $NumberOfSundaysInSep"
 
+# Loop through each day of the month in September in the Previous Year & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInSepPreviousYear; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($SepPreviousYear.Year, $SepPreviousYear.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInSepPreviousYear++
+		$NumberOfSundaysInPreviousYear++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInSepPreviousYear++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in September Previous Year: $NumberOfSundaysInSepPreviousYear"
+
+# Loop through each day of the month in September in the Year After & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInSepYearAfter; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($SepYearAfter.Year, $SepYearAfter.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInSepYearAfter++
+		$NumberOfSundaysInYearAfter++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInSepYearAfter++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in September Year After: $NumberOfSundaysInSepYearAfter"
+
 # Loop through each day of the month in October in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInOct; $day++) {
 	# Create a date object for the current day
@@ -977,6 +1047,44 @@ for ($day = 1; $day -le $NumberOfDaysInOct; $day++) {
 }
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in October: $NumberOfSundaysInOct"
+
+# Loop through each day of the month in October in the Previous Year & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInOctPreviousYear; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($OctPreviousYear.Year, $OctPreviousYear.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInOctPreviousYear++
+		$NumberOfSundaysInPreviousYear++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInOctPreviousYear++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in October Previous Year: $NumberOfSundaysInOctPreviousYear"
+
+# Loop through each day of the month in October in the Year After & count the number of Sundays & Wednesdays.
+for ($day = 1; $day -le $NumberOfDaysInOctYearAfter; $day++) {
+	# Create a date object for the current day
+	$currentDate = [DateTime]::new($OctYearAfter.Year, $OctYearAfter.Month, $day)
+	# Check if the day is a Sunday
+	if ($currentDate.DayOfWeek -eq "Sunday") {
+		# Increment the Sunday counter
+		$NumberOfSundaysInOctYearAfter++
+		$NumberOfSundaysInYearAfter++
+	}
+	if ($currentDate.DayOfWeek -eq "Wednesday") {
+		# Increment the Sunday counter
+		$NumberOfWednesdaysInOctYearAfter++
+	}
+}
+# Output the number of Sundays:
+# Write-Output "Number of Sundays in October Year After: $NumberOfSundaysInOctYearAfter"
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # Loop through each day of the month in November in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInNov; $day++) {
