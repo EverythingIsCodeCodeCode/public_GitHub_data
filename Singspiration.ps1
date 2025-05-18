@@ -1192,9 +1192,11 @@ for ($day = 1; $day -le $NumberOfDaysInDecYearAfter; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in December Year After: $NumberOfSundaysInDecYearAfter"
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 # You have now counted the number of Sundays & Wednesdays in each month in the future year.
+# You have now counted the number of Sundays & Wednesdays in each month in the Previous Year.
+# You have now counted the number of Sundays & Wednesdays in each month in the Year After.
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # See if each month has 4 or less Sundays or 5 or more Sundays to determine if you can have Singspiration that month.
 # Remember Easter month (only March or April). $Jan.Month = $EasterMonthFutureYear & $YouCanHaveSingspirationEasterMonth = 1
