@@ -1196,10 +1196,10 @@ for ($day = 1; $day -le $NumberOfDaysInDecYearAfter; $day++) {
 # You have now counted the number of Sundays & Wednesdays in each month in the Previous Year.
 # You have now counted the number of Sundays & Wednesdays in each month in the Year After.
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 # See if each month has 4 or less Sundays or 5 or more Sundays to determine if you can have Singspiration that month.
 # Remember Easter month (only March or April). $Jan.Month = $EasterMonthFutureYear & $YouCanHaveSingspirationEasterMonth = 1
+# Remember Easter month (only March or April). $Jan.Month = $EasterMonthPreviousYear & $YouCanHaveSingspirationEasterMonthPreviousYear = 1
+# Remember Easter month (only March or April). $Jan.Month = $EasterMonthYearAfter & $YouCanHaveSingspirationEasterMonthYearAfter = 1
 
 if ($NumberOfSundaysInJan -le 4) {
 	$SingspirationJan = 0 # The number of Sundays in January in the future year is 4 or less so we won't have Singspiration this month.
@@ -1208,11 +1208,39 @@ if ($NumberOfSundaysInJan -ge 5) {
 	$SingspirationJan = 1 # The number of Sundays in January in the future year is 5 or more so we'll have Singspiration this month.
 }
 
+if ($NumberOfSundaysInJanPreviousYear -le 4) {
+	$SingspirationJanPreviousYear = 0 # The number of Sundays in January in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInJanPreviousYear -ge 5) {
+	$SingspirationJanPreviousYear = 1 # The number of Sundays in January in the Previous Year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInJanYearAfter -le 4) {
+	$SingspirationJanYearAfter = 0 # The number of Sundays in January in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInJanYearAfter -ge 5) {
+	$SingspirationJanYearAfter = 1 # The number of Sundays in January in the Year After is 5 or more so we'll have Singspiration this month.
+}
+
 if ($NumberOfSundaysInFeb -le 4) {
 	$SingspirationFeb = 0 # The number of Sundays in February in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInFeb -ge 5) {
 	$SingspirationFeb = 1 # The number of Sundays in February in the future year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInFebPreviousYear -le 4) {
+	$SingspirationFebPreviousYear = 0 # The number of Sundays in February in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInFebPreviousYear -ge 5) {
+	$SingspirationFebPreviousYear = 1 # The number of Sundays in February in the Previous Year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInFebYearAfter -le 4) {
+	$SingspirationFebYearAfter = 0 # The number of Sundays in February in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInFebYearAfter -ge 5) {
+	$SingspirationFebYearAfter = 1 # The number of Sundays in February in the Year After is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInMar -le 4) {
@@ -1229,6 +1257,38 @@ if ($NumberOfSundaysInMar -ge 5) {
 		}
 	}
 }
+
+if ($NumberOfSundaysInMarPreviousYear -le 4) {
+	$SingspirationMarPreviousYear = 0 # The number of Sundays in March in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInMarPreviousYear -ge 5) {
+	$SingspirationMarPreviousYear = 1 # The number of Sundays in March in the Previous Year is 5 or more so we'll have Singspiration this month.
+	if ($MarPreviousYear.Month -eq $EasterMonthPreviousYear) {
+		if ($YouCanHaveSingspirationEasterMonthPreviousYear -eq 1) {
+			$SingspirationMarPreviousYear = 1 # Have Singspiration this month. Easter is this month & it's not on the last Sunday.
+		}
+		if ($YouCanHaveSingspirationEasterMonthPreviousYear -eq 0) {
+			$SingspirationMarPreviousYear = 0 # Skip Singspiration this month. Easter is this month & it's on the last Sunday.
+		}
+	}
+}
+
+if ($NumberOfSundaysInMarYearAfter -le 4) {
+	$SingspirationMarYearAfter = 0 # The number of Sundays in March in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInMarYearAfter -ge 5) {
+	$SingspirationMarYearAfter = 1 # The number of Sundays in March in the Year After is 5 or more so we'll have Singspiration this month.
+	if ($MarYearAfter.Month -eq $EasterMonthYearAfter) {
+		if ($YouCanHaveSingspirationEasterMonthYearAfter -eq 1) {
+			$SingspirationMarYearAfter = 1 # Have Singspiration this month. Easter is this month & it's not on the last Sunday.
+		}
+		if ($YouCanHaveSingspirationEasterMonthYearAfter -eq 0) {
+			$SingspirationMarYearAfter = 0 # Skip Singspiration this month. Easter is this month & it's on the last Sunday.
+		}
+	}
+}
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 if ($NumberOfSundaysInApr -le 4) {
 	$SingspirationApr = 0 # The number of Sundays in April in the future year is 4 or less so we won't have Singspiration this month.
