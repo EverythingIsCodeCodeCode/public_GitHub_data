@@ -1288,8 +1288,6 @@ if ($NumberOfSundaysInMarYearAfter -ge 5) {
 	}
 }
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 if ($NumberOfSundaysInApr -le 4) {
 	$SingspirationApr = 0 # The number of Sundays in April in the future year is 4 or less so we won't have Singspiration this month.
 }
@@ -1305,6 +1303,38 @@ if ($NumberOfSundaysInApr -ge 5) {
 	}
 }
 
+if ($NumberOfSundaysInAprPreviousYear -le 4) {
+	$SingspirationAprPreviousYear = 0 # The number of Sundays in April in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInAprPreviousYear -ge 5) {
+	$SingspirationAprPreviousYear = 1 # The number of Sundays in April in the Previous Year is 5 or more so we'll have Singspiration this month.
+	if ($AprPreviousYear.Month -eq $EasterMonthFutureYearPreviousYear) {
+		if ($YouCanHaveSingspirationEasterMonthPreviousYear -eq 1) {
+			$SingspirationAprPreviousYear = 1 # Have Singspiration this month. Easter is this month & it's not on the last Sunday.
+		}
+		if ($YouCanHaveSingspirationEasterMonthPreviousYear -eq 0) {
+			$SingspirationAprPreviousYear = 0 # Skip Singspiration this month. Easter is this month & it's on the last Sunday.
+		}
+	}
+}
+
+if ($NumberOfSundaysInAprYearAfter -le 4) {
+	$SingspirationAprYearAfter = 0 # The number of Sundays in April in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInAprYearAfter -ge 5) {
+	$SingspirationAprYearAfter = 1 # The number of Sundays in April in the Year After is 5 or more so we'll have Singspiration this month.
+	if ($AprYearAfter.Month -eq $EasterMonthFutureYearYearAfter) {
+		if ($YouCanHaveSingspirationEasterMonthYearAfter -eq 1) {
+			$SingspirationAprYearAfter = 1 # Have Singspiration this month. Easter is this month & it's not on the last Sunday.
+		}
+		if ($YouCanHaveSingspirationEasterMonthYearAfter -eq 0) {
+			$SingspirationAprYearAfter = 0 # Skip Singspiration this month. Easter is this month & it's on the last Sunday.
+		}
+	}
+}
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
+
 if ($NumberOfSundaysInMay -le 4) {
 	$SingspirationMay = 0 # The number of Sundays in May in the future year is 4 or less so we won't have Singspiration this month.
 }
@@ -1312,11 +1342,41 @@ if ($NumberOfSundaysInMay -ge 5) {
 	$SingspirationMay = 1 # The number of Sundays in May in the future year is 5 or more so we'll have Singspiration this month.
 }
 
+if ($NumberOfSundaysInMayPreviousYear -le 4) {
+	$SingspirationMayPreviousYear = 0 # The number of Sundays in May in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInMayPreviousYear -ge 5) {
+	$SingspirationMayPreviousYear = 1 # The number of Sundays in May in the Previous Year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInMayYearAfter -le 4) {
+	$SingspirationMayYearAfter = 0 # The number of Sundays in May in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInMayYearAfter -ge 5) {
+	$SingspirationMayYearAfter = 1 # The number of Sundays in May in the Year After is 5 or more so we'll have Singspiration this month.
+}
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
+
 if ($NumberOfSundaysInJun -le 4) {
 	$SingspirationJun = 0 # The number of Sundays in June in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInJun -ge 5) {
 	$SingspirationJun = 1 # The number of Sundays in June in the future year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInJunPreviousYear -le 4) {
+	$SingspirationJunPreviousYear = 0 # The number of Sundays in June in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInJunPreviousYear -ge 5) {
+	$SingspirationJunPreviousYear = 1 # The number of Sundays in June in the Previous Year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInJunYearAfter -le 4) {
+	$SingspirationJunYearAfter = 0 # The number of Sundays in June in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInJunYearAfter -ge 5) {
+	$SingspirationJunYearAfter = 1 # The number of Sundays in June in the Year After is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInJul -le 4) {
@@ -1326,11 +1386,41 @@ if ($NumberOfSundaysInJul -ge 5) {
 	$SingspirationJul = 1 # The number of Sundays in July in the future year is 5 or more so we'll have Singspiration this month.
 }
 
+if ($NumberOfSundaysInJulPreviousYear -le 4) {
+	$SingspirationJulPreviousYear = 0 # The number of Sundays in July in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInJulPreviousYear -ge 5) {
+	$SingspirationJulPreviousYear = 1 # The number of Sundays in July in the Previous Year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInJulYearAfter -le 4) {
+	$SingspirationJulYearAfter = 0 # The number of Sundays in July in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInJulYearAfter -ge 5) {
+	$SingspirationJulYearAfter = 1 # The number of Sundays in July in the Year After is 5 or more so we'll have Singspiration this month.
+}
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
+
 if ($NumberOfSundaysInAug -le 4) {
 	$SingspirationAug = 0 # The number of Sundays in August in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInAug -ge 5) {
 	$SingspirationAug = 1 # The number of Sundays in August in the future year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInAugPreviousYear -le 4) {
+	$SingspirationAugPreviousYear = 0 # The number of Sundays in August in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInAugPreviousYear -ge 5) {
+	$SingspirationAugPreviousYear = 1 # The number of Sundays in August in the Previous Year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInAugYearAfter -le 4) {
+	$SingspirationAugYearAfter = 0 # The number of Sundays in August in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInAugYearAfter -ge 5) {
+	$SingspirationAugYearAfter = 1 # The number of Sundays in August in the Year After is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInSep -le 4) {
@@ -1340,11 +1430,39 @@ if ($NumberOfSundaysInSep -ge 5) {
 	$SingspirationSep = 1 # The number of Sundays in September in the future year is 5 or more so we'll have Singspiration this month.
 }
 
+if ($NumberOfSundaysInSepPreviousYear -le 4) {
+	$SingspirationSepPreviousYear = 0 # The number of Sundays in September in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInSepPreviousYear -ge 5) {
+	$SingspirationSepPreviousYear = 1 # The number of Sundays in September in the Previous Year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInSepYearAfter -le 4) {
+	$SingspirationSepYearAfter = 0 # The number of Sundays in September in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInSepYearAfter -ge 5) {
+	$SingspirationSepYearAfter = 1 # The number of Sundays in September in the Year After is 5 or more so we'll have Singspiration this month.
+}
+
 if ($NumberOfSundaysInOct -le 4) {
 	$SingspirationOct = 0 # The number of Sundays in October in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInOct -ge 5) {
 	$SingspirationOct = 1 # The number of Sundays in October in the future year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInOctPreviousYear -le 4) {
+	$SingspirationOctPreviousYear = 0 # The number of Sundays in October in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInOctPreviousYear -ge 5) {
+	$SingspirationOctPreviousYear = 1 # The number of Sundays in October in the Previous Year is 5 or more so we'll have Singspiration this month.
+}
+
+if ($NumberOfSundaysInOctYearAfter -le 4) {
+	$SingspirationOctYearAfter = 0 # The number of Sundays in October in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInOctYearAfter -ge 5) {
+	$SingspirationOctYearAfter = 1 # The number of Sundays in October in the Year After is 5 or more so we'll have Singspiration this month.
 }
 
 if ($NumberOfSundaysInNov -le 4) {
@@ -1362,12 +1480,58 @@ if ($NumberOfSundaysInNov -ge 5) {
 	}
 }
 
+if ($NumberOfSundaysInNovPreviousYear -le 4) {
+	$SingspirationNovPreviousYear = 0 # The number of Sundays in November in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInNovPreviousYear -ge 5) {
+	$SingspirationNovPreviousYear = 1 # The number of Sundays in November in the Previous Year is 5 or more so we'll have Singspiration this month.
+	if ($NovPreviousYear.Month -eq $EasterMonthPreviousYear) {
+		if ($YouCanHaveSingspirationThanksgivingMonthPreviousYear -eq 1) {
+			$SingspirationNovPreviousYear = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
+		}
+		if ($YouCanHaveSingspirationThanksgivingMonthPreviousYear -eq 0) {
+			$SingspirationNovPreviousYear = 0 # Skip Singspiration this month. Thanksgiving is this month & it's on the last Sunday.
+		}
+	}
+}
+
+if ($NumberOfSundaysInNovYearAfter -le 4) {
+	$SingspirationNovYearAfter = 0 # The number of Sundays in November in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInNovYearAfter -ge 5) {
+	$SingspirationNovYearAfter = 1 # The number of Sundays in November in the Year After is 5 or more so we'll have Singspiration this month.
+	if ($NovYearAfter.Month -eq $EasterMonthYearAfter) {
+		if ($YouCanHaveSingspirationThanksgivingMonthYearAfter -eq 1) {
+			$SingspirationNovYearAfter = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
+		}
+		if ($YouCanHaveSingspirationThanksgivingMonthYearAfter -eq 0) {
+			$SingspirationNovYearAfter = 0 # Skip Singspiration this month. Thanksgiving is this month & it's on the last Sunday.
+		}
+	}
+}
+
 if ($NumberOfSundaysInDec -le 4) {
 	$SingspirationDec = 0 # The number of Sundays in December in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInDec -ge 5) {
 	# $SingspirationDec = 1 # The number of Sundays in December in the future year is 5 or more so we'll have Singspiration this month.
 	$SingspirationDec = 0 # Ok, we're currently going to skip Singspiration in December because we're normally spending time with our other families during Christmas & New Year's.
+}
+
+if ($NumberOfSundaysInDecPreviousYear -le 4) {
+	$SingspirationDecPreviousYear = 0 # The number of Sundays in December in the Previous Year is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInDecPreviousYear -ge 5) {
+	# $SingspirationDecPreviousYear = 1 # The number of Sundays in December in the Previous Year is 5 or more so we'll have Singspiration this month.
+	$SingspirationDecPreviousYear = 0 # Ok, we're currently going to skip Singspiration in December because we're normally spending time with our other families during Christmas & New Year's.
+}
+
+if ($NumberOfSundaysInDecYearAfter -le 4) {
+	$SingspirationDecYearAfter = 0 # The number of Sundays in December in the Year After is 4 or less so we won't have Singspiration this month.
+}
+if ($NumberOfSundaysInDecYearAfter -ge 5) {
+	# $SingspirationDecYearAfter = 1 # The number of Sundays in December in the Year After is 5 or more so we'll have Singspiration this month.
+	$SingspirationDecYearAfter = 0 # Ok, we're currently going to skip Singspiration in December because we're normally spending time with our other families during Christmas & New Year's.
 }
 
 # You have now figured out if you can have Singspiration each month in the future year.
@@ -1386,8 +1550,41 @@ if ($SingspirationOct -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSings
 if ($SingspirationNov -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
 if ($SingspirationDec -eq 1) {$NumberOfSingspirationsFutureYear = $NumberOfSingspirationsFutureYear + 1}
 
+$NumberOfSingspirationsPreviousYear = 0
+if ($SingspirationJanPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationFebPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationMarPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationAprPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationMayPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationJunPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationJulPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationAugPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationSepPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationOctPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationNovPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+if ($SingspirationDecPreviousYear -eq 1) {$NumberOfSingspirationsPreviousYear = $NumberOfSingspirationsPreviousYear + 1}
+
+$NumberOfSingspirationsYearAfter = 0
+if ($SingspirationJanYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationFebYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationMarYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationAprYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationMayYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationJunYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationJulYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationAugYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationSepYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationOctYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationNovYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+if ($SingspirationDecYearAfter -eq 1) {$NumberOfSingspirationsYearAfter = $NumberOfSingspirationsYearAfter + 1}
+
 Write-Host "There are $NumberOfSingspirationsFutureYear Singspirations in $FutureYear."
 
+Write-Host "There are $NumberOfSingspirationsPreviousYear Singspirations in $PreviousYear."
+
+Write-Host "There are $NumberOfSingspirationsYearAfter Singspirations in $YearAfter."
+
+# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # The function below gets the last Sunday of every month next year; each one in its own variable.
 # Get the current year and calculate the next year
