@@ -702,8 +702,6 @@ for ($day = 1; $day -le $NumberOfDaysInMarYearAfter; $day++) {
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in March Year After: $NumberOfSundaysInMarYearAfter"
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 # Loop through each day of the month in April in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInApr; $day++) {
 	# Create a date object for the current day
@@ -757,8 +755,6 @@ for ($day = 1; $day -le $NumberOfDaysInAprYearAfter; $day++) {
 }
 # Output the number of Sundays:
 # Write-Output "Number of Sundays in April Year After: $NumberOfSundaysInAprYearAfter"
-
-# You are here - adding $PreviousYear & $YearAfter to the code.
 
 # Loop through each day of the month in May in the future year & count the number of Sundays & Wednesdays.
 for ($day = 1; $day -le $NumberOfDaysInMay; $day++) {
@@ -1333,8 +1329,6 @@ if ($NumberOfSundaysInAprYearAfter -ge 5) {
 	}
 }
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
-
 if ($NumberOfSundaysInMay -le 4) {
 	$SingspirationMay = 0 # The number of Sundays in May in the future year is 4 or less so we won't have Singspiration this month.
 }
@@ -1355,8 +1349,6 @@ if ($NumberOfSundaysInMayYearAfter -le 4) {
 if ($NumberOfSundaysInMayYearAfter -ge 5) {
 	$SingspirationMayYearAfter = 1 # The number of Sundays in May in the Year After is 5 or more so we'll have Singspiration this month.
 }
-
-# You are here - adding $PreviousYear & $YearAfter to the code.
 
 if ($NumberOfSundaysInJun -le 4) {
 	$SingspirationJun = 0 # The number of Sundays in June in the future year is 4 or less so we won't have Singspiration this month.
@@ -1399,8 +1391,6 @@ if ($NumberOfSundaysInJulYearAfter -le 4) {
 if ($NumberOfSundaysInJulYearAfter -ge 5) {
 	$SingspirationJulYearAfter = 1 # The number of Sundays in July in the Year After is 5 or more so we'll have Singspiration this month.
 }
-
-# You are here - adding $PreviousYear & $YearAfter to the code.
 
 if ($NumberOfSundaysInAug -le 4) {
 	$SingspirationAug = 0 # The number of Sundays in August in the future year is 4 or less so we won't have Singspiration this month.
@@ -1888,17 +1878,27 @@ sa - can signup for next event
 sp - event takes place
 #>
 
-# You are here - adding $PreviousYear & $YearAfter to the code.
+# You are here (& testing things below) - adding $PreviousYear & $YearAfter to the code.
+
+
+
+
+
+
+
+
+
+
 
 if ($SingspirationJan -eq 1) {
 	# See if you can do the subtraction math here for the nummber of services left to sign up for each Singspiration.
 	# I'm guessing that it may be a complete report to just work backward to the beginning of the future year or the previous Singspiration in the future year being calculated.
 	$lastSundayJan # This is the Singspiration date.
 	$lastSundayJan.AddDays(-4) # Sunday PM event minus 4 days = Wednesday PM.
-	# you are here (well, add previous/next years first)
+	# you are kinda here but maybe not (well, add previous/next years first)
 }
 
-# Another idea. Loop through the year. If it's a Sunday
+# Another idea. Loop through the year. If it's a Sunday or Wednesday
 
 
 
@@ -1934,6 +1934,9 @@ $daysOfYear = Get-AllDaysInYear -Year $FutureYear
 # Output the result
 #Write-Output "All days in $FutureYear`:"
 #$daysOfYear
+
+# Testing to see if a loop can be used from this function & the work above to generate a report.
+# You are here (& above).
 
 
 
