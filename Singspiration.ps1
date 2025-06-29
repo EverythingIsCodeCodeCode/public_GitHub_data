@@ -1898,7 +1898,83 @@ if ($SingspirationJan -eq 1) {
 	# you are kinda here but maybe not (well, add previous/next years first)
 }
 
+
+
+
+
+
+
+
+
+
 # Another idea. Loop through the year. If it's a Sunday or Wednesday
+# This section of code comes from the PowerPoint date format script & might be useful if modified.
+$StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
+$EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
+$ap = (Get-Date -Format "tt").ToLower().Substring(0,1) # This gets a single lowercase letter for A.M. or P.M., "a" or "p".
+While ($StartDate -lt $EndDate) # This starts a while loop for the year.
+{
+	# Write-Output $((Get-Date -Date $StartDate -Format "yyyy-MM-dd ddd. ")+$ap+".") # This works for the date & time.  Now try other lines to change up the formatting some.  "t" for the first character of AM/PM.
+	
+	$day = $(Get-Date -Date $StartDate -Format "ddd").Substring(0,1).ToLower() # This makes a lowercase single letter of the first letter of the day of the week.  "smtwtfs"
+	$datepptx = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+$ap+".pptx") # This formats the file name with the date & time like you normally do.
+	$datepptxa = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+"a.pptx") # This formats the file name with the date & time like you normally do.  Always a.
+	$datepptxp = $((Get-Date -Date $StartDate -Format "yyyy-MM-dd")+$day+"p.pptx") # This formats the file name with the date & time like you normally do.  Always p.
+	
+	# Write-Output $date
+	
+	# Now work on outputting different things based on the day of the week:
+	$date = Get-Date -Date $StartDate
+
+	If ($date.DayOfWeek -eq "Sunday")
+	{
+		# Do stuff during Sunday.
+		# You need to work on statically setting "a" & "p" values for the file names since that's most common.
+		#Write-Output $datepptx
+		Write-Output $datepptxa
+		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxa
+		Write-Output $datepptxp
+		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
+	}
+
+	If ($date.DayOfWeek -eq "Monday")
+	{
+		# Do stuff during Monday.
+	}
+
+	If ($date.DayOfWeek -eq "Tuesday")
+	{
+		# Do stuff during Tuesday.
+	}
+
+	If ($date.DayOfWeek -eq "Wednesday")
+	{
+		# Do stuff during Wednesday.
+		#Write-Output $datepptx
+		Write-Output $datepptxp
+		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
+	}
+
+	If ($date.DayOfWeek -eq "Thursday")
+	{
+		# Do stuff during Thursday.
+	}
+
+	If ($date.DayOfWeek -eq "Friday")
+	{
+		# Do stuff during Friday.
+	}
+
+	If ($date.DayOfWeek -eq "Saturday")
+	{
+		# Do stuff during Saturday.
+	}
+
+	# Write-Output $datepptx
+
+	$StartDate = $StartDate.AddDays(1)
+}
+
 
 
 
