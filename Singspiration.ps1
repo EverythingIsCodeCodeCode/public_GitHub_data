@@ -1909,8 +1909,10 @@ if ($SingspirationJan -eq 1) {
 
 # Another idea. Loop through the year. If it's a Sunday or Wednesday
 # This section of code comes from the PowerPoint date format script & might be useful if modified.
-$StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
-$EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
+#$StartDate = Get-Date -Year ((Get-Date).year+1) -Month 01 -Day 01 # This gets the first day of next year.
+$StartDate = Get-Date -Year $FutureYear -Month 01 -Day 01 # This gets the first day of next year.
+#$EndDate = Get-Date -Year ((Get-Date).year+1) -Month 12 -Day 31 # This gets the last day of next year.
+$EndDate = Get-Date -Year $FutureYear -Month 12 -Day 31 # This gets the last day of next year.
 $ap = (Get-Date -Format "tt").ToLower().Substring(0,1) # This gets a single lowercase letter for A.M. or P.M., "a" or "p".
 While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 {
