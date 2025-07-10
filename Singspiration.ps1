@@ -1880,6 +1880,43 @@ sp - event takes place
 
 # You are here (& testing things below) - adding $PreviousYear & $YearAfter to the code.
 
+if ($SingspirationJanPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).
+}
+if ($SingspirationFebPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+if ($SingspirationMarPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).
+}
+if ($SingspirationAprPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+if ($SingspirationMayPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+if ($SingspirationJunPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+if ($SingspirationJulPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+if ($SingspirationAugPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+if ($SingspirationSepPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+if ($SingspirationOctPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+if ($SingspirationNovPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+if ($SingspirationDecPreviousYear -eq 1) {
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+}
+
 
 
 
@@ -1934,9 +1971,9 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 		# You need to work on statically setting "a" & "p" values for the file names since that's most common.
 		#Write-Output $datepptx
 		Write-Output $datepptxa
-		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxa
+		#Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxa
 		Write-Output $datepptxp
-		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
+		#Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
 	}
 
 	If ($date.DayOfWeek -eq "Monday")
@@ -1954,7 +1991,7 @@ While ($StartDate -lt $EndDate) # This starts a while loop for the year.
 		# Do stuff during Wednesday.
 		#Write-Output $datepptx
 		Write-Output $datepptxp
-		Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
+		#Copy-Item $NextYearChurchServicesFolder\$TemplateFile $NextYearChurchServicesFolder\$datepptxp
 	}
 
 	If ($date.DayOfWeek -eq "Thursday")
