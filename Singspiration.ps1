@@ -1868,23 +1868,31 @@ if ($SingspirationDecYearAfter -eq 0) {Write-Host -ForegroundColor DarkRed "Dece
 
 <#
 Remember, you need approximately 2 weeks to comfortability process everything before Singspiration::
-sa - can signup for current event
-sp - can signup for next event
-wp - can signup for next event
-sa - can signup for next event
-sp - can signup for next event
-wp - can signup for next event
-sa - can signup for next event
-sp - event takes place
+$var - 14 days = sa - can signup for current event
+$var - 14 days = sp - can signup for next event
+$var - 11 days = wp - can signup for next event
+$var - 07 days = sa - can signup for next event
+$var - 07 days = sp - can signup for next event
+$var - 04 days = wp - can signup for next event
+$var - 00 days = sa - can signup for next event
+$var = sp - event takes place - can signup for next event
 #>
 
 # You are here (& testing things below) - adding $PreviousYear & $YearAfter to the code.
 
 if ($SingspirationJanPreviousYear -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
+	$lastSundayJanPreviousYear # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayJanPreviousYearMinus04DaysWP = $lastSundayJanPreviousYear.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayJanPreviousYearMinus07DaysSA = $lastSundayJanPreviousYear.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayJanPreviousYearMinus07DaysSP = $lastSundayJanPreviousYear.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayJanPreviousYearMinus11DaysWP = $lastSundayJanPreviousYear.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayJanPreviousYearMinus14DaysSA = $lastSundayJanPreviousYear.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayJanPreviousYearMinus14DaysSP = $lastSundayJanPreviousYear.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
 }
 if ($SingspirationFebPreviousYear -eq 1) {
-	#Calculate the 7 previous church service dates/times for Singspiration (see above).	
+	#Calculate the 7 previous church service dates/times for Singspiration (see above).
+	$lastSundayFebPreviousYear # Event takes place.
 }
 if ($SingspirationMarPreviousYear -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
