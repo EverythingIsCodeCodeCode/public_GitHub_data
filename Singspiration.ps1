@@ -1888,7 +1888,7 @@ if ($SingspirationJanPreviousYear -eq 1) {
 	$lastSundayJanPreviousYearMinus07DaysSP = $lastSundayJanPreviousYear.AddDays(-7) # Can signup for next event. This is a Sunday.
 	$lastSundayJanPreviousYearMinus11DaysWP = $lastSundayJanPreviousYear.AddDays(-11) # Can signup for next event. This is a Wednesday.
 	$lastSundayJanPreviousYearMinus14DaysSA = $lastSundayJanPreviousYear.AddDays(-14) # Can signup for next event. This is a Sunday morning.
-	$lastSundayJanPreviousYearMinus14DaysSP = $lastSundayJanPreviousYear.AddDays(-14) # xCan signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayJanPreviousYearMinus14DaysSP = $lastSundayJanPreviousYear.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
 }
 if ($SingspirationFebPreviousYear -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
