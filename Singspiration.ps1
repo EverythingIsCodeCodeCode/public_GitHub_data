@@ -2222,7 +2222,7 @@ if ($SingspirationDecYearAfter -eq 1) {
 # Finished calculating all the lead time needed for Singspiration events for PreviousYear, Next Year, and the YearAfter.
 # Check if variables exist to work on reporting. 6 per month across 3 years, so 12*3 = 36 months. 36*6 = 216 variables to check.
 # Think about this some more. You can probably just add the math in the loops above.
-#
+# 
 # $lastSundayJanPreviousYearMinus04DaysWP
 # $lastSundayJanPreviousYearMinus07DaysSA
 # $lastSundayJanPreviousYearMinus07DaysSP
