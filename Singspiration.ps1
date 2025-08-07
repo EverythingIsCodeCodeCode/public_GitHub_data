@@ -2001,115 +2001,337 @@ if ($SingspirationDecPreviousYear -eq 1) {
 	$lastSundayDecPreviousYearMinus14DaysSP = $lastSundayDecPreviousYear.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
 }
 
+# You need to figure out what these variables need to be below for $X & $Y.
+
 if ($SingspirationJan -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayJan # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayJanTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJanTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayJanMinus04DaysWP = $lastSundayJan.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayJanMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJanMinus07DaysSA = $lastSundayJan.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayJanMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJanMinus07DaysSP = $lastSundayJan.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayJanMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJanMinus11DaysWP = $lastSundayJan.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayJanMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJanMinus14DaysSA = $lastSundayJan.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayJanMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJanMinus14DaysSP = $lastSundayJan.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayJanMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJanMinus18DaysWP = $lastSundayJan.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayJanMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJanMinus21DaysSA = $lastSundayJan.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayJanMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJanMinus21DaysSP = $lastSundayJan.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayJanMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJanMinus25DaysWP = $lastSundayJan.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayJanMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJanMinus28DaysSA = $lastSundayJan.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayJanMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJanMinus28DaysSP = $lastSundayJan.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayJanMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationFeb -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayFeb # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayFebTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayFebTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayFebMinus04DaysWP = $lastSundayFeb.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayFebMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayFebMinus07DaysSA = $lastSundayFeb.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayFebMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayFebMinus07DaysSP = $lastSundayFeb.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayFebMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayFebMinus11DaysWP = $lastSundayFeb.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayFebMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayFebMinus14DaysSA = $lastSundayFeb.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayFebMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayFebMinus14DaysSP = $lastSundayFeb.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayFebMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayFebMinus18DaysWP = $lastSundayFeb.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayFebMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayFebMinus21DaysSA = $lastSundayFeb.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayFebMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayFebMinus21DaysSP = $lastSundayFeb.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayFebMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayFebMinus25DaysWP = $lastSundayFeb.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayFebMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayFebMinus28DaysSA = $lastSundayFeb.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayFebMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayFebMinus28DaysSP = $lastSundayFeb.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayFebMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationMar -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayMar # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayMarTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMarTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayMarMinus04DaysWP = $lastSundayMar.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayMarMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMarMinus07DaysSA = $lastSundayMar.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayMarMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMarMinus07DaysSP = $lastSundayMar.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayMarMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMarMinus11DaysWP = $lastSundayMar.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayMarMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMarMinus14DaysSA = $lastSundayMar.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayMarMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMarMinus14DaysSP = $lastSundayMar.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayMarMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMarMinus18DaysWP = $lastSundayMar.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayMarMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMarMinus21DaysSA = $lastSundayMar.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayMarMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMarMinus21DaysSP = $lastSundayMar.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayMarMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMarMinus25DaysWP = $lastSundayMar.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayMarMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMarMinus28DaysSA = $lastSundayMar.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayMarMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMarMinus28DaysSP = $lastSundayMar.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayMarMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationApr -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayApr # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayAprTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAprTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayAprMinus04DaysWP = $lastSundayApr.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayAprMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAprMinus07DaysSA = $lastSundayApr.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayAprMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAprMinus07DaysSP = $lastSundayApr.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayAprMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAprMinus11DaysWP = $lastSundayApr.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayAprMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAprMinus14DaysSA = $lastSundayApr.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayAprMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAprMinus14DaysSP = $lastSundayApr.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayAprMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAprMinus18DaysWP = $lastSundayApr.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayAprMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAprMinus21DaysSA = $lastSundayApr.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayAprMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAprMinus21DaysSP = $lastSundayApr.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayAprMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAprMinus25DaysWP = $lastSundayApr.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayAprMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAprMinus28DaysSA = $lastSundayApr.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayAprMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAprMinus28DaysSP = $lastSundayApr.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayAprMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationMay -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayMay # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayMayTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMayTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayMayMinus04DaysWP = $lastSundayMay.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayMayMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMayMinus07DaysSA = $lastSundayMay.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayMayMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMayMinus07DaysSP = $lastSundayMay.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayMayMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMayMinus11DaysWP = $lastSundayMay.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayMayMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMayMinus14DaysSA = $lastSundayMay.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayMayMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMayMinus14DaysSP = $lastSundayMay.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayMayMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMayMinus18DaysWP = $lastSundayMay.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayMayMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMayMinus21DaysSA = $lastSundayMay.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayMayMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMayMinus21DaysSP = $lastSundayMay.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayMayMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMayMinus25DaysWP = $lastSundayMay.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayMayMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMayMinus28DaysSA = $lastSundayMay.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayMayMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMayMinus28DaysSP = $lastSundayMay.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayMayMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationJun -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayJun # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayJunTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJunTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayJunMinus04DaysWP = $lastSundayJun.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayJunMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJunMinus07DaysSA = $lastSundayJun.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayJunMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJunMinus07DaysSP = $lastSundayJun.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayJunMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJunMinus11DaysWP = $lastSundayJun.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayJunMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJunMinus14DaysSA = $lastSundayJun.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayJunMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJunMinus14DaysSP = $lastSundayJun.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayJunMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJunMinus18DaysWP = $lastSundayJun.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayJunMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJunMinus21DaysSA = $lastSundayJun.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayJunMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJunMinus21DaysSP = $lastSundayJun.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayJunMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJunMinus25DaysWP = $lastSundayJun.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayJunMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJunMinus28DaysSA = $lastSundayJun.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayJunMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJunMinus28DaysSP = $lastSundayJun.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayJunMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationJul -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayJul # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayJulTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJulTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayJulMinus04DaysWP = $lastSundayJul.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayJulMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJulMinus07DaysSA = $lastSundayJul.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayJulMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJulMinus07DaysSP = $lastSundayJul.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayJulMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJulMinus11DaysWP = $lastSundayJul.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayJulMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJulMinus14DaysSA = $lastSundayJul.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayJulMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJulMinus14DaysSP = $lastSundayJul.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayJulMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJulMinus18DaysWP = $lastSundayJul.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayJulMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJulMinus21DaysSA = $lastSundayJul.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayJulMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJulMinus21DaysSP = $lastSundayJul.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayJulMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJulMinus25DaysWP = $lastSundayJul.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayJulMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJulMinus28DaysSA = $lastSundayJul.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayJulMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJulMinus28DaysSP = $lastSundayJul.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayJulMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationAug -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayAug # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayAugTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAugTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayAugMinus04DaysWP = $lastSundayAug.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayAugMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAugMinus07DaysSA = $lastSundayAug.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayAugMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAugMinus07DaysSP = $lastSundayAug.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayAugMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAugMinus11DaysWP = $lastSundayAug.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayAugMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAugMinus14DaysSA = $lastSundayAug.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayAugMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAugMinus14DaysSP = $lastSundayAug.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayAugMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAugMinus18DaysWP = $lastSundayAug.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayAugMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAugMinus21DaysSA = $lastSundayAug.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayAugMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAugMinus21DaysSP = $lastSundayAug.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayAugMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAugMinus25DaysWP = $lastSundayAug.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayAugMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAugMinus28DaysSA = $lastSundayAug.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayAugMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayAugMinus28DaysSP = $lastSundayAug.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayAugMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationSep -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundaySep # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundaySepTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundaySepTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundaySepMinus04DaysWP = $lastSundaySep.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundaySepMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundaySepMinus07DaysSA = $lastSundaySep.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundaySepMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundaySepMinus07DaysSP = $lastSundaySep.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundaySepMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundaySepMinus11DaysWP = $lastSundaySep.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundaySepMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundaySepMinus14DaysSA = $lastSundaySep.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundaySepMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundaySepMinus14DaysSP = $lastSundaySep.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundaySepMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundaySepMinus18DaysWP = $lastSundaySep.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundaySepMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundaySepMinus21DaysSA = $lastSundaySep.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundaySepMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundaySepMinus21DaysSP = $lastSundaySep.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundaySepMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundaySepMinus25DaysWP = $lastSundaySep.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundaySepMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundaySepMinus28DaysSA = $lastSundaySep.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundaySepMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundaySepMinus28DaysSP = $lastSundaySep.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundaySepMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationOct -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayOct # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayOctTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayOctTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayOctMinus04DaysWP = $lastSundayOct.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayOctMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayOctMinus07DaysSA = $lastSundayOct.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayOctMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayOctMinus07DaysSP = $lastSundayOct.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayOctMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayOctMinus11DaysWP = $lastSundayOct.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayOctMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayOctMinus14DaysSA = $lastSundayOct.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayOctMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayOctMinus14DaysSP = $lastSundayOct.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayOctMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayOctMinus18DaysWP = $lastSundayOct.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayOctMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayOctMinus21DaysSA = $lastSundayOct.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayOctMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayOctMinus21DaysSP = $lastSundayOct.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayOctMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayOctMinus25DaysWP = $lastSundayOct.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayOctMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayOctMinus28DaysSA = $lastSundayOct.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayOctMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayOctMinus28DaysSP = $lastSundayOct.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayOctMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationNov -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayNov # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
+	$lastSundayNovTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayNovTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
 	$lastSundayNovMinus04DaysWP = $lastSundayNov.AddDays(-4) # Can signup for next event. This is a Wednesday.
+	$lastSundayNovMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayNovMinus07DaysSA = $lastSundayNov.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayNovMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayNovMinus07DaysSP = $lastSundayNov.AddDays(-7) # Can signup for next event. This is a Sunday.
+	$lastSundayNovMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayNovMinus11DaysWP = $lastSundayNov.AddDays(-11) # Can signup for next event. This is a Wednesday.
+	$lastSundayNovMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
 	$lastSundayNovMinus14DaysSA = $lastSundayNov.AddDays(-14) # Can signup for next event. This is a Sunday morning.
+	$lastSundayNovMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayNovMinus14DaysSP = $lastSundayNov.AddDays(-14) # Can signup for current event. This is a Sunday evening. You may end up deleting this line.
+	$lastSundayNovMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayNovMinus18DaysWP = $lastSundayNov.AddDays(-18) # Can signup for current event. This is a Wednesday.
+	$lastSundayNovMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayNovMinus21DaysSA = $lastSundayNov.AddDays(-21) # Can signup for current event. This is a Sunday morning.
+	$lastSundayNovMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayNovMinus21DaysSP = $lastSundayNov.AddDays(-21) # Can signup for current event. This is a Sunday evening.
+	$lastSundayNovMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayNovMinus25DaysWP = $lastSundayNov.AddDays(-25) # Can signup for current event. This is a Wednesday.
+	$lastSundayNovMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
+	$lastSundayNovMinus28DaysSA = $lastSundayNov.AddDays(-28) # Can signup for current event. This is a Sunday morning.
+	$lastSundayNovMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayNovMinus28DaysSP = $lastSundayNov.AddDays(-28) # Can signup for current event. This is a Sunday evening.
+	$lastSundayNovMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
 if ($SingspirationDec -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
