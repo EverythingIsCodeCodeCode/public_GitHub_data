@@ -2329,6 +2329,112 @@ if ($SingspirationJan -eq 1) {
 	# At the start of each month loop, check the remaining months in the year being calculated & next year to see if Singspiration is taking place.
 	# Stop looking when you find the next month that has Singspiration and do math off of that.
 	
+	# If any of these = 1 then Singspiration is taking place in that month.
+
+	$SingspirationMonths = @(
+    $SingspirationFeb,
+    $SingspirationMar,
+    $SingspirationApr,
+    $SingspirationMay,
+    $SingspirationJun,
+    $SingspirationJul,
+    $SingspirationAug,
+    $SingspirationSep,
+    $SingspirationOct,
+    $SingspirationNov,
+    $SingspirationDec,
+    $SingspirationJanYearAfter,
+    $SingspirationFebYearAfter,
+    $SingspirationMarYearAfter,
+    $SingspirationAprYearAfter,
+    $SingspirationMayYearAfter,
+    $SingspirationJunYearAfter,
+    $SingspirationJulYearAfter,
+    $SingspirationAugYearAfter,
+    $SingspirationSepYearAfter,
+    $SingspirationOctYearAfter,
+    $SingspirationNovYearAfter,
+    $SingspirationDecYearAfter
+	)
+
+	$SingspirationMonthNames = @(
+    "SingspirationFeb", "SingspirationMar", "SingspirationApr", "SingspirationMay", "SingspirationJun", "SingspirationJul", "SingspirationAug", "SingspirationSep", "SingspirationOct", "SingspirationNov", "SingspirationDec",
+    "SingspirationJanYearAfter", "SingspirationFebYearAfter", "SingspirationMarYearAfter", "SingspirationAprYearAfter", "SingspirationMayYearAfter", "SingspirationJunYearAfter",
+    "SingspirationJulYearAfter", "SingspirationAugYearAfter", "SingspirationSepYearAfter", "SingspirationOctYearAfter", "SingspirationNovYearAfter", "SingspirationDecYearAfter"
+	)
+
+	$found = $false
+	$stoppedOn = ""
+	for ($i = 0; $i -lt $SingspirationMonths.Count; $i++) {
+    if ($SingspirationMonths[$i] -eq 1) {
+        $found = $true
+        $stoppedOn = $SingspirationMonthNames[$i]
+        break
+    }
+	}
+
+	if ($found) {
+    # Write-Host "A Singspiration is scheduled in $stoppedOn."
+	$stoppedOn # This contains the string of the variable that will have the next Singspiration.
+	} else {
+    Write-Host "No Singspiration is scheduled in the checked months."
+	}
+
+	# Now you need to get the date of the next Singspiration based on the contents of $stoppedOn.
+	If ($stoppedOn -eq "SingspirationFeb") {
+		$nextSingspiration = $lastSundayFeb
+	} elseif ($stoppedOn -eq "SingspirationMar") {
+		$nextSingspiration = $lastSundayMar
+	} elseif ($stoppedOn -eq "SingspirationApr") {
+		$nextSingspiration = $lastSundayApr
+	} elseif ($stoppedOn -eq "SingspirationMay") {
+		$nextSingspiration = $lastSundayMay
+	} elseif ($stoppedOn -eq "SingspirationJun") {
+		$nextSingspiration = $lastSundayJun
+	} elseif ($stoppedOn -eq "SingspirationJul") {
+		$nextSingspiration = $lastSundayJul
+	} elseif ($stoppedOn -eq "SingspirationAug") {
+		$nextSingspiration = $lastSundayAug
+	} elseif ($stoppedOn -eq "SingspirationSep") {
+		$nextSingspiration = $lastSundaySep
+	} elseif ($stoppedOn -eq "SingspirationOct") {
+		$nextSingspiration = $lastSundayOct
+	} elseif ($stoppedOn -eq "SingspirationNov") {
+		$nextSingspiration = $lastSundayNov
+	} elseif ($stoppedOn -eq "SingspirationDec") {
+		$nextSingspiration = $lastSundayDec
+	} elseif ($stoppedOn -eq "SingspirationJanYearAfter") {
+		$nextSingspiration = $lastSundayJanYearAfter
+	} elseif ($stoppedOn -eq "SingspirationFebYearAfter") {
+		$nextSingspiration = $lastSundayFebYearAfter
+	} elseif ($stoppedOn -eq "SingspirationMarYearAfter") {
+		$nextSingspiration = $lastSundayMarYearAfter
+	} elseif ($stoppedOn -eq "SingspirationAprYearAfter") {
+		$nextSingspiration = $lastSundayAprYearAfter
+	} elseif ($stoppedOn -eq "SingspirationMayYearAfter") {
+		$nextSingspiration = $lastSundayMayYearAfter
+	} elseif ($stoppedOn -eq "SingspirationJunYearAfter") {
+		$nextSingspiration = $lastSundayJunYearAfter
+	} elseif ($stoppedOn -eq "SingspirationJulYearAfter") {
+		$nextSingspiration = $lastSundayJulYearAfter
+	} elseif ($stoppedOn -eq "SingspirationAugYearAfter") {
+		$nextSingspiration = $lastSundayAugYearAfter
+	} elseif ($stoppedOn -eq "SingspirationSepYearAfter") {
+		$nextSingspiration = $lastSundaySepYearAfter
+	} elseif ($stoppedOn -eq "SingspirationOctYearAfter") {
+		$nextSingspiration = $lastSundayOctYearAfter
+	} elseif ($stoppedOn -eq "SingspirationNovYearAfter") {
+		$nextSingspiration = $lastSundayNovYearAfter
+	} elseif ($stoppedOn -eq "SingspirationDecYearAfter") {
+		$nextSingspiration = $lastSundayDecYearAfter
+	} else {
+		Write-Host "No Singspiration scheduled in the next year."
+		return # Exit if no Singspiration is found.
+	}
+
+	# $nextSingspiration is the next one after this month.
+	# You should be able to count or subtract the number of weeks to or from the $nextSingspiration date object from the month you're currently working on (date object) to get how many weeks away it is.
+
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayJan # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
 	$lastSundayJanTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
