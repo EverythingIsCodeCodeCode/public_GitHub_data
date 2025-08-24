@@ -2437,21 +2437,22 @@ if ($SingspirationJan -eq 1) {
 
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayJan # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
-	$lastSundayJanTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
-	$lastSundayJanMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayJanMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayJanTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $nextSingspiration (08-August)."
+	$lastSundayJanTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $nextSingspiration(08-August)."
+	$lastSundayJanMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayJanMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
 }
+
 if ($SingspirationFeb -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayFeb # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2470,6 +2471,7 @@ if ($SingspirationFeb -eq 1) {
 	$lastSundayFebMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayFebMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationMar -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayMar # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2488,6 +2490,7 @@ if ($SingspirationMar -eq 1) {
 	$lastSundayMarMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMarMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationApr -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayApr # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2506,6 +2509,7 @@ if ($SingspirationApr -eq 1) {
 	$lastSundayAprMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAprMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationMay -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayMay # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2524,6 +2528,7 @@ if ($SingspirationMay -eq 1) {
 	$lastSundayMayMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayMayMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationJun -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayJun # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2542,6 +2547,7 @@ if ($SingspirationJun -eq 1) {
 	$lastSundayJunMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJunMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationJul -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayJul # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2560,6 +2566,7 @@ if ($SingspirationJul -eq 1) {
 	$lastSundayJulMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayJulMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationAug -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayAug # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2578,6 +2585,7 @@ if ($SingspirationAug -eq 1) {
 	$lastSundayAugMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayAugMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationSep -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundaySep # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2596,6 +2604,7 @@ if ($SingspirationSep -eq 1) {
 	$lastSundaySepMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundaySepMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationOct -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayOct # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2614,6 +2623,7 @@ if ($SingspirationOct -eq 1) {
 	$lastSundayOctMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayOctMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationNov -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayNov # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
@@ -2632,6 +2642,7 @@ if ($SingspirationNov -eq 1) {
 	$lastSundayNovMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 	$lastSundayNovMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
 }
+
 if ($SingspirationDec -eq 1) {
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayDec # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
