@@ -2454,41 +2454,237 @@ if ($SingspirationJan -eq 1) {
 }
 
 if ($SingspirationFeb -eq 1) {
+	$SingspirationMonths = @(
+    $SingspirationMar,
+    $SingspirationApr,
+    $SingspirationMay,
+    $SingspirationJun,
+    $SingspirationJul,
+    $SingspirationAug,
+    $SingspirationSep,
+    $SingspirationOct,
+    $SingspirationNov,
+    $SingspirationDec,
+    $SingspirationJanYearAfter,
+    $SingspirationFebYearAfter,
+    $SingspirationMarYearAfter,
+    $SingspirationAprYearAfter,
+    $SingspirationMayYearAfter,
+    $SingspirationJunYearAfter,
+    $SingspirationJulYearAfter,
+    $SingspirationAugYearAfter,
+    $SingspirationSepYearAfter,
+    $SingspirationOctYearAfter,
+    $SingspirationNovYearAfter,
+    $SingspirationDecYearAfter
+	)
+
+	$SingspirationMonthNames = @(
+    "SingspirationMar", "SingspirationApr", "SingspirationMay", "SingspirationJun", "SingspirationJul", "SingspirationAug", "SingspirationSep", "SingspirationOct", "SingspirationNov", "SingspirationDec",
+    "SingspirationJanYearAfter", "SingspirationFebYearAfter", "SingspirationMarYearAfter", "SingspirationAprYearAfter", "SingspirationMayYearAfter", "SingspirationJunYearAfter",
+    "SingspirationJulYearAfter", "SingspirationAugYearAfter", "SingspirationSepYearAfter", "SingspirationOctYearAfter", "SingspirationNovYearAfter", "SingspirationDecYearAfter"
+	)
+
+	$found = $false
+	$stoppedOn = ""
+	for ($i = 0; $i -lt $SingspirationMonths.Count; $i++) {
+    if ($SingspirationMonths[$i] -eq 1) {
+        $found = $true
+        $stoppedOn = $SingspirationMonthNames[$i]
+        break
+    }
+	}
+
+	if ($found) {
+    # Write-Host "A Singspiration is scheduled in $stoppedOn."
+	$stoppedOn # This contains the string of the variable that will have the next Singspiration.
+	} else {
+    Write-Host "No Singspiration is scheduled in the checked months."
+	}
+
+	# Now you need to get the date of the next Singspiration based on the contents of $stoppedOn.
+	If ($stoppedOn -eq "SingspirationMar") {
+		$nextSingspiration = $lastSundayMar
+	} elseif ($stoppedOn -eq "SingspirationApr") {
+		$nextSingspiration = $lastSundayApr
+	} elseif ($stoppedOn -eq "SingspirationMay") {
+		$nextSingspiration = $lastSundayMay
+	} elseif ($stoppedOn -eq "SingspirationJun") {
+		$nextSingspiration = $lastSundayJun
+	} elseif ($stoppedOn -eq "SingspirationJul") {
+		$nextSingspiration = $lastSundayJul
+	} elseif ($stoppedOn -eq "SingspirationAug") {
+		$nextSingspiration = $lastSundayAug
+	} elseif ($stoppedOn -eq "SingspirationSep") {
+		$nextSingspiration = $lastSundaySep
+	} elseif ($stoppedOn -eq "SingspirationOct") {
+		$nextSingspiration = $lastSundayOct
+	} elseif ($stoppedOn -eq "SingspirationNov") {
+		$nextSingspiration = $lastSundayNov
+	} elseif ($stoppedOn -eq "SingspirationDec") {
+		$nextSingspiration = $lastSundayDec
+	} elseif ($stoppedOn -eq "SingspirationJanYearAfter") {
+		$nextSingspiration = $lastSundayJanYearAfter
+	} elseif ($stoppedOn -eq "SingspirationFebYearAfter") {
+		$nextSingspiration = $lastSundayFebYearAfter
+	} elseif ($stoppedOn -eq "SingspirationMarYearAfter") {
+		$nextSingspiration = $lastSundayMarYearAfter
+	} elseif ($stoppedOn -eq "SingspirationAprYearAfter") {
+		$nextSingspiration = $lastSundayAprYearAfter
+	} elseif ($stoppedOn -eq "SingspirationMayYearAfter") {
+		$nextSingspiration = $lastSundayMayYearAfter
+	} elseif ($stoppedOn -eq "SingspirationJunYearAfter") {
+		$nextSingspiration = $lastSundayJunYearAfter
+	} elseif ($stoppedOn -eq "SingspirationJulYearAfter") {
+		$nextSingspiration = $lastSundayJulYearAfter
+	} elseif ($stoppedOn -eq "SingspirationAugYearAfter") {
+		$nextSingspiration = $lastSundayAugYearAfter
+	} elseif ($stoppedOn -eq "SingspirationSepYearAfter") {
+		$nextSingspiration = $lastSundaySepYearAfter
+	} elseif ($stoppedOn -eq "SingspirationOctYearAfter") {
+		$nextSingspiration = $lastSundayOctYearAfter
+	} elseif ($stoppedOn -eq "SingspirationNovYearAfter") {
+		$nextSingspiration = $lastSundayNovYearAfter
+	} elseif ($stoppedOn -eq "SingspirationDecYearAfter") {
+		$nextSingspiration = $lastSundayDecYearAfter
+	} else {
+		Write-Host "No Singspiration scheduled in the next year."
+		return # Exit if no Singspiration is found.
+	}
+
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayFeb # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
-	$lastSundayFebTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
-	$lastSundayFebMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayFebMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayFebTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $nextSingspiration(08-August)."
+	$lastSundayFebMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayFebMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
 }
 
 if ($SingspirationMar -eq 1) {
+	$SingspirationMonths = @(
+    $SingspirationApr,
+    $SingspirationMay,
+    $SingspirationJun,
+    $SingspirationJul,
+    $SingspirationAug,
+    $SingspirationSep,
+    $SingspirationOct,
+    $SingspirationNov,
+    $SingspirationDec,
+    $SingspirationJanYearAfter,
+    $SingspirationFebYearAfter,
+    $SingspirationMarYearAfter,
+    $SingspirationAprYearAfter,
+    $SingspirationMayYearAfter,
+    $SingspirationJunYearAfter,
+    $SingspirationJulYearAfter,
+    $SingspirationAugYearAfter,
+    $SingspirationSepYearAfter,
+    $SingspirationOctYearAfter,
+    $SingspirationNovYearAfter,
+    $SingspirationDecYearAfter
+	)
+
+	$SingspirationMonthNames = @(
+    "SingspirationApr", "SingspirationMay", "SingspirationJun", "SingspirationJul", "SingspirationAug", "SingspirationSep", "SingspirationOct", "SingspirationNov", "SingspirationDec",
+    "SingspirationJanYearAfter", "SingspirationFebYearAfter", "SingspirationMarYearAfter", "SingspirationAprYearAfter", "SingspirationMayYearAfter", "SingspirationJunYearAfter",
+    "SingspirationJulYearAfter", "SingspirationAugYearAfter", "SingspirationSepYearAfter", "SingspirationOctYearAfter", "SingspirationNovYearAfter", "SingspirationDecYearAfter"
+	)
+
+	$found = $false
+	$stoppedOn = ""
+	for ($i = 0; $i -lt $SingspirationMonths.Count; $i++) {
+    if ($SingspirationMonths[$i] -eq 1) {
+        $found = $true
+        $stoppedOn = $SingspirationMonthNames[$i]
+        break
+    }
+	}
+
+	if ($found) {
+    # Write-Host "A Singspiration is scheduled in $stoppedOn."
+	$stoppedOn # This contains the string of the variable that will have the next Singspiration.
+	} else {
+    Write-Host "No Singspiration is scheduled in the checked months."
+	}
+
+	# Now you need to get the date of the next Singspiration based on the contents of $stoppedOn.
+	If ($stoppedOn -eq "SingspirationApr") {
+		$nextSingspiration = $lastSundayApr
+	} elseif ($stoppedOn -eq "SingspirationMay") {
+		$nextSingspiration = $lastSundayMay
+	} elseif ($stoppedOn -eq "SingspirationJun") {
+		$nextSingspiration = $lastSundayJun
+	} elseif ($stoppedOn -eq "SingspirationJul") {
+		$nextSingspiration = $lastSundayJul
+	} elseif ($stoppedOn -eq "SingspirationAug") {
+		$nextSingspiration = $lastSundayAug
+	} elseif ($stoppedOn -eq "SingspirationSep") {
+		$nextSingspiration = $lastSundaySep
+	} elseif ($stoppedOn -eq "SingspirationOct") {
+		$nextSingspiration = $lastSundayOct
+	} elseif ($stoppedOn -eq "SingspirationNov") {
+		$nextSingspiration = $lastSundayNov
+	} elseif ($stoppedOn -eq "SingspirationDec") {
+		$nextSingspiration = $lastSundayDec
+	} elseif ($stoppedOn -eq "SingspirationJanYearAfter") {
+		$nextSingspiration = $lastSundayJanYearAfter
+	} elseif ($stoppedOn -eq "SingspirationFebYearAfter") {
+		$nextSingspiration = $lastSundayFebYearAfter
+	} elseif ($stoppedOn -eq "SingspirationMarYearAfter") {
+		$nextSingspiration = $lastSundayMarYearAfter
+	} elseif ($stoppedOn -eq "SingspirationAprYearAfter") {
+		$nextSingspiration = $lastSundayAprYearAfter
+	} elseif ($stoppedOn -eq "SingspirationMayYearAfter") {
+		$nextSingspiration = $lastSundayMayYearAfter
+	} elseif ($stoppedOn -eq "SingspirationJunYearAfter") {
+		$nextSingspiration = $lastSundayJunYearAfter
+	} elseif ($stoppedOn -eq "SingspirationJulYearAfter") {
+		$nextSingspiration = $lastSundayJulYearAfter
+	} elseif ($stoppedOn -eq "SingspirationAugYearAfter") {
+		$nextSingspiration = $lastSundayAugYearAfter
+	} elseif ($stoppedOn -eq "SingspirationSepYearAfter") {
+		$nextSingspiration = $lastSundaySepYearAfter
+	} elseif ($stoppedOn -eq "SingspirationOctYearAfter") {
+		$nextSingspiration = $lastSundayOctYearAfter
+	} elseif ($stoppedOn -eq "SingspirationNovYearAfter") {
+		$nextSingspiration = $lastSundayNovYearAfter
+	} elseif ($stoppedOn -eq "SingspirationDecYearAfter") {
+		$nextSingspiration = $lastSundayDecYearAfter
+	} else {
+		Write-Host "No Singspiration scheduled in the next year."
+		return # Exit if no Singspiration is found.
+		}
+
+	#Format DateTime object for use in text:
+	$nextSingspiration = $nextSingspiration.ToString("MM-MMMM")
+
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayMar # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
-	$lastSundayMarTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $Y(08-August)."
-	$lastSundayMarMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
-	$lastSundayMarMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $Y(08-August)."
+	$lastSundayMarTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $nextSingspiration."
+	$lastSundayMarTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $nextSingspiration(08-August)."
+	$lastSundayMarMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
 }
 
 if ($SingspirationApr -eq 1) {
