@@ -1396,21 +1396,24 @@ if ($NumberOfSundaysInAug -le 4) {
 	$SingspirationAug = 0 # The number of Sundays in August in the future year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInAug -ge 5) {
-	$SingspirationAug = 1 # The number of Sundays in August in the future year is 5 or more so we'll have Singspiration this month.
+	# $SingspirationAug = 1 # The number of Sundays in August in the future year is 5 or more so we'll have Singspiration this month.
+	$SingspirationAug = 0 # Ok, we're currently going to skip Singspiration in August because we're normally spending time with our other families during the Sunday night before Labor Day.
 }
 
 if ($NumberOfSundaysInAugPreviousYear -le 4) {
 	$SingspirationAugPreviousYear = 0 # The number of Sundays in August in the Previous Year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInAugPreviousYear -ge 5) {
-	$SingspirationAugPreviousYear = 1 # The number of Sundays in August in the Previous Year is 5 or more so we'll have Singspiration this month.
+	# $SingspirationAugPreviousYear = 1 # The number of Sundays in August in the Previous Year is 5 or more so we'll have Singspiration this month.
+	$SingspirationAugPreviousYear = 0 # Ok, we're currently going to skip Singspiration in August because we're normally spending time with our other families during the Sunday night before Labor Day.
 }
 
 if ($NumberOfSundaysInAugYearAfter -le 4) {
 	$SingspirationAugYearAfter = 0 # The number of Sundays in August in the Year After is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInAugYearAfter -ge 5) {
-	$SingspirationAugYearAfter = 1 # The number of Sundays in August in the Year After is 5 or more so we'll have Singspiration this month.
+	# $SingspirationAugYearAfter = 1 # The number of Sundays in August in the Year After is 5 or more so we'll have Singspiration this month.
+	$SingspirationAugYearAfter = 0 # Ok, we're currently going to skip Singspiration in August because we're normally spending time with our other families during the Sunday night before Labor Day.
 }
 
 if ($NumberOfSundaysInSep -le 4) {
