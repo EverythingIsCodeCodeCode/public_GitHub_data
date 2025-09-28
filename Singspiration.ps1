@@ -2670,24 +2670,28 @@ if ($SingspirationMar -eq 1) {
 		}
 
 	#Format DateTime object for use in text:
-	$nextSingspiration = $nextSingspiration.ToString("MM-MMMM")
+	$nextSingspirationString = $nextSingspiration.ToString("MM-MMMM")
+
+	# Ok, just for sake of example, you know you're currently in 2026-03-March & you know the next Singspiration is in 2026-05-May.
+	# Now, using DateTime objects ($nextSingspiration), count the number of Sundays until the next Singspiration (pre-existing variable?). Look around this script for possible code.
+	# Also, using DateTime objects ($nextSingspiration), count the number of Wednesdays until the next Singspiration (pre-existing variable?). Look around this script for possible code.
 
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayMar # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
-	$lastSundayMarTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $nextSingspiration."
-	$lastSundayMarTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $nextSingspiration(08-August)."
-	$lastSundayMarMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
-	$lastSundayMarMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspiration(08-August)."
+	$lastSundayMarTextSA = "It's too late to sign up for the upcoming Singspiration. $X(7) Sundays left to sign up for the next one in $nextSingspirationString."
+	$lastSundayMarTextSP = "It's too late to sign up for tonight's Singspiration. $X(7) Sundays left to sign up for Singspiration in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(7) Wednesdays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Sundays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $X(8) Wednesdays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $X(9) Sundays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $X(10) Wednesdays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $X(10) Sundays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $X(11) Wednesdays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspirationString(08-August)."
+	$lastSundayMarMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $X(11) Sundays left to sign up for the next one in $nextSingspirationString(08-August)."
 }
 
 if ($SingspirationApr -eq 1) {
