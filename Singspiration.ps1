@@ -2675,6 +2675,18 @@ if ($SingspirationMar -eq 1) {
 	# Ok, just for sake of example, you know you're currently in 2026-03-March & you know the next Singspiration is in 2026-05-May.
 	# Now, using DateTime objects ($nextSingspiration), count the number of Sundays until the next Singspiration (pre-existing variable?). Look around this script for possible code.
 	# Also, using DateTime objects ($nextSingspiration), count the number of Wednesdays until the next Singspiration (pre-existing variable?). Look around this script for possible code.
+	# Ok, if these = 1 (for each month) then you'll have Singspiration that month.
+	# You'll need to check when the next one is & count the number of Sundays/Wednesdays until the next one then subtract for the lead time.
+	# $SingspirationJan
+	# $SingspirationJanPreviousYear
+	# $SingspirationJanYearAfter
+	# This is how many Sundays & Wednesdays are in each month (modify month names):
+	# $NumberOfSundaysInDec
+	# $NumberOfWednesdaysInDec
+	# $NumberOfSundaysInDecPreviousYear
+	# $NumberOfWednesdaysInDecPreviousYear
+	# $NumberOfSundaysInDecYearAfter
+	# $NumberOfWednesdaysInDecYearAfter
 
 	#Calculate the 7 previous church service dates/times for Singspiration (see above).
 	$lastSundayMar # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
