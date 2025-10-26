@@ -2672,6 +2672,11 @@ if ($SingspirationMar -eq 1) {
 	#Format DateTime object for use in text:
 	$nextSingspirationString = $nextSingspiration.ToString("MM-MMMM")
 
+	$lastSundayMar # Current Singspiration (you're in March) DateTime object.
+	$nextSingspiration # Next Singspiration DateTime object.
+	# Do math to find the number of Sundays & Wednesdays between these 2 dates.
+	# Ask AI how to count the number of Sundays & Wednesdays between 2 DateTime objects in PowerShell.
+	
 	# Ok, just for sake of example, you know you're currently in 2026-03-March & you know the next Singspiration is in 2026-05-May.
 	# Now, using DateTime objects ($nextSingspiration), count the number of Sundays until the next Singspiration (pre-existing variable?). Look around this script for possible code.
 	# Also, using DateTime objects ($nextSingspiration), count the number of Wednesdays until the next Singspiration (pre-existing variable?). Look around this script for possible code.
