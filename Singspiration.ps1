@@ -2672,11 +2672,54 @@ if ($SingspirationMar -eq 1) {
 	#Format DateTime object for use in text:
 	$nextSingspirationString = $nextSingspiration.ToString("MM-MMMM")
 
-	$lastSundayMar # Current Singspiration (you're in March) DateTime object.
-	$nextSingspiration # Next Singspiration DateTime object.
+	$lastSundayMar # Start. Current Singspiration (you're in March) DateTime object.
+	$nextSingspiration # End. Next Singspiration DateTime object.
 	# Do math to find the number of Sundays & Wednesdays between these 2 dates.
 	# Ask AI how to count the number of Sundays & Wednesdays between 2 DateTime objects in PowerShell.
-	
+
+
+	function Count-DayOfWeekBetween-function {
+    	param(
+        	[Parameter(Mandatory)][datetime]$Start,
+        	[Parameter(Mandatory)][datetime]$End,
+        	[Parameter(Mandatory)][System.DayOfWeek]$DayOfWeek
+    	)
+
+    	if ($Start -gt $End) { return 0 }
+
+    	# normalize to dates
+    	$s = $Start.Date
+    	$e = $End.Date
+		#$s = $s.AddDays(1) # Exclude start date
+		$e = $e.AddDays(-1) # Exclude end date
+
+    	# find first occurrence of $DayOfWeek on or after $s
+    	$daysUntil = ([int]$DayOfWeek - [int]$s.DayOfWeek + 7) % 7
+    	$first = $s.AddDays($daysUntil)
+
+    	if ($first -gt $e) { return 0 }
+
+    	$diff = ($e - $first).Days
+    	$count = 1 + [math]::Floor($diff / 7)
+    	return $count
+	}
+
+	# Example usage:
+	#$start = [datetime]"2026-03-01"
+	#$end   = [datetime]"2026-05-31"
+	$start = $lastSundayMar
+	$end   = $nextSingspiration
+
+	$sundays = Count-DayOfWeekBetween -Start $start -End $end -DayOfWeek ([DayOfWeek]::Sunday)
+	$weds    = Count-DayOfWeekBetween -Start $start -End $end -DayOfWeek ([DayOfWeek]::Wednesday)
+
+	Write-Output "Sundays: $sundays"
+	Write-Output "Wednesdays: $weds"
+	# $sundays this is showing the number of Sundays until the next Singspiration.
+	# $weds this is showing the number of Wednesdays until the next Singspiration.
+
+	# Now write a loop that will make the text for the number of Sundays & Wednesdays until the next Singspiration that you can later add to the spreadsheet.
+
 	# Ok, just for sake of example, you know you're currently in 2026-03-March & you know the next Singspiration is in 2026-05-May.
 	# Now, using DateTime objects ($nextSingspiration), count the number of Sundays until the next Singspiration (pre-existing variable?). Look around this script for possible code.
 	# Also, using DateTime objects ($nextSingspiration), count the number of Wednesdays until the next Singspiration (pre-existing variable?). Look around this script for possible code.
