@@ -69,8 +69,15 @@ $DefaultHolidays = @(
     "2025-11-27",  # Thanksgiving (4th Thursday of November)
     "2025-11-28",  # Day after Thanksgiving (often observed)
     "2025-12-25"   # Christmas
-)# Merge extra holidays passed on the command line
+)
 
+$ExtraHolidays = @(
+# Add any extra holidays here if desired just like above.
+"2025-11-26", # The day before Thanksgiving.
+"2025-12-24"  # Christmas Eve
+)
+
+# Merge extra holidays passed on the command line
 if ($ExtraHolidays) {
 	$DefaultHolidays += $ExtraHolidays
 }
