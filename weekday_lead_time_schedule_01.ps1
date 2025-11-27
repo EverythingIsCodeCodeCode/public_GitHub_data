@@ -55,11 +55,22 @@ function Parse-DateSafe {
 # Define default holidays here (edit as needed)
 # -------------------------
 $DefaultHolidays = @(
-	# Examples (year-agnostic; you can replace with date strings specific to the year):
-	# "2025-01-01", "2025-12-25"
-)
+    # US Federal Holidays (update year as needed)
+    "2025-01-01",  # New Year's Day
+    "2025-01-20",  # MLK Jr. Birthday
+    "2025-02-17",  # Presidents' Day
+    "2025-03-17",  # Memorial Day (adjusted; official is last Monday of May)
+    "2025-05-26",  # Memorial Day
+    "2025-06-19",  # Juneteenth
+    "2025-07-04",  # Independence Day
+    "2025-09-01",  # Labor Day
+    "2025-10-13",  # Columbus Day
+    "2025-11-11",  # Veterans Day
+    "2025-11-27",  # Thanksgiving (4th Thursday of November)
+    "2025-11-28",  # Day after Thanksgiving (often observed)
+    "2025-12-25"   # Christmas
+)# Merge extra holidays passed on the command line
 
-# Merge extra holidays passed on the command line
 if ($ExtraHolidays) {
 	$DefaultHolidays += $ExtraHolidays
 }
@@ -88,15 +99,21 @@ for ($d = $StartDate; $d -le $EndDate; $d = $d.AddDays(1)) {
 
 	$lead = $d.AddDays(14)
 
+	<#
 	if ($AdjustLeadToBusinessDay) {
 		while ($lead.DayOfWeek -eq 'Saturday' -or $lead.DayOfWeek -eq 'Sunday' -or ($HolidayDates -contains $lead.Date)) {
 			$lead = $lead.AddDays(1)
 		}
 	}
+	#>
+		# Always adjust lead date to avoid weekends and holidays
+	while ($lead.DayOfWeek -eq 'Saturday' -or $lead.DayOfWeek -eq 'Sunday' -or ($HolidayDates -contains $lead.Date)) {
+		$lead = $lead.AddDays(1)
+	}
 
 	$Rows.Add([PSCustomObject]@{
-		Date = $d.ToString('yyyy-MM-dd')
-		LeadDate = $lead.ToString('yyyy-MM-dd')
+		Date = $d.ToString('yyyy-MM-dd ddd.')
+		LeadDate = $lead.ToString('yyyy-MM-dd ddd.')
 	})
 }
 
