@@ -4602,4 +4602,35 @@ Write-Output "Wednesdays in December ${nextYear}: $($wednesdaysDec -join ', ')"
 
 
 
+<#
+This block of code dumps all script-scoped variables to text and CLIXML for later import.
+You can also look at the text file to see what variables exist and their values for debugging.
+
+# Dump script-scoped variables to human-readable text and CLIXML for later import.
+$dumpFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
+$txtPath = Join-Path $dumpFolder 'singspiration-variables.txt'
+$xmlPath = Join-Path $dumpFolder 'singspiration-variables.clixml'
+
+# Human readable text (handles collections)
+Get-Variable -Scope Script |
+  Sort-Object Name |
+  ForEach-Object {
+    $name = $_.Name
+    $val = $_.Value
+    if ($val -is [System.Collections.IEnumerable] -and -not ($val -is [string])) {
+      $text = ($val | ForEach-Object { ($_ | Out-String -Width 4096).Trim() }) -join " ; "
+    } else {
+      $text = ($val | Out-String -Width 4096).Trim()
+    }
+    "{0} = {1}" -f $name, ($text -replace "`r?`n", " | ")
+  } | Out-File -FilePath $txtPath -Encoding utf8
+
+# Full fidelity export (preserves DateTime, arrays, objects)
+Get-Variable -Scope Script | Select-Object Name,Value | Export-Clixml -Path $xmlPath
+
+Write-Host "Wrote variable dump to:`n  $txtPath`n  $xmlPath"
+#>
+
+
+
 
