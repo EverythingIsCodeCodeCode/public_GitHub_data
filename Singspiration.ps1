@@ -2881,20 +2881,20 @@ if ($SingspirationMar -eq 1) {
 	
 	#Calculate the 7 previous church service dates/times for Singspiration (see above). 14 variables.
 	$lastSundayMar # Event takes place. Can signup for next event. This is a Sunday. You probably will end up deleting this line.
-	$lastSundayMarTextSA = "It's too late to sign up for the upcoming Singspiration. $sundays (7) Sundays left to sign up for the next one in $nextSingspirationString."
-	$lastSundayMarTextSP = "It's too late to sign up for tonight's Singspiration. $sundays (7) Sundays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $wedsPlus1 (7) Wednesdays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $sundaysPlus1 (8) Sundays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $sundaysPlus1 (8) Sundays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $wedsPlus2 (8) Wednesdays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $sundaysPlus2 (9) Sundays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $sundaysPlus2 (9) Sundays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $wedsPlus3 (10) Wednesdays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $sundaysPlus3 (10) Sundays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $sundaysPlus3 (11) Sundays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $wedsPlus4 (11) Wednesdays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $sundaysPlus4 (11) Sundays left to sign up for the next one in $nextSingspirationString (08-August)."
-	$lastSundayMarMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $sundaysPlus4 (11) Sundays left to sign up for the next one in $nextSingspirationString (08-August)."
+	$lastSundayMarTextSA = "It's too late to sign up for the upcoming Singspiration. $sundays (_7_) Sundays left to sign up for the next one in $nextSingspirationString."
+	$lastSundayMarTextSP = "It's too late to sign up for tonight's Singspiration. $sundays (_7_) Sundays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus04DaysWPText = "It's too late to sign up for the upcoming Singspiration. $wedsPlus1 (_7_) Wednesdays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus07DaysSAText = "It's too late to sign up for the upcoming Singspiration. $sundaysPlus1 (_8_) Sundays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus07DaysSPText = "It's too late to sign up for the upcoming Singspiration. $sundaysPlus1 (_8_) Sundays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus11DaysWPText = "It's too late to sign up for the upcoming Singspiration. $wedsPlus2 (_8_) Wednesdays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus14DaysSAText = "It's too late to sign up for the upcoming Singspiration. $sundaysPlus2 (_9_) Sundays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus14DaysSPText = "It's too late to sign up for the upcoming Singspiration. $sundaysPlus2 (_9_) Sundays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus18DaysWPText = "Last Wednesday to sign up for Singspiration. $wedsPlus3 (_10_) Wednesdays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus21DaysSAText = "Last Sunday morning to sign up for Singspiration. $sundaysPlus3 (_10_) Sundays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus21DaysSPText = "Last Sunday evening to sign up for Singspiration. $sundaysPlus3 (_11_) Sundays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus25DaysWPText = "1 Wednesday left to sign up for Singspiration. $wedsPlus4 (_11_) Wednesdays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus28DaysSAText = "1 Sunday left to sign up for Singspiration. $sundaysPlus4 (_11_) Sundays left to sign up for the next one in $nextSingspirationString (_08-August_)."
+	$lastSundayMarMinus28DaysSPText = "1 Sunday left to sign up for Singspiration. $sundaysPlus4 (_11_) Sundays left to sign up for the next one in $nextSingspirationString (_08-August_)."
 }
 
 if ($SingspirationApr -eq 1) {
@@ -4603,8 +4603,8 @@ Write-Output "Wednesdays in December ${nextYear}: $($wednesdaysDec -join ', ')"
 
 
 <#
-This block of code dumps all script-scoped variables to text and CLIXML for later import.
-You can also look at the text file to see what variables exist and their values for debugging.
+# This block of code dumps all script-scoped variables to text and CLIXML for later import.
+# You can also look at the text file to see what variables exist and their values for debugging.
 
 # Dump script-scoped variables to human-readable text and CLIXML for later import.
 $dumpFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
