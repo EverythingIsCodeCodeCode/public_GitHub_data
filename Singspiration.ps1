@@ -4043,8 +4043,7 @@ if ($SingspirationNov -eq 1) {
 
 	# The next month is the first month on this list:
 	$SingspirationMonthNames = @(
-    "SingspirationDec",
-    "SingspirationJanYearAfter", "SingspirationFebYearAfter", "SingspirationMarYearAfter", "SingspirationAprYearAfter", "SingspirationMayYearAfter", "SingspirationJunYearAfter",
+    "SingspirationDec", "SingspirationJanYearAfter", "SingspirationFebYearAfter", "SingspirationMarYearAfter", "SingspirationAprYearAfter", "SingspirationMayYearAfter", "SingspirationJunYearAfter",
     "SingspirationJulYearAfter", "SingspirationAugYearAfter", "SingspirationSepYearAfter", "SingspirationOctYearAfter", "SingspirationNovYearAfter", "SingspirationDecYearAfter"
 	)
 
