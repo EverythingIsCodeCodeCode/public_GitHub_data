@@ -107,6 +107,7 @@ Function Get-DateOfEaster {
 	"$Easter"
 #>
 $CurrentYear = (Get-Date).Year
+#$CurrentYear = [DateTime]::Parse("2026-01-01").Year # You can set a static year if you need to.
 $FutureYear = $CurrentYear + 1 # This is the line where you set next year (+ 1), two years from now (+ 2), or whatever you need at the time.
 $PreviousYear = $FutureYear - 1 # This is the year before the year you are calculating.
 $YearAfter = $FutureYear + 1 # This is the year after the year you are calculating.
@@ -4494,7 +4495,7 @@ $daysOfYear = Get-AllDaysInYear -Year $FutureYear
 # The function below gets all Sundays and Wednesdays of each month next year; each one in its own variable.
 
 # Get the current year and calculate the next year
-$currentYear = (Get-Date).Year
+#$currentYear = (Get-Date).Year
 $nextYear = $currentYear + 1
 
 # Function to get all Sundays and Wednesdays of a given month and year
