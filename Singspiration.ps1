@@ -284,6 +284,54 @@ if ($SkipEasterSingspirationYearAfter -eq $EasterMonthSkipSingspirationYearAfter
 # You have now figured out if you can have Singspiration Easter month.
 # Easter can only be in March or April so you can remove the Easter-related code from the other months. Done.
 
+# Can you have Singspiration around Fall Festival in the future year?::
+# Get the number of days in October in the future year (October always has 31 days so this could probably be static).
+$octoberDays = [DateTime]::DaysInMonth($FutureYear, 10)
+
+# Get the number of days in October in the Previous Year (October always has 31 days so this could probably be static).
+$octoberDaysPreviousYear = [DateTime]::DaysInMonth($PreviousYear, 10)
+
+# Get the number of days in October in the Year After (October always has 31 days so this could probably be static).
+$octoberDaysYearAfter = [DateTime]::DaysInMonth($YearAfter, 10)
+
+# Find the day of the week of Fall Festival in the future year(October 31st):
+$fallFestivalDate = [DateTime]::new($FutureYear, 10, 31)
+
+# Find the day of the week of Fall Festival in the Previous Year (October 31st):
+$fallFestivalDatePreviousYear = [DateTime]::new($PreviousYear, 10, 31)
+
+# Find the day of the week of Fall Festival in the Year After (October 31st):
+$fallFestivalDateYearAfter = [DateTime]::new($YearAfter, 10, 31)
+
+# Is October 31st a Sunday in the future year?
+if ($fallFestivalDate.DayOfWeek -eq [DayOfWeek]::Sunday) {
+	# Write-Output "October 31st is a Sunday in $FutureYear, so skip Singspiration."
+	$YouCanHaveSingspirationFallFestivalMonth = 0 # October 31st is a Sunday in the future year, so skip Singspiration.
+} else {
+	# Write-Output "October 31st is not a Sunday in $FutureYear, so you can have Singspiration."
+	$YouCanHaveSingspirationFallFestivalMonth = 1 # October 31st is not a Sunday in the future year, so you can have Singspiration if there are 5 Sundays in the month.
+}
+
+# Is October 31st a Sunday in the Previous Year?
+if ($fallFestivalDatePreviousYear.DayOfWeek -eq [DayOfWeek]::Sunday) {
+	# Write-Output "October 31st is a Sunday in $PreviousYear, so skip Singspiration."
+	$YouCanHaveSingspirationFallFestivalMonthPreviousYear = 0 # October 31st is a Sunday in the Previous Year, so skip Singspiration.
+} else {
+	# Write-Output "October 31st is not a Sunday in $PreviousYear, so you can have Singspiration."
+	$YouCanHaveSingspirationFallFestivalMonthPreviousYear = 1 # October 31st is not a Sunday in the Previous Year, so you can have Singspiration if there are 5 Sundays in the month.
+}
+
+# Is October 31st a Sunday in the Year After?
+if ($fallFestivalDateYearAfter.DayOfWeek -eq [DayOfWeek]::Sunday) {
+	# Write-Output "October 31st is a Sunday in $YearAfter, so skip Singspiration."
+	$YouCanHaveSingspirationFallFestivalMonthYearAfter = 0 # October 31st is a Sunday in the Year After, so skip Singspiration.
+} else {
+	# Write-Output "October 31st is not a Sunday in $YearAfter, so you can have Singspiration."
+	$YouCanHaveSingspirationFallFestivalMonthYearAfter = 1 # October 31st is not a Sunday in the Year After, so you can have Singspiration if there are 5 Sundays in the month.
+}
+
+# You have now figured out if you can have Singspiration around Fall Festival in the future year.
+
 # Can you have Singspiration around Thanksgiving in the future year?::
 
 # Get the number of days in November in the future year
@@ -1443,6 +1491,14 @@ if ($NumberOfSundaysInOct -le 4) {
 }
 if ($NumberOfSundaysInOct -ge 5) {
 	$SingspirationOct = 1 # The number of Sundays in October in the future year is 5 or more so we'll have Singspiration this month.
+	if ($YouCanHaveSingspirationFallFestivalMonth = 0) {
+		if ($YouCanHaveSingspirationFallFestivalMonth -eq 0) {
+			$SingspirationOct = 0 # Skip Singspiration this month. Fall Festival is this month & it's on October 31st.
+		}
+		if ($YouCanHaveSingspirationFallFestivalMonth -eq 1) {
+			$SingspirationOct = 1 # Have Singspiration this month. Fall Festival is this month & it's not on October 31st.
+		}
+	}
 }
 
 if ($NumberOfSundaysInOctPreviousYear -le 4) {
@@ -1450,6 +1506,14 @@ if ($NumberOfSundaysInOctPreviousYear -le 4) {
 }
 if ($NumberOfSundaysInOctPreviousYear -ge 5) {
 	$SingspirationOctPreviousYear = 1 # The number of Sundays in October in the Previous Year is 5 or more so we'll have Singspiration this month.
+	if ($YouCanHaveSingspirationFallFestivalMonthPreviousYear = 0) {
+		if ($YouCanHaveSingspirationFallFestivalMonthPreviousYear -eq 0) {
+			$SingspirationOctPreviousYear = 0 # Skip Singspiration this month. Fall Festival is this month & it's on October 31st.
+		}
+		if ($YouCanHaveSingspirationFallFestivalMonthPreviousYear -eq 1) {
+			$SingspirationOctPreviousYear = 1 # Have Singspiration this month. Fall Festival is this month & it's not on October 31st.
+		}
+	}
 }
 
 if ($NumberOfSundaysInOctYearAfter -le 4) {
@@ -1457,6 +1521,14 @@ if ($NumberOfSundaysInOctYearAfter -le 4) {
 }
 if ($NumberOfSundaysInOctYearAfter -ge 5) {
 	$SingspirationOctYearAfter = 1 # The number of Sundays in October in the Year After is 5 or more so we'll have Singspiration this month.
+	if ($YouCanHaveSingspirationFallFestivalMonthYearAfter = 0) {
+		if ($YouCanHaveSingspirationFallFestivalMonthYearAfter -eq 0) {
+			$SingspirationOctYearAfter = 0 # Skip Singspiration this month. Fall Festival is this month & it's on October 31st.
+		}
+		if ($YouCanHaveSingspirationFallFestivalMonthYearAfter -eq 1) {
+			$SingspirationOctYearAfter = 1 # Have Singspiration this month. Fall Festival is this month & it's not on October 31st.
+		}
+	}
 }
 
 if ($NumberOfSundaysInNov -le 4) {
@@ -1464,29 +1536,26 @@ if ($NumberOfSundaysInNov -le 4) {
 }
 if ($NumberOfSundaysInNov -ge 5) {
 	$SingspirationNov = 1 # The number of Sundays in November in the future year is 5 or more so we'll have Singspiration this month.
-	if ($Nov.Month -eq $EasterMonthFutureYear) {
-		if ($YouCanHaveSingspirationThanksgivingMonth -eq 1) {
-			$SingspirationNov = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
-		}
-		if ($YouCanHaveSingspirationThanksgivingMonth -eq 0) {
+	if ($YouCanHaveSingspirationThanksgivingMonth -eq 0) {
 			$SingspirationNov = 0 # Skip Singspiration this month. Thanksgiving is this month & it's on the last Sunday.
 		}
-	}
+	if ($YouCanHaveSingspirationThanksgivingMonth -eq 1) {
+			$SingspirationNov = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
+		}
 }
+
 
 if ($NumberOfSundaysInNovPreviousYear -le 4) {
 	$SingspirationNovPreviousYear = 0 # The number of Sundays in November in the Previous Year is 4 or less so we won't have Singspiration this month.
 }
 if ($NumberOfSundaysInNovPreviousYear -ge 5) {
 	$SingspirationNovPreviousYear = 1 # The number of Sundays in November in the Previous Year is 5 or more so we'll have Singspiration this month.
-	if ($NovPreviousYear.Month -eq $EasterMonthPreviousYear) {
-		if ($YouCanHaveSingspirationThanksgivingMonthPreviousYear -eq 1) {
-			$SingspirationNovPreviousYear = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
-		}
-		if ($YouCanHaveSingspirationThanksgivingMonthPreviousYear -eq 0) {
+	if ($YouCanHaveSingspirationThanksgivingMonthPreviousYear -eq 0) {
 			$SingspirationNovPreviousYear = 0 # Skip Singspiration this month. Thanksgiving is this month & it's on the last Sunday.
 		}
-	}
+	if ($YouCanHaveSingspirationThanksgivingMonthPreviousYear -eq 1) {
+			$SingspirationNovPreviousYear = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
+		}
 }
 
 if ($NumberOfSundaysInNovYearAfter -le 4) {
@@ -1494,14 +1563,12 @@ if ($NumberOfSundaysInNovYearAfter -le 4) {
 }
 if ($NumberOfSundaysInNovYearAfter -ge 5) {
 	$SingspirationNovYearAfter = 1 # The number of Sundays in November in the Year After is 5 or more so we'll have Singspiration this month.
-	if ($NovYearAfter.Month -eq $EasterMonthYearAfter) {
-		if ($YouCanHaveSingspirationThanksgivingMonthYearAfter -eq 1) {
-			$SingspirationNovYearAfter = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
-		}
-		if ($YouCanHaveSingspirationThanksgivingMonthYearAfter -eq 0) {
+	if ($YouCanHaveSingspirationThanksgivingMonthYearAfter -eq 0) {
 			$SingspirationNovYearAfter = 0 # Skip Singspiration this month. Thanksgiving is this month & it's on the last Sunday.
 		}
-	}
+	if ($YouCanHaveSingspirationThanksgivingMonthYearAfter -eq 1) {
+			$SingspirationNovYearAfter = 1 # Have Singspiration this month. Thanksgiving is this month & it's not on the last Sunday.
+		}
 }
 
 if ($NumberOfSundaysInDec -le 4) {
