@@ -96,50 +96,18 @@ Function Get-DateOfEaster {
 	   [int]$intL = $intI - $intJ
 	   [int]$Month = 3 + [math]::floor((($intL + 40) / 44))
 	   [int]$Day = $intL + 28 - 31 * [math]::floor(($Month / 4))
-   $DateTime = New-Object DateTime $Year, $Month, ($Day), 0, 0, 0, ([DateTimeKind]::Utc)
-   return $DateTime
-}
+	   "$Year-0$Month-$Day ($Cal)"
+	   $DateTime = New-Object DateTime $Year, $Month, ($Day), 0, 0, 0, ([DateTimeKind]::Utc)
+	   Return $DateTime
+	}
+
+<#
+	" Examples:"
+	$Easter = Get-DateOfEaster 2025
+	"$Easter"
+	$Easter = Get-DateOfEaster 1590 1752
+	"$Easter"
 #>
-Function Count-DaysOfWeekInMonth {
-    param(
-        [int]$Year,
-        [int]$Month,
-        [System.DayOfWeek]$DayOfWeek
-    )
-    $count = 0
-    $days = [DateTime]::DaysInMonth($Year, $Month)
-    for ($d = 1; $d -le $days; $d++) {
-        if ([DateTime]::new($Year, $Month, $d).DayOfWeek -eq $DayOfWeek) { $count++ }
-    }
-    return $count
-}
-
-Function Get-LastWeekdayInMonth {
-    param(
-        [int]$Year,
-        [int]$Month,
-        [System.DayOfWeek]$DayOfWeek
-    )
-    $last = [DateTime]::new($Year, $Month, [DateTime]::DaysInMonth($Year, $Month))
-    while ($last.DayOfWeek -ne $DayOfWeek) { $last = $last.AddDays(-1) }
-    return $last
-}
-
-Function Get-FifthWeekdayInMonth {
-    param(
-        [int]$Year,
-        [int]$Month,
-        [System.DayOfWeek]$DayOfWeek
-    )
-    $found = @()
-    $days = [DateTime]::DaysInMonth($Year, $Month)
-    for ($d = 1; $d -le $days; $d++) {
-        $dt = [DateTime]::new($Year, $Month, $d)
-        if ($dt.DayOfWeek -eq $DayOfWeek) { $found += $dt }
-    }
-    if ($found.Count -ge 5) { return $found[4] } else { return $null }
-}
-
 $CurrentYear = (Get-Date).Year
 #$CurrentYear = [DateTime]::Parse("2026-01-01").Year # You can set a static year if you need to.
 $FutureYear = $CurrentYear + 1 # This is the line where you set next year (+ 1), two years from now (+ 2), or whatever you need at the time.
@@ -150,43 +118,56 @@ $EasterDateFutureYear = Get-DateOfEaster $FutureYear
 $EasterDatePreviousYear = Get-DateOfEaster $PreviousYear
 $EasterDateYearAfter = Get-DateOfEaster $YearAfter
 
-# Use DateTime properties (no fragile string parsing)
-$EasterYearFutureYear = $EasterDateFutureYear.Year
-$EasterMonthFutureYear = $EasterDateFutureYear.Month
-$EasterDayFutureYear = $EasterDateFutureYear.Day
+$EasterYearFutureYear = $EasterDateFutureYear[0].Substring(0,4)
+$EasterMonthFutureYear = $EasterDateFutureYear[0].Substring(5,2)
+$EasterDayFutureYear = $EasterDateFutureYear[0].Substring(8,2)
 $EasterNumberOfDaysInMonthFutureYear = [DateTime]::DaysInMonth($EasterYearFutureYear, $EasterMonthFutureYear)
-$EasterMonthNumberOfSundaysCountFutureYear = Count-DaysOfWeekInMonth -Year $EasterYearFutureYear -Month $EasterMonthFutureYear -DayOfWeek 'Sunday'
+$EasterMonthNumberOfSundaysCountFutureYear = 0
 
-$EasterYearPreviousYear = $EasterDatePreviousYear.Year
-$EasterMonthPreviousYear = $EasterDatePreviousYear.Month
-$EasterDayPreviousYear = $EasterDatePreviousYear.Day
+$EasterYearPreviousYear = $EasterDatePreviousYear[0].Substring(0,4)
+$EasterMonthPreviousYear = $EasterDatePreviousYear[0].Substring(5,2)
+$EasterDayPreviousYear = $EasterDatePreviousYear[0].Substring(8,2)
 $EasterNumberOfDaysInMonthPreviousYear = [DateTime]::DaysInMonth($EasterYearPreviousYear, $EasterMonthPreviousYear)
-$EasterMonthNumberOfSundaysCountPreviousYear = Count-DaysOfWeekInMonth -Year $EasterYearPreviousYear -Month $EasterMonthPreviousYear -DayOfWeek 'Sunday'
+$EasterMonthNumberOfSundaysCountPreviousYear = 0
 
-$EasterYearYearAfter = $EasterDateYearAfter.Year
-$EasterMonthYearAfter = $EasterDateYearAfter.Month
-$EasterDayYearAfter = $EasterDateYearAfter.Day
+$EasterYearYearAfter = $EasterDateYearAfter[0].Substring(0,4)
+$EasterMonthYearAfter = $EasterDateYearAfter[0].Substring(5,2)
+$EasterDayYearAfter = $EasterDateYearAfter[0].Substring(8,2)
 $EasterNumberOfDaysInMonthYearAfter = [DateTime]::DaysInMonth($EasterYearYearAfter, $EasterMonthYearAfter)
-$EasterMonthNumberOfSundaysCountYearAfter = Count-DaysOfWeekInMonth -Year $EasterYearYearAfter -Month $EasterMonthYearAfter -DayOfWeek 'Sunday'
+$EasterMonthNumberOfSundaysCountYearAfter = 0
 
-# Determine if Easter month should block Singspiration (<=4 Sundays)
-if ($EasterMonthNumberOfSundaysCountFutureYear -le 4) { $EasterMonthSkipSingspiration = 1 } else { $EasterMonthSkipSingspiration = 0 }
-if ($EasterMonthNumberOfSundaysCountPreviousYear -le 4) { $EasterMonthSkipSingspirationPreviousYear = 1 } else { $EasterMonthSkipSingspirationPreviousYear = 0 }
-if ($EasterMonthNumberOfSundaysCountYearAfter -le 4) { $EasterMonthSkipSingspirationYearAfter = 1 } else { $EasterMonthSkipSingspirationYearAfter = 0 }
+# Loop through each day of the month - figuring out the number of Sundays in the month of Easter for Future Year:
+for ($day = 1; $day -le $EasterNumberOfDaysInMonthFutureYear; $day++) {
+    # Create a date object for the current day
+    $currentDate = [DateTime]::new($EasterYearFutureYear, $EasterMonthFutureYear, $day)
+    # Check if the day is a Sunday
+    if ($currentDate.DayOfWeek -eq "Sunday") {
+        # Increment the Sunday counter
+        $EasterMonthNumberOfSundaysCountFutureYear++
+    }
+}
 
-# Last Sunday day numbers
-$EasterFutureYearLastSundayInMonth = (Get-LastWeekdayInMonth -Year $EasterYearFutureYear -Month $EasterMonthFutureYear -DayOfWeek 'Sunday').Day
-$EasterPreviousYearLastSundayInMonth = (Get-LastWeekdayInMonth -Year $EasterYearPreviousYear -Month $EasterMonthPreviousYear -DayOfWeek 'Sunday').Day
-$EasterYearAfterLastSundayInMonth = (Get-LastWeekdayInMonth -Year $EasterYearYearAfter -Month $EasterMonthYearAfter -DayOfWeek 'Sunday').Day
+# Loop through each day of the month - figuring out the number of Sundays in the month of Easter for Previous Year:
+for ($day = 1; $day -le $EasterNumberOfDaysInMonthPreviousYear; $day++) {
+    # Create a date object for the current day
+    $currentDate = [DateTime]::new($EasterYearPreviousYear, $EasterMonthPreviousYear, $day)
+    # Check if the day is a Sunday
+    if ($currentDate.DayOfWeek -eq "Sunday") {
+        # Increment the Sunday counter
+        $EasterMonthNumberOfSundaysCountPreviousYear++
+    }
+}
 
-# Compare Easter day to last Sunday and compute combined decision
-$SkipEasterSingspiration = ($EasterDayFutureYear -eq $EasterFutureYearLastSundayInMonth) ? 1 : 0
-$SkipEasterSingspirationPreviousYear = ($EasterDayPreviousYear -eq $EasterPreviousYearLastSundayInMonth) ? 1 : 0
-$SkipEasterSingspirationYearAfter = ($EasterDayYearAfter -eq $EasterYearAfterLastSundayInMonth) ? 1 : 0
-
-if ($SkipEasterSingspiration -ne $EasterMonthSkipSingspiration) { $YouCanHaveSingspirationEasterMonth = 0 } else { $YouCanHaveSingspirationEasterMonth = 1 }
-if ($SkipEasterSingspirationPreviousYear -ne $EasterMonthSkipSingspirationPreviousYear) { $YouCanHaveSingspirationEasterMonthPreviousYear = 0 } else { $YouCanHaveSingspirationEasterMonthPreviousYear = 1 }
-if ($SkipEasterSingspirationYearAfter -ne $EasterMonthSkipSingspirationYearAfter) { $YouCanHaveSingspirationEasterMonthYearAfter = 0 } else { $YouCanHaveSingspirationEasterMonthYearAfter = 1 }
+# Loop through each day of the month - figuring out the number of Sundays in the month of Easter for the Year After:
+for ($day = 1; $day -le $EasterNumberOfDaysInMonthYearAfter; $day++) {
+    # Create a date object for the current day
+    $currentDate = [DateTime]::new($EasterYearYearAfter, $EasterMonthYearAfter, $day)
+    # Check if the day is a Sunday
+    if ($currentDate.DayOfWeek -eq "Sunday") {
+        # Increment the Sunday counter
+        $EasterMonthNumberOfSundaysCountYearAfter++
+    }
+}
 
 # Output the number of Sundays - Future Year:
 # Write-Output "Number of Sundays in this month: $EasterMonthNumberOfSundaysCountFutureYear"
