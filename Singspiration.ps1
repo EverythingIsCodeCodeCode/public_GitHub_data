@@ -47,6 +47,14 @@ Need to incorporate "PreviousYear" & "YearAfter" into loops for reporting.
 # List variables:
 # Ok, no variables to use/list just yet.
 
+<#
+Some holidays:
+03-04 Easter
+08 Labor Day
+10 Fall Festival
+11 Thanksgiving
+12 Christmas & New Years
+#>
 
 Function Get-DateOfEaster {
 	param (
