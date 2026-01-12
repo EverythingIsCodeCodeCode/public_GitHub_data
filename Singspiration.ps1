@@ -292,6 +292,11 @@ if ($SkipEasterSingspirationYearAfter -eq $EasterMonthSkipSingspirationYearAfter
 # You have now figured out if you can have Singspiration Easter month.
 # Easter can only be in March or April so you can remove the Easter-related code from the other months. Done.
 
+# Can you have Singspiration around Labor Day? We usually take off church the Sunday night before Labor Day.
+# Sometimes the Sunday night before Labor Day is in August and sometimes it's in September.
+# Need code here to figure that out.
+
+
 # Can you have Singspiration around Fall Festival in the future year?::
 # Get the number of days in October in the future year (October always has 31 days so this could probably be static).
 $octoberDays = [DateTime]::DaysInMonth($FutureYear, 10)
@@ -1454,7 +1459,7 @@ if ($NumberOfSundaysInAug -le 4) {
 }
 if ($NumberOfSundaysInAug -ge 5) {
 	# $SingspirationAug = 1 # The number of Sundays in August in the future year is 5 or more so we'll have Singspiration this month.
-	$SingspirationAug = 0 # Ok, we're currently going to skip Singspiration in August because we're normally spending time with our other families during the Sunday night before Labor Day.
+	$SingspirationAug = 3 # Ok, we're currently going to skip Singspiration in August because we're normally spending time with our other families during the Sunday night before Labor Day.
 }
 
 if ($NumberOfSundaysInAugPreviousYear -le 4) {
@@ -1462,7 +1467,7 @@ if ($NumberOfSundaysInAugPreviousYear -le 4) {
 }
 if ($NumberOfSundaysInAugPreviousYear -ge 5) {
 	# $SingspirationAugPreviousYear = 1 # The number of Sundays in August in the Previous Year is 5 or more so we'll have Singspiration this month.
-	$SingspirationAugPreviousYear = 0 # Ok, we're currently going to skip Singspiration in August because we're normally spending time with our other families during the Sunday night before Labor Day.
+	$SingspirationAugPreviousYear = 3 # Ok, we're currently going to skip Singspiration in August because we're normally spending time with our other families during the Sunday night before Labor Day.
 }
 
 if ($NumberOfSundaysInAugYearAfter -le 4) {
@@ -1470,7 +1475,7 @@ if ($NumberOfSundaysInAugYearAfter -le 4) {
 }
 if ($NumberOfSundaysInAugYearAfter -ge 5) {
 	# $SingspirationAugYearAfter = 1 # The number of Sundays in August in the Year After is 5 or more so we'll have Singspiration this month.
-	$SingspirationAugYearAfter = 0 # Ok, we're currently going to skip Singspiration in August because we're normally spending time with our other families during the Sunday night before Labor Day.
+	$SingspirationAugYearAfter = 3 # Ok, we're currently going to skip Singspiration in August because we're normally spending time with our other families during the Sunday night before Labor Day.
 }
 
 if ($NumberOfSundaysInSep -le 4) {
@@ -1877,6 +1882,7 @@ if ($SingspirationJulPreviousYear -eq 1) {Write-Host -ForegroundColor Green "Jul
 if ($SingspirationJulPreviousYear -eq 0) {Write-Host -ForegroundColor DarkRed "July $($lastSundayJulPreviousYear.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
 if ($SingspirationAugPreviousYear -eq 1) {Write-Host -ForegroundColor Green "August $($lastSundayAugPreviousYear.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
 if ($SingspirationAugPreviousYear -eq 0) {Write-Host -ForegroundColor DarkRed "August $($lastSundayAugPreviousYear.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationAugPreviousYear -eq 3) {Write-Host -ForegroundColor DarkRed "August $($lastSundayAugPreviousYear.ToString('yyyy-MM-dd'))sp: Skip Singspiration (Labor Day)."}
 if ($SingspirationSepPreviousYear -eq 1) {Write-Host -ForegroundColor Green "September $($lastSundaySepPreviousYear.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
 if ($SingspirationSepPreviousYear -eq 0) {Write-Host -ForegroundColor DarkRed "September $($lastSundaySepPreviousYear.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
 if ($SingspirationOctPreviousYear -eq 1) {Write-Host -ForegroundColor Green "October $($lastSundayOctPreviousYear.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
@@ -1905,6 +1911,7 @@ if ($SingspirationJul -eq 1) {Write-Host -ForegroundColor Green "July $($lastSun
 if ($SingspirationJul -eq 0) {Write-Host -ForegroundColor DarkRed "July $($lastSundayJul.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
 if ($SingspirationAug -eq 1) {Write-Host -ForegroundColor Green "August $($lastSundayAug.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
 if ($SingspirationAug -eq 0) {Write-Host -ForegroundColor DarkRed "August $($lastSundayAug.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationAug -eq 3) {Write-Host -ForegroundColor DarkRed "August $($lastSundayAug.ToString('yyyy-MM-dd'))sp: Skip Singspiration (Labor Day)."}
 if ($SingspirationSep -eq 1) {Write-Host -ForegroundColor Green "September $($lastSundaySep.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
 if ($SingspirationSep -eq 0) {Write-Host -ForegroundColor DarkRed "September $($lastSundaySep.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
 if ($SingspirationOct -eq 1) {Write-Host -ForegroundColor Green "October $($lastSundayOct.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
@@ -1933,6 +1940,7 @@ if ($SingspirationJulYearAfter -eq 1) {Write-Host -ForegroundColor Green "July $
 if ($SingspirationJulYearAfter -eq 0) {Write-Host -ForegroundColor DarkRed "July $($lastSundayJulYearAfter.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
 if ($SingspirationAugYearAfter -eq 1) {Write-Host -ForegroundColor Green "August $($lastSundayAugYearAfter.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
 if ($SingspirationAugYearAfter -eq 0) {Write-Host -ForegroundColor DarkRed "August $($lastSundayAugYearAfter.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
+if ($SingspirationAugYearAfter -eq 3) {Write-Host -ForegroundColor DarkRed "August $($lastSundayAugYearAfter.ToString('yyyy-MM-dd'))sp: Skip Singspiration (Labor Day)."}
 if ($SingspirationSepYearAfter -eq 1) {Write-Host -ForegroundColor Green "September $($lastSundaySepYearAfter.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
 if ($SingspirationSepYearAfter -eq 0) {Write-Host -ForegroundColor DarkRed "September $($lastSundaySepYearAfter.ToString('yyyy-MM-dd'))sp: Skip Singspiration."}
 if ($SingspirationOctYearAfter -eq 1) {Write-Host -ForegroundColor Green "October $($lastSundayOctYearAfter.ToString('yyyy-MM-dd'))sp: Have Singspiration."}
