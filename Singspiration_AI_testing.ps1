@@ -1,6 +1,4 @@
 <#
-This script is an experiment to see if AI can make it work.
-
 2024-12-01sp.
 This script will help with figuring out Singspiration dates which usually take place on the 5th Sunday night at 6p in a given month.
 
@@ -297,6 +295,7 @@ if ($SkipEasterSingspirationYearAfter -eq $EasterMonthSkipSingspirationYearAfter
 # Can you have Singspiration around Labor Day? We usually take off church the Sunday night before Labor Day.
 # Sometimes the Sunday night before Labor Day is in August and sometimes it's in September.
 # Need code here to figure that out.
+# Labor Day is the first Monday in September.
 
 
 # Can you have Singspiration around Fall Festival in the future year?::
