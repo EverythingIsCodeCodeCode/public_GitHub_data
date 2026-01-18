@@ -296,6 +296,9 @@ if ($SkipEasterSingspirationYearAfter -eq $EasterMonthSkipSingspirationYearAfter
 # Sometimes the Sunday night before Labor Day is in August and sometimes it's in September.
 # Need code here to figure that out.
 # Labor Day is the first Monday in September.
+# Subtract one day to get the Sunday before Labor Day.
+# See if that day is in August.
+# See if that day is the 5th Sunday.
 
 
 # Can you have Singspiration around Fall Festival in the future year?::
