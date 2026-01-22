@@ -300,6 +300,34 @@ if ($SkipEasterSingspirationYearAfter -eq $EasterMonthSkipSingspirationYearAfter
 # See if that day is in August.
 # See if that day is the 5th Sunday.
 
+# Calculate Labor Day (first Monday in September)
+$september1 = [DateTime]::new($year, 9, 1)
+$offsetToLaborDay = (1 - [int]$september1.DayOfWeek + 7) % 7
+$laborDay = $september1.AddDays($offsetToLaborDay)
+
+# Sunday before Labor Day
+$sundayBefore = $laborDay.AddDays(-1)
+
+# Calculate the fifth Sunday in August
+$august1 = [DateTime]::new($year, 8, 1)
+$offsetToFirstSunday = (0 - [int]$august1.DayOfWeek + 7) % 7
+$firstSundayAug = $august1.AddDays($offsetToFirstSunday)
+$fifthSundayAug = $firstSundayAug.AddDays(28)
+
+# Check if they match
+if ($sundayBefore -eq $fifthSundayAug) {
+    $isFifthSunday = 1
+    #Write-Host "Yes, the Sunday before Labor Day is the fifth Sunday in August for year $year."
+} else {
+    $isFifthSunday = 0
+    #Write-Host "No, the Sunday before Labor Day is not the fifth Sunday in August for year $year."
+    #Write-Host "Labor Day: $laborDay"
+    #Write-Host "Sunday before Labor Day: $sundayBefore"
+    #Write-Host "Fifth Sunday in August: $fifthSundayAug"
+}
+$x = $isFifthSunday # You need to get whatever variable you are setting for this. It's probably down below.
+
+
 
 # Can you have Singspiration around Fall Festival in the future year?::
 # Get the number of days in October in the future year (October always has 31 days so this could probably be static).
