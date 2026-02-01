@@ -299,9 +299,12 @@ if ($SkipEasterSingspirationYearAfter -eq $EasterMonthSkipSingspirationYearAfter
 # Subtract one day to get the Sunday before Labor Day.
 # See if that day is in August.
 # See if that day is the 5th Sunday.
+# Can the Sunday before Labor Day ever be the 4th Sunday in August? I don't think it can. I think it's either the 5th Sunday in August or it's the 1st Sunday in September.
+# It is possible for August to have 5 Sundays & for the Sunday before Labor Day to be the 1st Sunday in September. In this scenario, you would have Sinspiration.
 
 # Calculate Labor Day (first Monday in September)
-$september1 = [DateTime]::new($year, 9, 1)
+#$september1 = [DateTime]::new($year, 9, 1)
+$september1 = [DateTime]::new($CurrentYear, 9, 1)
 $offsetToLaborDay = (1 - [int]$september1.DayOfWeek + 7) % 7
 $laborDay = $september1.AddDays($offsetToLaborDay)
 
@@ -318,14 +321,20 @@ $fifthSundayAug = $firstSundayAug.AddDays(28)
 if ($sundayBefore -eq $fifthSundayAug) {
     $isFifthSunday = 1
     #Write-Host "Yes, the Sunday before Labor Day is the fifth Sunday in August for year $year."
+	#Skip Singspiration.
 } else {
     $isFifthSunday = 0
-    #Write-Host "No, the Sunday before Labor Day is not the fifth Sunday in August for year $year."
+    #Write-Host "No, the Sunday before Labor Day is not the fifth Sunday in August for year $year. Possibly always the 1st Sunday in September."
     #Write-Host "Labor Day: $laborDay"
     #Write-Host "Sunday before Labor Day: $sundayBefore"
     #Write-Host "Fifth Sunday in August: $fifthSundayAug"
+	#Have Singspiration.
 }
-$x = $isFifthSunday # You need to get whatever variable you are setting for this. It's probably down below.
+if ($isFifthSunday -eq 1) {
+	$isFifthSunday = 3 # Skip Singspiration (Labor Day).
+}
+$SingspirationAug = $isFifthSunday # You need to get whatever variable you are setting for this. It's probably down below.
+# You still don't know enough. Need to figure out if the Sunday before Labor Day is the 5th Sunday in August or the 1st Sunday in September.
 
 
 
