@@ -50,6 +50,7 @@ Need to incorporate "PreviousYear" & "YearAfter" into loops for reporting.
 <#
 Some holidays:
 03-04 Easter
+05 Memorial Day if it's the fifth Sunday in May.
 06 Mother's Day # Still need to add to script.
 06 Father's Day # Still need to add to script.
 08 Labor Day
