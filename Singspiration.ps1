@@ -54,7 +54,7 @@ Some holidays:
 06 Mother's Day # Still need to add to script.
 06 Father's Day # Still need to add to script.
 08 Labor Day
-10 Fall Festival
+10 Fall Festival if it's the fifty Sunday in October.
 11 Thanksgiving
 12 Christmas & New Years
 #>
